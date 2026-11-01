@@ -3,8 +3,7 @@ import {
   LogIn,
   UserPlus,
   Sparkles,
-  ArrowRight,
-  ShieldCheck
+  ArrowRight
 } from 'lucide-react';
 import AuthModal from './AuthModal';
 
@@ -26,55 +25,57 @@ export default function LandingPage({ onOpenApp, currentUser, isAuthenticated })
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#070b14] text-white flex flex-col justify-between relative overflow-hidden font-sans select-none">
-      {/* Background Ambient Glows */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-blue-600/20 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-indigo-600/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 left-10 w-[400px] h-[400px] bg-cyan-600/10 rounded-full blur-[100px] pointer-events-none" />
+    <div className="w-full min-h-screen bg-[#050505] text-white flex flex-col justify-between relative overflow-hidden font-sans select-none">
+      {/* Background Royal Gold Ambient Glows */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[850px] h-[550px] bg-gradient-to-b from-amber-500/20 via-yellow-600/10 to-transparent rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-amber-700/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 left-10 w-[450px] h-[450px] bg-yellow-600/10 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Top Header / Subtle Status Bar */}
+      {/* Top Header */}
       <header className="w-full max-w-6xl mx-auto px-6 py-6 flex items-center justify-between z-20 relative">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 p-1.5 shadow-lg flex items-center justify-center">
+          <div className="w-11 h-11 rounded-2xl bg-gradient-to-b from-neutral-900/90 to-black/90 backdrop-blur-md border border-amber-400/40 p-1.5 shadow-[0_0_20px_rgba(212,175,55,0.2)] flex items-center justify-center">
             <img
               src="/dilsed-logo.png"
               alt="DilSed Logo"
               className="w-full h-full object-contain filter drop-shadow"
             />
           </div>
-          <span className="font-black text-xl tracking-tight text-white">DilSed</span>
+          <span className="font-black text-2xl tracking-tight bg-gradient-to-r from-white via-amber-100 to-amber-300 bg-clip-text text-transparent">
+            DilSed
+          </span>
         </div>
 
         {/* If already authenticated, show small badge */}
         {isAuthenticated && currentUser && (
           <button
             onClick={handleEnterApp}
-            className="flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-semibold transition"
+            className="flex items-center gap-2 bg-neutral-900/80 hover:bg-neutral-800 border border-amber-500/30 hover:border-amber-400/60 px-4 py-1.5 rounded-full text-xs font-semibold text-amber-200 transition shadow-lg"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
             <span>Angemeldet als {currentUser.displayName}</span>
-            <ArrowRight className="w-3.5 h-3.5 text-blue-300" />
+            <ArrowRight className="w-3.5 h-3.5 text-amber-300" />
           </button>
         )}
       </header>
 
       {/* Main Centered Content */}
       <main className="flex-1 flex flex-col items-center justify-center px-6 py-12 z-20 relative text-center max-w-4xl mx-auto">
-        {/* DilSed Logo Highlight */}
+        {/* DilSed Gold Crown & Ring Logo Highlight */}
         <div className="relative mb-8 group">
-          <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/30 via-indigo-500/30 to-amber-500/20 rounded-full blur-2xl group-hover:blur-3xl transition duration-500 opacity-80" />
-          <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-3xl bg-gradient-to-b from-white/15 to-white/5 backdrop-blur-xl border border-white/25 p-4 shadow-2xl flex items-center justify-center transition-transform duration-300 hover:scale-105">
+          <div className="absolute -inset-6 bg-gradient-to-r from-amber-500/30 via-yellow-500/25 to-amber-600/30 rounded-full blur-3xl group-hover:blur-[80px] transition duration-700 opacity-90" />
+          <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-3xl bg-gradient-to-b from-neutral-900/95 via-neutral-950/95 to-black/95 backdrop-blur-2xl border border-amber-400/50 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_40px_rgba(212,175,55,0.25)] flex items-center justify-center transition-transform duration-300 hover:scale-105 hover:border-amber-400">
             <img
               src="/dilsed-logo.png"
               alt="DilSed Logo"
-              className="w-full h-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+              className="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]"
             />
           </div>
         </div>
 
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider mb-5">
-          <Sparkles className="w-3.5 h-3.5 text-blue-300" />
+        {/* Badge with Gold Glow */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-950/40 border border-amber-500/40 text-amber-300 text-xs font-bold uppercase tracking-wider mb-5 shadow-[0_0_20px_rgba(212,175,55,0.15)]">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
           <span>Offizielle Kommunikationsplattform</span>
         </div>
 
@@ -84,72 +85,56 @@ export default function LandingPage({ onOpenApp, currentUser, isAuthenticated })
         </h1>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base text-blue-100/80 max-w-2xl leading-relaxed mb-10 font-normal">
+        <p className="text-sm sm:text-base text-neutral-400 max-w-2xl leading-relaxed mb-10 font-normal">
           Deine moderne Plattform für kristallklare Sprachräume, Echtzeit-Textchats und sichere Communities – direkt im Browser ohne zusätzliche Installation.
         </p>
 
-        {/* Action Buttons: Only Login & Register */}
+        {/* Action Buttons: Pure Black & Gold Login & Register */}
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           {isAuthenticated && currentUser ? (
             <button
               onClick={handleEnterApp}
-              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black px-8 py-4 rounded-2xl shadow-xl shadow-blue-600/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 text-sm"
+              className="w-full sm:w-auto bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 text-neutral-950 font-black px-9 py-4 rounded-2xl shadow-xl shadow-amber-500/25 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 text-sm cursor-pointer"
             >
               <span>App öffnen (Als {currentUser.displayName})</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
             <>
-              {/* Login Button */}
+              {/* Login Button (Polished Regal Gold) */}
               <button
                 onClick={() => openAuth('login')}
-                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black px-8 py-4 rounded-2xl shadow-xl shadow-blue-600/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 text-sm cursor-pointer"
+                className="w-full sm:w-auto bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#c59b27] hover:from-[#e5c158] hover:via-[#fff3cc] hover:to-[#d4af37] text-neutral-950 font-black px-9 py-4 rounded-2xl shadow-xl shadow-amber-500/25 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 text-sm cursor-pointer"
               >
                 <LogIn className="w-4 h-4" />
                 <span>Anmelden (Login)</span>
               </button>
 
-              {/* Register Button */}
+              {/* Register Button (Obsidian Black with Gold Border) */}
               <button
                 onClick={() => openAuth('register')}
-                className="w-full sm:w-auto bg-white/10 hover:bg-white/15 text-white font-black px-8 py-4 rounded-2xl border border-white/20 backdrop-blur-md hover:border-white/40 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 text-sm cursor-pointer shadow-lg"
+                className="w-full sm:w-auto bg-neutral-950/90 hover:bg-neutral-900 text-amber-200 hover:text-white font-bold px-9 py-4 rounded-2xl border border-amber-500/40 hover:border-amber-400 backdrop-blur-md hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 text-sm cursor-pointer shadow-xl shadow-black/60 hover:shadow-amber-500/10"
               >
-                <UserPlus className="w-4 h-4 text-blue-300" />
+                <UserPlus className="w-4 h-4 text-amber-400" />
                 <span>Registrieren (Register)</span>
               </button>
             </>
           )}
         </div>
-
-        {/* Security / Quality Trust Indicators */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-[11px] text-blue-200/60 font-medium">
-          <span className="flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            Ende-zu-Ende verschlüsselte Sessions
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            100% Kostenlos & Ohne Werbung
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-            Kristallklare WebRTC-Sprachübertragung
-          </span>
-        </div>
       </main>
 
-      {/* Clean Minimalist Footer */}
-      <footer className="w-full py-6 px-6 border-t border-white/5 z-20 relative text-center text-xs text-blue-200/50 flex flex-col sm:flex-row items-center justify-between max-w-6xl mx-auto">
+      {/* Clean Minimalist Black & Gold Footer */}
+      <footer className="w-full py-6 px-6 border-t border-amber-500/15 z-20 relative text-center text-xs text-neutral-500 flex flex-col sm:flex-row items-center justify-between max-w-6xl mx-auto">
         <div className="flex items-center gap-2 mb-2 sm:mb-0">
           <img src="/dilsed-logo.png" alt="DilSed" className="w-4 h-4 object-contain" />
-          <span className="font-semibold text-white/80">DilSed Kommunikationsapp</span>
+          <span className="font-semibold text-neutral-400">DilSed Kommunikationsapp</span>
         </div>
-        <div className="text-[11px]">
+        <div className="text-[11px] text-neutral-500">
           © 2026 DilSed • Bereit für das Code-Review • Alle Rechte vorbehalten.
         </div>
       </footer>
 
-      {/* Authentication Modal (Handles both Login and Register seamlessly) */}
+      {/* Authentication Modal */}
       <AuthModal
         key={authMode}
         isOpen={authModalOpen}

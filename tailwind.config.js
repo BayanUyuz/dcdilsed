@@ -8,27 +8,27 @@ export default {
     extend: {
       colors: {
         discord: {
-          sidebar: '#1e1f22',
-          channels: '#2b2d31',
-          chat: '#313338',
-          chathover: '#2e3035',
-          members: '#2b2d31',
-          input: '#383a40',
-          darkest: '#111214',
-          userdock: '#232428',
-          blurple: '#2563eb', // Beautiful Royal Sapphire Blue
-          blurpleHover: '#1d4ed8', // Deep Royal Blue
-          dilsedBlue: '#2563eb',
-          dilsedBlueHover: '#1d4ed8',
+          sidebar: '#08080a',
+          channels: '#0d0d10',
+          chat: '#111114',
+          chathover: '#16161a',
+          members: '#0d0d10',
+          input: '#18181c',
+          darkest: '#040405',
+          userdock: '#09090c',
+          blurple: '#d4af37', // Polished Regal Gold
+          blurpleHover: '#c59b27', // Rich Deep Gold
+          dilsedGold: '#d4af37',
+          dilsedGoldHover: '#f3e5ab',
           green: '#23a55a',
           yellow: '#f0b232',
           red: '#f23f43',
-          textMuted: '#949ba4',
-          textNormal: '#dbdee1',
-          textHeader: '#f2f3f5',
-          divider: '#3f4147',
-          activeChannel: '#35373c',
-          hoverChannel: '#313338'
+          textMuted: '#8b8d96',
+          textNormal: '#e0e1e6',
+          textHeader: '#ffffff',
+          divider: '#202126',
+          activeChannel: '#1c1d24',
+          hoverChannel: '#15161b'
         }
       },
       fontFamily: {
