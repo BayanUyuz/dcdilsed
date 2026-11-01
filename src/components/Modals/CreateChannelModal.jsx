@@ -42,40 +42,42 @@ export default function CreateChannelModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 animate-in fade-in select-none">
-      <div className="bg-discord-chat rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative border border-discord-divider/40">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 animate-in fade-in select-none">
+      <div className="bg-[#0a0a0d] rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_40px_rgba(212,175,55,0.18)] w-full max-w-md overflow-hidden relative border border-amber-500/30">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-discord-textMuted hover:text-white transition"
+          className="absolute top-4 right-4 text-amber-200/60 hover:text-amber-400 transition"
         >
           <X className="w-5 h-5" />
         </button>
 
         <form onSubmit={handleSubmit} className="p-6">
-          <h2 className="text-xl font-bold text-white mb-1">Kanal erstellen</h2>
-          <p className="text-xs text-discord-textMuted mb-5">
+          <h2 className="text-xl font-black text-white mb-1 tracking-tight bg-gradient-to-r from-white via-amber-100 to-amber-300 bg-clip-text text-transparent">
+            Kanal erstellen
+          </h2>
+          <p className="text-xs text-amber-200/60 mb-5">
             Erstelle einen Text- oder Sprachkanal für deinen Server.
           </p>
 
           <div className="space-y-2.5 mb-5">
-            <label className="text-[11px] font-bold text-discord-textMuted uppercase block">
+            <label className="text-[11px] font-bold text-amber-300/80 uppercase block">
               KANALTYP
             </label>
 
             {/* Text channel radio */}
             <div
               onClick={() => setChannelType('text')}
-              className={`p-3 rounded-xl border flex items-center justify-between cursor-pointer transition ${
+              className={`p-3.5 rounded-xl border flex items-center justify-between cursor-pointer transition ${
                 channelType === 'text'
-                  ? 'bg-discord-channels border-discord-blurple'
-                  : 'bg-discord-darkest/60 border-discord-divider/40 hover:bg-discord-channels'
+                  ? 'bg-amber-400/10 border-amber-400/70 shadow-sm shadow-amber-500/10'
+                  : 'bg-[#101014] border-white/5 hover:border-amber-500/30'
               }`}
             >
               <div className="flex items-center gap-3">
-                <Hash className="w-5 h-5 text-discord-textMuted" />
+                <Hash className={`w-5 h-5 ${channelType === 'text' ? 'text-amber-400' : 'text-neutral-400'}`} />
                 <div>
-                  <div className="font-semibold text-white text-sm">Text</div>
-                  <div className="text-xs text-discord-textMuted">
+                  <div className={`font-bold text-sm ${channelType === 'text' ? 'text-amber-200' : 'text-white'}`}>Text</div>
+                  <div className="text-xs text-neutral-400">
                     Sende Nachrichten, Bilder, Videos und Code
                   </div>
                 </div>
@@ -83,12 +85,12 @@ export default function CreateChannelModal({
               <div
                 className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
                   channelType === 'text'
-                    ? 'border-discord-blurple bg-discord-blurple'
-                    : 'border-discord-textMuted'
+                    ? 'border-amber-400 bg-amber-400'
+                    : 'border-neutral-500'
                 }`}
               >
                 {channelType === 'text' && (
-                  <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-950" />
                 )}
               </div>
             </div>
@@ -96,17 +98,17 @@ export default function CreateChannelModal({
             {/* Voice channel radio */}
             <div
               onClick={() => setChannelType('voice')}
-              className={`p-3 rounded-xl border flex items-center justify-between cursor-pointer transition ${
+              className={`p-3.5 rounded-xl border flex items-center justify-between cursor-pointer transition ${
                 channelType === 'voice'
-                  ? 'bg-discord-channels border-discord-blurple'
-                  : 'bg-discord-darkest/60 border-discord-divider/40 hover:bg-discord-channels'
+                  ? 'bg-amber-400/10 border-amber-400/70 shadow-sm shadow-amber-500/10'
+                  : 'bg-[#101014] border-white/5 hover:border-amber-500/30'
               }`}
             >
               <div className="flex items-center gap-3">
-                <Volume2 className="w-5 h-5 text-discord-textMuted" />
+                <Volume2 className={`w-5 h-5 ${channelType === 'voice' ? 'text-amber-400' : 'text-neutral-400'}`} />
                 <div>
-                  <div className="font-semibold text-white text-sm">Sprache</div>
-                  <div className="text-xs text-discord-textMuted">
+                  <div className={`font-bold text-sm ${channelType === 'voice' ? 'text-amber-200' : 'text-white'}`}>Sprache</div>
+                  <div className="text-xs text-neutral-400">
                     Gemeinsam sprechen, Video übertragen und Bildschirm teilen
                   </div>
                 </div>
@@ -114,12 +116,12 @@ export default function CreateChannelModal({
               <div
                 className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
                   channelType === 'voice'
-                    ? 'border-discord-blurple bg-discord-blurple'
-                    : 'border-discord-textMuted'
+                    ? 'border-amber-400 bg-amber-400'
+                    : 'border-neutral-500'
                 }`}
               >
                 {channelType === 'voice' && (
-                  <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-950" />
                 )}
               </div>
             </div>
@@ -127,11 +129,11 @@ export default function CreateChannelModal({
 
           {/* KANALNAME */}
           <div className="mb-4">
-            <label className="text-[11px] font-bold text-discord-textMuted uppercase block mb-1.5">
+            <label className="text-[11px] font-bold text-amber-300/80 uppercase block mb-1.5">
               KANALNAME
             </label>
             <div className="relative flex items-center">
-              <span className="absolute left-3 text-discord-textMuted">
+              <span className="absolute left-3 text-amber-400 font-bold">
                 {channelType === 'text' ? '#' : '🔊'}
               </span>
               <input
@@ -140,7 +142,7 @@ export default function CreateChannelModal({
                 onChange={(e) => setChannelName(e.target.value)}
                 placeholder={channelType === 'text' ? 'neuer-kanal' : 'Gaming-Raum'}
                 required
-                className="w-full bg-discord-darkest rounded-xl pl-9 pr-3 py-2 text-sm text-white border border-discord-divider/60 focus:border-discord-blurple focus:outline-none"
+                className="w-full bg-[#121216] rounded-xl pl-9 pr-3 py-2.5 text-sm text-white border border-amber-500/25 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/50"
                 autoFocus
               />
             </div>
@@ -148,13 +150,13 @@ export default function CreateChannelModal({
 
           {/* BENUTZERLIMIT FÜR SPRACHKANAL */}
           {channelType === 'voice' && (
-            <div className="mb-4 p-3 bg-discord-darkest/60 rounded-xl border border-discord-divider/40">
-              <div className="flex items-center justify-between mb-1.5">
+            <div className="mb-4 p-3.5 bg-[#101014] rounded-xl border border-amber-500/20">
+              <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                  <Users className="w-3.5 h-3.5 text-discord-blurple" />
+                  <Users className="w-3.5 h-3.5 text-amber-400" />
                   <span>BENUTZERLIMIT</span>
                 </span>
-                <span className="text-xs font-bold text-discord-green bg-discord-green/20 px-2 py-0.5 rounded-full">
+                <span className="text-xs font-bold text-neutral-950 bg-amber-400 px-2.5 py-0.5 rounded-full shadow-sm">
                   {userLimit === 0 ? 'UNBEGRENZT' : `${userLimit} BENUTZER`}
                 </span>
               </div>
@@ -164,7 +166,7 @@ export default function CreateChannelModal({
                 max={99}
                 value={userLimit}
                 onChange={(e) => setUserLimit(Number(e.target.value))}
-                className="w-full accent-discord-blurple cursor-pointer h-1.5 bg-discord-divider rounded"
+                className="w-full accent-amber-400 cursor-pointer h-1.5 bg-neutral-800 rounded"
               />
             </div>
           )}
@@ -172,17 +174,17 @@ export default function CreateChannelModal({
           {/* PRIVATER KANAL SWITCH */}
           <div
             onClick={() => setIsPrivate(!isPrivate)}
-            className="flex items-center justify-between p-3 rounded-xl bg-discord-darkest/60 border border-discord-divider/40 cursor-pointer mb-6"
+            className="flex items-center justify-between p-3.5 rounded-xl bg-[#101014] border border-amber-500/20 cursor-pointer mb-6 hover:border-amber-400/40 transition"
           >
             <div className="flex items-center gap-2.5">
               {isPrivate ? (
-                <Lock className="w-4 h-4 text-discord-blurple" />
+                <Lock className="w-4 h-4 text-amber-400" />
               ) : (
-                <Unlock className="w-4 h-4 text-discord-textMuted" />
+                <Unlock className="w-4 h-4 text-neutral-400" />
               )}
               <div>
-                <div className="text-xs font-semibold text-white">Privater Kanal</div>
-                <div className="text-[11px] text-discord-textMuted">
+                <div className="text-xs font-bold text-white">Privater Kanal</div>
+                <div className="text-[11px] text-neutral-400">
                   Nur ausgewählte Mitglieder und Rollen können diesen Kanal sehen
                 </div>
               </div>
@@ -190,26 +192,26 @@ export default function CreateChannelModal({
 
             <div
               className={`w-10 h-5 rounded-full p-0.5 transition flex items-center ${
-                isPrivate ? 'bg-discord-blurple justify-end' : 'bg-discord-channels justify-start'
+                isPrivate ? 'bg-amber-400 justify-end' : 'bg-neutral-800 justify-start'
               }`}
             >
-              <div className="w-3.5 h-3.5 rounded-full bg-white shadow-md" />
+              <div className="w-3.5 h-3.5 rounded-full bg-neutral-950 shadow-md" />
             </div>
           </div>
 
           {/* Action buttons */}
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-discord-divider/30">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-amber-500/15">
             <button
               type="button"
               onClick={onClose}
-              className="text-xs font-semibold text-white hover:underline px-2 py-1"
+              className="text-xs font-semibold text-amber-200/70 hover:text-white px-2 py-1"
             >
               Abbrechen
             </button>
             <button
               type="submit"
               disabled={!channelName.trim()}
-              className="bg-discord-blurple hover:bg-discord-blurpleHover text-white px-5 py-2 rounded-xl text-xs font-semibold transition disabled:opacity-50 shadow-md"
+              className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:brightness-110 text-neutral-950 px-5 py-2.5 rounded-xl text-xs font-black transition disabled:opacity-50 shadow-lg shadow-amber-500/20 active:scale-95 cursor-pointer"
             >
               Kanal erstellen
             </button>

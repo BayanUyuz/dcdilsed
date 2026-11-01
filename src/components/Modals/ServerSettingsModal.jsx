@@ -203,95 +203,95 @@ export default function ServerSettingsModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex bg-discord-chat animate-in fade-in select-none">
+    <div className="fixed inset-0 z-50 flex bg-[#0a0a0d] text-white animate-in fade-in select-none">
       {/* ----------------- LEFT NAVIGATION SIDEBAR ----------------- */}
-      <div className="w-64 bg-discord-channels flex flex-col items-end py-10 pr-6 flex-shrink-0 border-r border-discord-darkest/30 overflow-y-auto">
+      <div className="w-64 bg-[#060608] flex flex-col items-end py-10 pr-6 flex-shrink-0 border-r border-amber-500/15 overflow-y-auto custom-scrollbar">
         <div className="w-52 space-y-1 text-xs font-medium">
           {/* Bereich: SERVER-EINSTELLUNGEN */}
-          <div className="text-[10px] font-bold text-discord-textMuted tracking-wider uppercase px-2 mb-1">
+          <div className="text-[10px] font-bold text-amber-300/70 tracking-wider uppercase px-2 mb-1">
             {server.name.toUpperCase()}
           </div>
           <button
             onClick={() => setActiveTab('overview')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'overview' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'overview' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Sliders className="w-3.5 h-3.5" />
+            <Sliders className="w-3.5 h-3.5 text-amber-400" />
             <span>Übersicht & Design</span>
           </button>
           <button
             onClick={() => setActiveTab('tag')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'tag' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'tag' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Tag className="w-3.5 h-3.5" />
+            <Tag className="w-3.5 h-3.5 text-amber-400" />
             <span>Server-Tag & URL</span>
           </button>
           <button
             onClick={() => setActiveTab('roles')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'roles' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'roles' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Shield className="w-3.5 h-3.5" />
+            <Shield className="w-3.5 h-3.5 text-amber-400" />
             <span>Rollen & Berechtigungen</span>
           </button>
           <button
             onClick={() => setActiveTab('emojis')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'emojis' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'emojis' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Smile className="w-3.5 h-3.5" />
+            <Smile className="w-3.5 h-3.5 text-amber-400" />
             <span>Emojis</span>
           </button>
           <button
             onClick={() => setActiveTab('stickers')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'stickers' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'stickers' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#ff73fa]" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <span>Sticker</span>
           </button>
           <button
             onClick={() => setActiveTab('audit')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'audit' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'audit' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <FileText className="w-3.5 h-3.5" />
+            <FileText className="w-3.5 h-3.5 text-amber-400" />
             <span>Audit-Log</span>
           </button>
 
           {/* Section: MODERASYON */}
-          <div className="text-[10px] font-bold text-discord-textMuted tracking-wider uppercase px-2 pt-3 mb-1">
+          <div className="text-[10px] font-bold text-amber-300/70 tracking-wider uppercase px-2 pt-3 mb-1">
             SICHERHEIT & MODERATION
           </div>
           <button
             onClick={() => setActiveTab('automod')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'automod' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'automod' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Bot className="w-3.5 h-3.5 text-discord-blurple" />
+            <Bot className="w-3.5 h-3.5 text-amber-400" />
             <span>AutoMod (Automatisch)</span>
           </button>
           <button
             onClick={() => setActiveTab('onboarding')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'onboarding' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'onboarding' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <CheckCircle className="w-3.5 h-3.5 text-discord-green" />
+            <CheckCircle className="w-3.5 h-3.5 text-amber-400" />
             <span>Onboarding & Willkommen</span>
           </button>
           <button
             onClick={() => setActiveTab('bans')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'bans' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'bans' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
             <Ban className="w-3.5 h-3.5 text-discord-red" />
@@ -299,57 +299,57 @@ export default function ServerSettingsModal({
           </button>
 
           {/* Section: TOPLULUK & ENTEGRASYON */}
-          <div className="text-[10px] font-bold text-discord-textMuted tracking-wider uppercase px-2 pt-3 mb-1">
+          <div className="text-[10px] font-bold text-amber-300/70 tracking-wider uppercase px-2 pt-3 mb-1">
             COMMUNITY & INTEGRATION
           </div>
           <button
             onClick={() => setActiveTab('template')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'template' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'template' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Copy className="w-3.5 h-3.5" />
+            <Copy className="w-3.5 h-3.5 text-amber-400" />
             <span>Servervorlage</span>
           </button>
           <button
             onClick={() => setActiveTab('integrations')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'integrations' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'integrations' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Webhook className="w-3.5 h-3.5" />
+            <Webhook className="w-3.5 h-3.5 text-amber-400" />
             <span>Integration & Webhooks</span>
           </button>
 
           {/* Section: MITGLIEDERVERWALTUNG */}
-          <div className="text-[10px] font-bold text-discord-textMuted tracking-wider uppercase px-2 pt-3 mb-1">
+          <div className="text-[10px] font-bold text-amber-300/70 tracking-wider uppercase px-2 pt-3 mb-1">
             MITGLIEDERVERWALTUNG
           </div>
           <button
             onClick={() => setActiveTab('members')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'members' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'members' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Users className="w-3.5 h-3.5" />
+            <Users className="w-3.5 h-3.5 text-amber-400" />
             <span>Mitglieder ({membersList.length})</span>
           </button>
           <button
             onClick={() => setActiveTab('invites')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'invites' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'invites' ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm' : 'text-neutral-400 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <Link className="w-3.5 h-3.5" />
+            <Link className="w-3.5 h-3.5 text-amber-400" />
             <span>Einladungen ({invitesList.length})</span>
           </button>
 
-          <div className="h-[1px] bg-discord-divider my-2" />
+          <div className="h-[1px] bg-amber-500/20 my-2" />
 
           {/* Bereich: GEFAHRENZONE */}
           <button
             onClick={() => setActiveTab('delete')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 text-discord-red hover:bg-discord-red/20 ${
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 text-discord-red hover:bg-discord-red/20 ${
               activeTab === 'delete' ? 'bg-discord-red/30 font-semibold' : ''
             }`}
           >
@@ -359,7 +359,7 @@ export default function ServerSettingsModal({
 
           <button
             onClick={onClose}
-            className="w-full text-left px-2.5 py-1.5 rounded text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white transition"
+            className="w-full text-left px-2.5 py-1.5 rounded-lg text-amber-200/60 hover:bg-white/5 hover:text-white transition"
           >
             Schließen
           </button>
@@ -1267,11 +1267,11 @@ export default function ServerSettingsModal({
         <div className="absolute top-10 right-6 flex flex-col items-center">
           <button
             onClick={onClose}
-            className="w-9 h-9 rounded-full border-2 border-discord-textMuted text-discord-textMuted hover:border-white hover:text-white flex items-center justify-center transition"
+            className="w-9 h-9 rounded-full border-2 border-amber-500/40 text-amber-300 hover:border-amber-400 hover:text-white hover:scale-105 flex items-center justify-center transition shadow-md shadow-amber-500/10"
           >
             <X className="w-5 h-5" />
           </button>
-          <span className="text-[10px] text-discord-textMuted font-bold mt-1">ESC</span>
+          <span className="text-[10px] text-amber-200/60 font-bold mt-1">ESC</span>
         </div>
       </div>
     </div>

@@ -9,11 +9,54 @@ export const currentUser = {
   badges: ['developer', 'early']
 };
 
-// Keine Beispiel-Server – Benutzer kann eigene Server und Kanäle erstellen
-export const initialServers = [];
+// Standardmäßiger DilSed-Community-Server im edlen Schwarz & Gold
+export const initialServers = [
+  {
+    id: 'server_dilsed_official',
+    name: 'DilSed Community',
+    acronym: 'DS',
+    icon: '/dilsed-logo.png',
+    banner: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80',
+    unread: 0,
+    audience: 'community',
+    template: 'Freunde',
+    categories: [
+      {
+        id: 'cat_dilsed_text',
+        name: 'TEXTKANÄLE',
+        channels: [
+          { id: 'c_willkommen', name: 'willkommen', type: 'text', description: 'Willkommen bei DilSed!' },
+          { id: 'c_allgemein', name: 'allgemein', type: 'text', description: 'Allgemeine Unterhaltungen und Austausch' },
+          { id: 'c_ankuendigungen', name: 'ankündigungen', type: 'text', description: 'Neuigkeiten und Plattform-Updates' }
+        ]
+      },
+      {
+        id: 'cat_dilsed_voice',
+        name: 'SPRACHKANÄLE',
+        channels: [
+          { id: 'v_lounge', name: 'Lounge & Talk', type: 'voice', userLimit: 15 },
+          { id: 'v_gaming', name: 'Gaming Zone', type: 'voice', userLimit: 8 }
+        ]
+      }
+    ]
+  }
+];
 
-// Keine Beispiel-Nachrichten
-export const initialMessages = {};
+// Start-Nachrichten
+export const initialMessages = {
+  c_willkommen: [
+    {
+      id: 'm_welcome_1',
+      senderId: 'bot_dilsed',
+      senderName: 'DilSed Bot',
+      avatar: '/dilsed-logo.png',
+      isBot: true,
+      text: 'Willkommen auf dem offiziellen DilSed-Server! 👑 Hier kannst du in Echtzeit chatten, Sprachräume betreten und deine eigene Community aufbauen.',
+      timestamp: 'Heute um 12:00',
+      reactions: { '👑': 3, '✨': 5, '🔥': 2 }
+    }
+  ]
+};
 
 // Nur der angemeldete Benutzer – keine Beispiel-Mitglieder
 export const initialMembers = [

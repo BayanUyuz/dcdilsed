@@ -284,12 +284,12 @@ export default function CreateServerModal({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 animate-in fade-in select-none">
-      <div className="bg-discord-chat rounded-xl shadow-2xl w-full max-w-md overflow-hidden relative border border-discord-divider/40 flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 animate-in fade-in select-none">
+      <div className="bg-[#0a0a0d] rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_40px_rgba(212,175,55,0.18)] w-full max-w-md overflow-hidden relative border border-amber-500/30 flex flex-col">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-discord-textMuted hover:text-white transition z-10"
+          className="absolute top-4 right-4 text-amber-200/60 hover:text-amber-400 transition z-10"
         >
           <X className="w-5 h-5" />
         </button>
@@ -298,126 +298,126 @@ export default function CreateServerModal({
         {step === 'templates' && (
           <div className="flex flex-col">
             <div className="p-6 pb-4">
-              <h2 className="text-2xl font-black text-center text-white mb-2 tracking-tight">
+              <h2 className="text-2xl font-black text-center text-white mb-2 tracking-tight bg-gradient-to-r from-white via-amber-100 to-amber-300 bg-clip-text text-transparent">
                 Erstelle deinen Server
               </h2>
-              <p className="text-xs text-center text-discord-textMuted leading-relaxed max-w-xs mx-auto mb-5">
+              <p className="text-xs text-center text-amber-200/60 leading-relaxed max-w-xs mx-auto mb-5">
                 Dein Server ist der Ort, an dem du mit deinen Freunden abhängst. Erstelle deinen eigenen Server und leg los.
               </p>
 
-              <div className="space-y-2 max-h-[50vh] overflow-y-auto pr-1">
+              <div className="space-y-2 max-h-[50vh] overflow-y-auto pr-1 custom-scrollbar">
                 {/* Primary: Create My Own */}
                 <button
                   onClick={() => handleSelectTemplate('Meine')}
-                  className="w-full flex items-center justify-between p-3 rounded-lg border border-discord-divider/50 hover:bg-discord-hoverChannel transition font-semibold text-white text-sm group"
+                  className="w-full flex items-center justify-between p-3 rounded-xl border border-amber-500/30 bg-[#121217] hover:bg-[#181822] hover:border-amber-400/60 transition font-semibold text-white text-sm group shadow-sm shadow-amber-500/5 active:scale-[0.99]"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-discord-blurple flex items-center justify-center text-white shadow">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 flex items-center justify-center text-neutral-950 shadow-md shadow-amber-500/20">
                       <Sparkles className="w-5 h-5" />
                     </div>
                     <span>Selbst erstellen</span>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-discord-textMuted group-hover:text-white transition" />
+                  <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-0.5 transition" />
                 </button>
 
-                <div className="text-[11px] font-bold text-discord-textMuted uppercase pt-3 pb-1 tracking-wider">
+                <div className="text-[11px] font-bold text-amber-300/70 uppercase pt-3 pb-1 tracking-wider">
                   STARTE MIT EINER VORLAGE
                 </div>
 
                 {/* Gaming */}
                 <button
                   onClick={() => handleSelectTemplate('Gaming')}
-                  className="w-full flex items-center justify-between p-3 rounded-lg border border-discord-divider/50 hover:bg-discord-hoverChannel transition font-semibold text-white text-sm group"
+                  className="w-full flex items-center justify-between p-3 rounded-xl border border-white/5 bg-[#101014] hover:bg-[#16161e] hover:border-amber-500/30 transition font-semibold text-white text-sm group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-discord-green flex items-center justify-center text-white shadow">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shadow">
                       <Gamepad2 className="w-5 h-5" />
                     </div>
                     <span>Gaming</span>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-discord-textMuted group-hover:text-white transition" />
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-amber-300 transition" />
                 </button>
 
                 {/* School Club */}
                 <button
                   onClick={() => handleSelectTemplate('Schul-Club')}
-                  className="w-full flex items-center justify-between p-3 rounded-lg border border-discord-divider/50 hover:bg-discord-hoverChannel transition font-semibold text-white text-sm group"
+                  className="w-full flex items-center justify-between p-3 rounded-xl border border-white/5 bg-[#101014] hover:bg-[#16161e] hover:border-amber-500/30 transition font-semibold text-white text-sm group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-discord-red flex items-center justify-center text-white shadow">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shadow">
                       <GraduationCap className="w-5 h-5" />
                     </div>
                     <span>Schul-Club</span>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-discord-textMuted group-hover:text-white transition" />
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-amber-300 transition" />
                 </button>
 
                 {/* Study Group */}
                 <button
                   onClick={() => handleSelectTemplate('Lerngruppe')}
-                  className="w-full flex items-center justify-between p-3 rounded-lg border border-discord-divider/50 hover:bg-discord-hoverChannel transition font-semibold text-white text-sm group"
+                  className="w-full flex items-center justify-between p-3 rounded-xl border border-white/5 bg-[#101014] hover:bg-[#16161e] hover:border-amber-500/30 transition font-semibold text-white text-sm group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#3ba55d] flex items-center justify-center text-white shadow">
+                    <div className="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-300 flex items-center justify-center shadow">
                       <BookOpen className="w-5 h-5" />
                     </div>
                     <span>Lerngruppe</span>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-discord-textMuted group-hover:text-white transition" />
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-amber-300 transition" />
                 </button>
 
                 {/* Friends */}
                 <button
                   onClick={() => handleSelectTemplate('Freunde')}
-                  className="w-full flex items-center justify-between p-3 rounded-lg border border-discord-divider/50 hover:bg-discord-hoverChannel transition font-semibold text-white text-sm group"
+                  className="w-full flex items-center justify-between p-3 rounded-xl border border-white/5 bg-[#101014] hover:bg-[#16161e] hover:border-amber-500/30 transition font-semibold text-white text-sm group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-discord-yellow flex items-center justify-center text-black shadow">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shadow">
                       <Users className="w-5 h-5" />
                     </div>
                     <span>Freunde</span>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-discord-textMuted group-hover:text-white transition" />
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-amber-300 transition" />
                 </button>
 
                 {/* Artists & Creators */}
                 <button
                   onClick={() => handleSelectTemplate('Künstler & Designer')}
-                  className="w-full flex items-center justify-between p-3 rounded-lg border border-discord-divider/50 hover:bg-discord-hoverChannel transition font-semibold text-white text-sm group"
+                  className="w-full flex items-center justify-between p-3 rounded-xl border border-white/5 bg-[#101014] hover:bg-[#16161e] hover:border-amber-500/30 transition font-semibold text-white text-sm group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#e91e63] flex items-center justify-center text-white shadow">
+                    <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center shadow">
                       <Palette className="w-5 h-5" />
                     </div>
                     <span>Künstler & Designer</span>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-discord-textMuted group-hover:text-white transition" />
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-amber-300 transition" />
                 </button>
 
                 {/* Local Community */}
                 <button
                   onClick={() => handleSelectTemplate('Lokale Community')}
-                  className="w-full flex items-center justify-between p-3 rounded-lg border border-discord-divider/50 hover:bg-discord-hoverChannel transition font-semibold text-white text-sm group"
+                  className="w-full flex items-center justify-between p-3 rounded-xl border border-white/5 bg-[#101014] hover:bg-[#16161e] hover:border-amber-500/30 transition font-semibold text-white text-sm group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#1abc9c] flex items-center justify-center text-white shadow">
+                    <div className="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center shadow">
                       <Globe className="w-5 h-5" />
                     </div>
                     <span>Lokale Community</span>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-discord-textMuted group-hover:text-white transition" />
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-amber-300 transition" />
                 </button>
               </div>
             </div>
 
             {/* Bottom Join a server bar */}
-            <div className="bg-discord-channels px-6 py-4 flex flex-col items-center border-t border-discord-darkest/40">
-              <div className="text-xs font-semibold text-white mb-2">
+            <div className="bg-[#070709] px-6 py-4 flex flex-col items-center border-t border-amber-500/15">
+              <div className="text-xs font-semibold text-amber-200/80 mb-2">
                 Hast du bereits eine Einladung?
               </div>
               <button
                 onClick={() => setStep('join')}
-                className="w-full bg-[#4e5058] hover:bg-[#6d6f78] text-white py-2 rounded text-xs font-semibold transition shadow"
+                className="w-full bg-[#14141a] hover:bg-[#1a1a24] text-amber-200 hover:text-white py-2.5 rounded-xl text-xs font-bold transition border border-amber-500/20 hover:border-amber-400/50"
               >
                 Einem Server beitreten
               </button>
@@ -429,60 +429,60 @@ export default function CreateServerModal({
         {step === 'audience' && (
           <div className="flex flex-col">
             <div className="p-6">
-              <h2 className="text-2xl font-black text-center text-white mb-2 tracking-tight">
+              <h2 className="text-2xl font-black text-center text-white mb-2 tracking-tight bg-gradient-to-r from-white via-amber-100 to-amber-300 bg-clip-text text-transparent">
                 Erzähle uns etwas mehr über deinen Server
               </h2>
-              <p className="text-xs text-center text-discord-textMuted leading-relaxed max-w-xs mx-auto mb-6">
+              <p className="text-xs text-center text-amber-200/60 leading-relaxed max-w-xs mx-auto mb-6">
                 Um dir bei der Einrichtung zu helfen: Ist der Server für dich und ein paar Freunde oder für eine größere Community gedacht?
               </p>
 
               <div className="space-y-3 mb-6">
                 <button
                   onClick={() => handleSelectAudience('community')}
-                  className="w-full flex items-center justify-between p-3.5 rounded-lg border border-discord-divider/50 hover:bg-discord-hoverChannel transition font-semibold text-white text-sm text-left group"
+                  className="w-full flex items-center justify-between p-3.5 rounded-xl border border-amber-500/20 bg-[#101014] hover:bg-[#16161e] hover:border-amber-400/50 transition font-semibold text-white text-sm text-left group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-discord-blurple/20 text-discord-blurple flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-amber-400/15 text-amber-300 flex items-center justify-center">
                       <Globe className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-sm font-bold text-white">Für einen Club oder eine Community</div>
-                      <div className="text-xs text-discord-textMuted">Für eine größere Gruppe oder öffentlich</div>
+                      <div className="text-xs text-amber-200/50">Für eine größere Gruppe oder öffentlich</div>
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-discord-textMuted group-hover:text-white transition" />
+                  <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-0.5 transition" />
                 </button>
 
                 <button
                   onClick={() => handleSelectAudience('friends')}
-                  className="w-full flex items-center justify-between p-3.5 rounded-lg border border-discord-divider/50 hover:bg-discord-hoverChannel transition font-semibold text-white text-sm text-left group"
+                  className="w-full flex items-center justify-between p-3.5 rounded-xl border border-amber-500/20 bg-[#101014] hover:bg-[#16161e] hover:border-amber-400/50 transition font-semibold text-white text-sm text-left group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-discord-green/20 text-discord-green flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-amber-400/15 text-amber-300 flex items-center justify-center">
                       <Users className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-sm font-bold text-white">Für mich und meine Freunde</div>
-                      <div className="text-xs text-discord-textMuted">Ein privater Ort nur für enge Freunde</div>
+                      <div className="text-xs text-amber-200/50">Ein privater Ort nur für enge Freunde</div>
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-discord-textMuted group-hover:text-white transition" />
+                  <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-0.5 transition" />
                 </button>
               </div>
             </div>
 
-            <div className="bg-discord-channels px-6 py-4 flex items-center justify-between border-t border-discord-darkest/40">
+            <div className="bg-[#070709] px-6 py-4 flex items-center justify-between border-t border-amber-500/15">
               <button
                 type="button"
                 onClick={() => setStep('templates')}
-                className="text-xs font-semibold text-white hover:underline"
+                className="text-xs font-semibold text-amber-200/70 hover:text-white hover:underline"
               >
                 Zurück
               </button>
               <button
                 type="button"
                 onClick={() => setStep('customize')}
-                className="text-xs text-discord-textMuted hover:text-white"
+                className="text-xs text-amber-200/60 hover:text-amber-300"
               >
                 Nicht sicher? <span className="underline">Diese Frage vorerst überspringen.</span>
               </button>
@@ -494,10 +494,10 @@ export default function CreateServerModal({
         {step === 'customize' && (
           <form onSubmit={handleFinalCreate} className="flex flex-col">
             <div className="p-6">
-              <h2 className="text-2xl font-black text-center text-white mb-2 tracking-tight">
+              <h2 className="text-2xl font-black text-center text-white mb-2 tracking-tight bg-gradient-to-r from-white via-amber-100 to-amber-300 bg-clip-text text-transparent">
                 Passe deinen Server an
               </h2>
-              <p className="text-xs text-center text-discord-textMuted leading-relaxed max-w-xs mx-auto mb-6">
+              <p className="text-xs text-center text-amber-200/60 leading-relaxed max-w-xs mx-auto mb-6">
                 Gib deinem neuen Server einen Namen und ein Symbol. Du kannst dies jederzeit später ändern.
               </p>
 
@@ -514,7 +514,7 @@ export default function CreateServerModal({
               <div className="flex flex-col items-center mb-5">
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="relative group cursor-pointer w-20 h-20 rounded-full border-2 border-dashed border-discord-textMuted hover:border-discord-blurple flex items-center justify-center overflow-hidden transition shadow-lg bg-discord-darkest"
+                  className="relative group cursor-pointer w-20 h-20 rounded-2xl border-2 border-dashed border-amber-500/40 hover:border-amber-400 flex items-center justify-center overflow-hidden transition shadow-lg bg-[#0e0e12]"
                 >
                   {serverIcon ? (
                     <img
@@ -523,13 +523,13 @@ export default function CreateServerModal({
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="flex flex-col items-center text-discord-textMuted group-hover:text-white transition">
+                    <div className="flex flex-col items-center text-amber-200/70 group-hover:text-amber-300 transition">
                       <Camera className="w-6 h-6 mb-1" />
                       <span className="text-[9px] font-bold uppercase tracking-wider">HOCHLADEN</span>
                     </div>
                   )}
 
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center text-white text-[9px] font-bold transition">
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center text-amber-300 text-[9px] font-bold transition">
                     <Upload className="w-4 h-4 mb-0.5" />
                     ÄNDERN
                   </div>
@@ -548,13 +548,13 @@ export default function CreateServerModal({
 
                 {/* Quick Preset Icons */}
                 <div className="flex items-center gap-1.5 mt-3">
-                  <span className="text-[10px] text-discord-textMuted uppercase font-bold mr-1">Beispiele:</span>
+                  <span className="text-[10px] text-amber-200/60 uppercase font-bold mr-1">Beispiele:</span>
                   {PRESET_ICONS.map((preset, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setServerIcon(preset)}
-                      className="w-6 h-6 rounded-full overflow-hidden border border-discord-divider/50 hover:scale-110 transition"
+                      className="w-6 h-6 rounded-full overflow-hidden border border-amber-500/30 hover:scale-110 transition"
                     >
                       <img src={preset} alt="Preset" className="w-full h-full object-cover" />
                     </button>
@@ -564,8 +564,8 @@ export default function CreateServerModal({
 
               {/* Server Name Field */}
               <div className="mb-4">
-                <label className="text-[11px] font-bold text-discord-textMuted uppercase block mb-1 tracking-wider">
-                  SERVERNAME <span className="text-discord-red">*</span>
+                <label className="text-[11px] font-bold text-amber-300/80 uppercase block mb-1 tracking-wider">
+                  SERVERNAME <span className="text-amber-400">*</span>
                 </label>
                 <input
                   type="text"
@@ -573,18 +573,18 @@ export default function CreateServerModal({
                   value={serverName}
                   onChange={(e) => setServerName(e.target.value)}
                   placeholder="Servernamen eingeben"
-                  className="w-full bg-discord-darkest rounded px-3 py-2 text-sm text-white border border-discord-darkest focus:border-discord-blurple focus:outline-none"
+                  className="w-full bg-[#121216] rounded-xl px-3.5 py-2.5 text-sm text-white border border-amber-500/25 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/50"
                 />
               </div>
 
               {/* Guidelines Notice */}
-              <p className="text-[11px] text-discord-textMuted leading-relaxed">
+              <p className="text-[11px] text-neutral-400 leading-relaxed">
                 Mit der Erstellung eines Servers akzeptierst du die{' '}
                 <a
                   href="https://discord.com/guidelines"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-discord-blurple hover:underline font-semibold"
+                  className="text-amber-400 hover:text-amber-300 hover:underline font-semibold"
                 >
                   Community-Richtlinien
                 </a>{' '}
@@ -592,18 +592,18 @@ export default function CreateServerModal({
               </p>
             </div>
 
-            <div className="bg-discord-channels px-6 py-4 flex items-center justify-between border-t border-discord-darkest/40">
+            <div className="bg-[#070709] px-6 py-4 flex items-center justify-between border-t border-amber-500/15">
               <button
                 type="button"
                 onClick={() => setStep('audience')}
-                className="text-xs font-semibold text-white hover:underline"
+                className="text-xs font-semibold text-amber-200/70 hover:text-white hover:underline"
               >
                 Zurück
               </button>
               <button
                 type="submit"
                 disabled={!serverName.trim()}
-                className="bg-discord-blurple hover:bg-discord-blurpleHover text-white px-6 py-2 rounded text-xs font-semibold transition shadow-md disabled:opacity-50"
+                className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:brightness-110 text-neutral-950 px-6 py-2.5 rounded-xl text-xs font-black transition shadow-lg shadow-amber-500/20 disabled:opacity-50 active:scale-95 cursor-pointer"
               >
                 Erstellen
               </button>
@@ -615,10 +615,10 @@ export default function CreateServerModal({
         {step === 'join' && (
           <form onSubmit={handleJoinByInvite} className="flex flex-col">
             <div className="p-6">
-              <h2 className="text-2xl font-black text-center text-white mb-2 tracking-tight">
+              <h2 className="text-2xl font-black text-center text-white mb-2 tracking-tight bg-gradient-to-r from-white via-amber-100 to-amber-300 bg-clip-text text-transparent">
                 Einem Server beitreten
               </h2>
-              <p className="text-xs text-center text-discord-textMuted leading-relaxed max-w-xs mx-auto mb-6">
+              <p className="text-xs text-center text-amber-200/60 leading-relaxed max-w-xs mx-auto mb-6">
                 Gib unten einen Einladungslink oder Code ein, um einem vorhandenen Server beizutreten.
               </p>
 
@@ -629,8 +629,8 @@ export default function CreateServerModal({
               )}
 
               <div className="mb-4">
-                <label className="text-[11px] font-bold text-discord-textMuted uppercase block mb-1 tracking-wider">
-                  EINLADUNGSLINK <span className="text-discord-red">*</span>
+                <label className="text-[11px] font-bold text-amber-300/80 uppercase block mb-1 tracking-wider">
+                  EINLADUNGSLINK <span className="text-amber-400">*</span>
                 </label>
                 <input
                   type="text"
@@ -638,33 +638,33 @@ export default function CreateServerModal({
                   value={inviteInput}
                   onChange={(e) => setInviteInput(e.target.value)}
                   placeholder="https://discord.gg/hTKz9a oder hTKz9a"
-                  className="w-full bg-discord-darkest rounded px-3 py-2 text-sm text-white border border-discord-darkest focus:border-discord-blurple focus:outline-none"
+                  className="w-full bg-[#121216] rounded-xl px-3.5 py-2.5 text-sm text-white border border-amber-500/25 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/50"
                 />
               </div>
 
               {/* Sample Invites Helper Box */}
-              <div className="bg-discord-darkest/60 rounded-lg p-3 border border-discord-divider/30 text-xs space-y-1">
-                <div className="text-[10px] font-bold text-discord-textMuted uppercase mb-1">
+              <div className="bg-[#101014] rounded-xl p-3 border border-amber-500/20 text-xs space-y-1">
+                <div className="text-[10px] font-bold text-amber-300/80 uppercase mb-1">
                   EINLADUNGEN SEHEN ETWA SO AUS:
                 </div>
-                <div className="text-discord-textNormal font-mono text-[11px]">hTKz9a</div>
-                <div className="text-discord-textNormal font-mono text-[11px]">https://discord.gg/hTKz9a</div>
-                <div className="text-discord-textNormal font-mono text-[11px]">https://discord.gg/entwickler-community</div>
+                <div className="text-neutral-300 font-mono text-[11px]">hTKz9a</div>
+                <div className="text-neutral-300 font-mono text-[11px]">https://discord.gg/hTKz9a</div>
+                <div className="text-neutral-300 font-mono text-[11px]">https://discord.gg/entwickler-community</div>
               </div>
             </div>
 
-            <div className="bg-discord-channels px-6 py-4 flex items-center justify-between border-t border-discord-darkest/40">
+            <div className="bg-[#070709] px-6 py-4 flex items-center justify-between border-t border-amber-500/15">
               <button
                 type="button"
                 onClick={() => setStep('templates')}
-                className="text-xs font-semibold text-white hover:underline"
+                className="text-xs font-semibold text-amber-200/70 hover:text-white hover:underline"
               >
                 Zurück
               </button>
               <button
                 type="submit"
                 disabled={!inviteInput.trim()}
-                className="bg-discord-blurple hover:bg-discord-blurpleHover text-white px-6 py-2 rounded text-xs font-semibold transition shadow-md disabled:opacity-50"
+                className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:brightness-110 text-neutral-950 px-6 py-2.5 rounded-xl text-xs font-black transition shadow-lg shadow-amber-500/20 disabled:opacity-50 active:scale-95 cursor-pointer"
               >
                 Server beitreten
               </button>

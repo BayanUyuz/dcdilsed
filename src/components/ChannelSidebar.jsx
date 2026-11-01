@@ -139,11 +139,11 @@ export default function ChannelSidebar({
   ];
 
   return (
-    <aside className="w-60 bg-discord-channels flex flex-col select-none flex-shrink-0 border-r border-discord-darkest/20 relative z-10">
+    <aside className="w-60 bg-[#09090c] flex flex-col select-none flex-shrink-0 border-r border-amber-500/15 relative z-10">
       {/* Toast Notification for ID copy */}
       {copyToast && (
-        <div className="absolute top-14 left-2 right-2 bg-discord-darkest text-discord-green text-xs font-bold p-2.5 rounded-lg shadow-2xl border border-discord-green/40 flex items-center gap-2 z-50 animate-in fade-in">
-          <Check className="w-4 h-4 flex-shrink-0" />
+        <div className="absolute top-14 left-2 right-2 bg-[#070709] text-amber-300 text-xs font-bold p-2.5 rounded-xl shadow-2xl border border-amber-400/40 flex items-center gap-2 z-50 animate-in fade-in">
+          <Check className="w-4 h-4 flex-shrink-0 text-amber-400" />
           <span>Server-ID kopiert: {server.id}</span>
         </div>
       )}
@@ -152,25 +152,25 @@ export default function ChannelSidebar({
       <div className="relative">
         <button
           onClick={() => setShowServerDropdown(!showServerDropdown)}
-          className="w-full h-12 px-4 flex items-center justify-between font-semibold text-discord-textHeader shadow-sm hover:bg-discord-hoverChannel transition border-b border-discord-darkest/30"
+          className="w-full h-12 px-4 flex items-center justify-between font-bold text-white shadow-sm bg-[#060608] hover:bg-[#121217] transition border-b border-amber-500/15 group"
         >
-          <span className="truncate">{server.name}</span>
+          <span className="truncate group-hover:text-amber-300 transition-colors">{server.name}</span>
           <ChevronDown
-            className={`w-4 h-4 text-discord-textMuted transition-transform duration-200 ${
+            className={`w-4 h-4 text-amber-400/80 group-hover:text-amber-400 transition-transform duration-200 ${
               showServerDropdown ? 'rotate-180' : ''
             }`}
           />
         </button>
 
-        {/* Server Dropdown Menu */}
+        {/* Server Dropdown Menu in Black & Gold */}
         {showServerDropdown && (
-          <div className="absolute top-14 left-2 right-2 bg-discord-darkest border border-discord-divider/50 rounded-lg shadow-2xl p-1.5 z-50 text-xs animate-in fade-in zoom-in-95 duration-100 max-h-[85vh] overflow-y-auto">
+          <div className="absolute top-14 left-2 right-2 bg-[#0a0a0d] border border-amber-500/30 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.95),0_0_30px_rgba(212,175,55,0.15)] p-1.5 z-50 text-xs animate-in fade-in zoom-in-95 duration-100 max-h-[85vh] overflow-y-auto custom-scrollbar">
             <button
               onClick={() => {
                 setShowServerDropdown(false);
                 onOpenInvite();
               }}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-blurple hover:bg-discord-blurple hover:text-white rounded transition font-semibold"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-amber-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 rounded-lg transition font-bold"
             >
               <span>Leute einladen</span>
               <UserPlus className="w-4 h-4" />
@@ -181,7 +181,7 @@ export default function ChannelSidebar({
                 setShowServerDropdown(false);
                 onOpenServerSettings();
               }}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textNormal hover:bg-discord-blurple hover:text-white rounded transition"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-neutral-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 rounded-lg transition font-semibold"
             >
               <span>Server-Einstellungen</span>
               <Settings className="w-4 h-4" />
@@ -192,7 +192,7 @@ export default function ChannelSidebar({
                 setShowServerDropdown(false);
                 onOpenCreateEvent();
               }}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textNormal hover:bg-discord-blurple hover:text-white rounded transition"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-neutral-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 rounded-lg transition font-semibold"
             >
               <span>Event erstellen</span>
               <Calendar className="w-4 h-4" />
@@ -203,20 +203,20 @@ export default function ChannelSidebar({
                 setShowServerDropdown(false);
                 onOpenAppDirectory();
               }}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textNormal hover:bg-discord-blurple hover:text-white rounded transition"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-neutral-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 rounded-lg transition font-semibold"
             >
               <span>App-Verzeichnis</span>
               <Bot className="w-4 h-4" />
             </button>
 
-            <div className="h-[1px] bg-discord-divider/50 my-1" />
+            <div className="h-[1px] bg-amber-500/20 my-1" />
 
             <button
               onClick={() => {
                 setShowServerDropdown(false);
                 onOpenNotifications();
               }}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textNormal hover:bg-discord-blurple hover:text-white rounded transition"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-neutral-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 rounded-lg transition font-semibold"
             >
               <span>Benachrichtigungseinstellungen</span>
               <Bell className="w-4 h-4" />
@@ -227,20 +227,20 @@ export default function ChannelSidebar({
                 setShowServerDropdown(false);
                 onOpenPrivacy();
               }}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textNormal hover:bg-discord-blurple hover:text-white rounded transition"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-neutral-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 rounded-lg transition font-semibold"
             >
               <span>Datenschutzeinstellungen</span>
               <Shield className="w-4 h-4" />
             </button>
 
-            <div className="h-[1px] bg-discord-divider/50 my-1" />
+            <div className="h-[1px] bg-amber-500/20 my-1" />
 
             <button
               onClick={() => {
                 setShowServerDropdown(false);
                 onOpenCreateChannel();
               }}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textNormal hover:bg-discord-blurple hover:text-white rounded transition"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-neutral-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 rounded-lg transition font-semibold"
             >
               <span>Kanal erstellen</span>
               <Plus className="w-4 h-4" />
@@ -251,20 +251,20 @@ export default function ChannelSidebar({
                 setShowServerDropdown(false);
                 onOpenCreateCategory();
               }}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textNormal hover:bg-discord-blurple hover:text-white rounded transition"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-neutral-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 rounded-lg transition font-semibold"
             >
               <span>Kategorie erstellen</span>
               <FolderPlus className="w-4 h-4" />
             </button>
 
-            <div className="h-[1px] bg-discord-divider/50 my-1" />
+            <div className="h-[1px] bg-amber-500/20 my-1" />
 
             <button
               onClick={() => {
                 setShowServerDropdown(false);
                 onOpenEditServerProfile();
               }}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textNormal hover:bg-discord-blurple hover:text-white rounded transition"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-neutral-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 rounded-lg transition font-semibold"
             >
               <span>Serverprofil bearbeiten</span>
               <User className="w-4 h-4" />
@@ -272,21 +272,21 @@ export default function ChannelSidebar({
 
             <div
               onClick={() => setHideMutedChannels(!hideMutedChannels)}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textNormal hover:bg-discord-hoverChannel rounded transition cursor-pointer"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-neutral-300 hover:bg-white/5 rounded-lg transition cursor-pointer"
             >
               <span>Stumme Kanäle ausblenden</span>
               {hideMutedChannels ? (
-                <CheckSquare className="w-4 h-4 text-discord-blurple" />
+                <CheckSquare className="w-4 h-4 text-amber-400" />
               ) : (
-                <Square className="w-4 h-4 text-discord-textMuted" />
+                <Square className="w-4 h-4 text-neutral-500" />
               )}
             </div>
 
-            <div className="h-[1px] bg-discord-divider/50 my-1" />
+            <div className="h-[1px] bg-amber-500/20 my-1" />
 
             <button
               onClick={handleCopyServerId}
-              className="w-full flex items-center justify-between px-2.5 py-2 text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white rounded transition font-mono text-[11px]"
+              className="w-full flex items-center justify-between px-2.5 py-2 text-amber-200/60 hover:bg-white/5 hover:text-amber-300 rounded-lg transition font-mono text-[11px]"
             >
               <span>Server-ID kopieren</span>
               <Copy className="w-3.5 h-3.5" />
@@ -296,17 +296,17 @@ export default function ChannelSidebar({
       </div>
 
       {/* Channel Categories & Channels List */}
-      <div className="flex-1 overflow-y-auto px-2 py-3 space-y-4">
+      <div className="flex-1 overflow-y-auto px-2 py-3 space-y-4 custom-scrollbar">
         {(server?.categories || []).length === 0 ? (
-          <div className="px-4 py-10 text-center text-discord-textMuted text-xs">
-            <FolderPlus className="w-10 h-10 mx-auto mb-3 opacity-30 text-discord-blurple" />
+          <div className="px-4 py-10 text-center text-neutral-400 text-xs">
+            <FolderPlus className="w-10 h-10 mx-auto mb-3 text-amber-400/40" />
             <p className="font-bold text-white mb-1">Keine Kanäle vorhanden</p>
-            <p className="text-[11px] text-discord-textMuted mb-4">
+            <p className="text-[11px] text-amber-200/50 mb-4">
               Erstelle Kategorien und Kanäle für diesen Server.
             </p>
             <button
               onClick={() => onOpenCreateChannel(null)}
-              className="bg-discord-blurple hover:bg-discord-blurpleHover text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold transition shadow"
+              className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:brightness-110 text-neutral-950 px-4 py-2 rounded-xl text-xs font-bold transition shadow-md shadow-amber-500/20 active:scale-95"
             >
               Kanal erstellen
             </button>
@@ -663,44 +663,44 @@ export default function ChannelSidebar({
       )}
 
       {/* User Dock Bar */}
-      <div className="h-[52px] bg-discord-userdock px-2 flex items-center justify-between flex-shrink-0">
+      <div className="h-[52px] bg-[#060608] px-2 flex items-center justify-between flex-shrink-0 border-t border-amber-500/15">
         <div
           onClick={onOpenSettings}
-          className="flex items-center gap-2 p-1 -ml-1 rounded-md hover:bg-discord-hoverChannel cursor-pointer transition flex-1 min-w-0"
+          className="flex items-center gap-2 p-1 -ml-1 rounded-lg hover:bg-white/5 cursor-pointer transition flex-1 min-w-0"
         >
           <div className="relative flex-shrink-0">
             <img
               src={currentUser.avatar}
               alt={currentUser.username}
-              className="w-8 h-8 rounded-full object-cover"
+              className="w-8 h-8 rounded-full object-cover border border-amber-500/30"
             />
             <div
-              className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-discord-userdock ${
+              className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-black ${
                 currentUser.status === 'online'
-                  ? 'bg-discord-green'
+                  ? 'bg-emerald-400'
                   : currentUser.status === 'idle'
-                  ? 'bg-discord-yellow'
+                  ? 'bg-amber-400'
                   : currentUser.status === 'dnd'
-                  ? 'bg-discord-red'
-                  : 'bg-[#747f8d]'
+                  ? 'bg-red-500'
+                  : 'bg-neutral-600'
               }`}
             />
           </div>
           <div className="truncate min-w-0">
-            <div className="text-sm font-semibold text-white truncate leading-tight">
+            <div className="text-sm font-bold text-white truncate leading-tight">
               {currentUser.displayName}
             </div>
-            <div className="text-[11px] text-discord-textMuted truncate">
+            <div className="text-[11px] text-amber-200/50 truncate">
               {currentUser.statusText}
             </div>
           </div>
         </div>
 
-        <div className="flex items-center text-discord-textMuted">
+        <div className="flex items-center text-neutral-400">
           <button
             onClick={toggleMute}
-            className={`p-1.5 rounded hover:bg-discord-hoverChannel transition ${
-              isMuted ? 'text-discord-red' : 'hover:text-discord-textNormal'
+            className={`p-1.5 rounded-lg hover:bg-white/5 transition ${
+              isMuted ? 'text-red-400' : 'hover:text-amber-300'
             }`}
             title={isMuted ? 'Stummschaltung aufheben' : 'Stummschalten'}
           >
@@ -708,8 +708,8 @@ export default function ChannelSidebar({
           </button>
           <button
             onClick={toggleDeafen}
-            className={`p-1.5 rounded hover:bg-discord-hoverChannel transition ${
-              isDeafened ? 'text-discord-red' : 'hover:text-discord-textNormal'
+            className={`p-1.5 rounded-lg hover:bg-white/5 transition ${
+              isDeafened ? 'text-red-400' : 'hover:text-amber-300'
             }`}
             title={isDeafened ? 'Taubschaltung aufheben' : 'Taub schalten'}
           >
@@ -717,7 +717,7 @@ export default function ChannelSidebar({
           </button>
           <button
             onClick={onOpenSettings}
-            className="p-1.5 rounded hover:bg-discord-hoverChannel hover:text-discord-textNormal transition"
+            className="p-1.5 rounded-lg hover:bg-white/5 hover:text-amber-300 transition"
             title="Benutzereinstellungen"
           >
             <Settings className="w-4 h-4" />

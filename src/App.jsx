@@ -79,11 +79,9 @@ export default function App() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.some((s) => s.id === 'server_main' || s.id === 'server_gamers' || s.id === 'server_devs')) {
-          localStorage.removeItem('discord_web_servers');
-          return [];
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
         }
-        return parsed;
       } catch (e) {
         return initialServers;
       }
@@ -1020,34 +1018,36 @@ export default function App() {
               </>
             ) : (
               /* When there are no servers (Keine Server vorhanden) */
-              <div className="flex-1 bg-discord-chat flex flex-col items-center justify-center p-8 text-center select-none">
-                <div className="w-20 h-20 rounded-3xl bg-[#0a0a0d] border border-amber-500/30 flex items-center justify-center mb-5 shadow-2xl shadow-amber-500/10">
+              <div className="flex-1 bg-[#09090c] flex flex-col items-center justify-center p-8 text-center select-none relative overflow-hidden">
+                {/* Background ambient gold glow */}
+                <div className="absolute w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
+                <div className="w-20 h-20 rounded-3xl bg-[#0e0e13] border border-amber-500/40 flex items-center justify-center mb-5 shadow-[0_0_35px_rgba(212,175,55,0.15)] relative z-10">
                   <Compass className="w-10 h-10 text-amber-400 animate-pulse" />
                 </div>
-                <h2 className="text-2xl font-black text-white mb-2">
+                <h2 className="text-2xl font-black text-white mb-2 tracking-tight bg-gradient-to-r from-white via-amber-100 to-amber-300 bg-clip-text text-transparent relative z-10">
                   Keine Server vorhanden
                 </h2>
-                <p className="text-xs text-amber-200/60 max-w-md mb-6 leading-relaxed">
+                <p className="text-xs text-amber-200/60 max-w-md mb-6 leading-relaxed relative z-10">
                   Du bist derzeit auf keinem Server. Erstelle deine eigene Community von Grund auf neu oder entdecke öffentliche Server!
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-3">
+                <div className="flex flex-wrap items-center justify-center gap-3 relative z-10">
                   <button
                     onClick={() => setIsAddServerOpen(true)}
-                    className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:brightness-110 text-neutral-950 px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-lg shadow-amber-500/20 flex items-center gap-2 active:scale-95"
+                    className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:brightness-110 text-neutral-950 px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-lg shadow-amber-500/25 flex items-center gap-2 active:scale-95 cursor-pointer"
                   >
                     <Plus className="w-4 h-4 stroke-[3]" />
                     <span>Server erstellen</span>
                   </button>
                   <button
                     onClick={() => setIsExploreOpen(true)}
-                    className="bg-[#0e0e12] hover:bg-[#16161c] border border-amber-500/30 text-amber-200 hover:text-amber-100 hover:border-amber-400/60 px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 active:scale-95"
+                    className="bg-[#121217] hover:bg-[#1a1a22] border border-amber-500/40 text-amber-200 hover:text-white hover:border-amber-400 px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 active:scale-95 shadow-md shadow-amber-500/5 cursor-pointer"
                   >
                     <Compass className="w-4 h-4 text-amber-400" />
                     <span>Öffentliche Server entdecken</span>
                   </button>
                   <button
                     onClick={() => setIsHomeActive(true)}
-                    className="bg-[#0e0e12] hover:bg-[#16161c] border border-white/10 text-discord-textMuted hover:text-white px-4 py-2.5 rounded-xl text-xs font-semibold transition active:scale-95"
+                    className="bg-[#121217] hover:bg-[#1a1a22] border border-white/10 text-neutral-400 hover:text-white px-4 py-2.5 rounded-xl text-xs font-semibold transition active:scale-95 cursor-pointer"
                   >
                     Direktnachrichten (DMs)
                   </button>
