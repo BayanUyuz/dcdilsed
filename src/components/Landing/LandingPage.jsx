@@ -4,8 +4,7 @@ import {
   UserPlus,
   Sparkles,
   ArrowRight,
-  ShieldCheck,
-  Zap
+  ShieldCheck
 } from 'lucide-react';
 import AuthModal from './AuthModal';
 
@@ -24,18 +23,6 @@ export default function LandingPage({ onOpenApp, currentUser, isAuthenticated })
       return;
     }
     onOpenApp(currentUser);
-  };
-
-  const handleDemoAccess = () => {
-    onOpenApp({
-      id: 'demo_user_me',
-      username: 'DilSedUser',
-      displayName: 'Benutzer (Du)',
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80',
-      status: 'online',
-      statusText: '⚡ DilSed Web',
-      badges: ['developer', 'early']
-    });
   };
 
   return (
@@ -101,7 +88,7 @@ export default function LandingPage({ onOpenApp, currentUser, isAuthenticated })
           Deine moderne Plattform für kristallklare Sprachräume, Echtzeit-Textchats und sichere Communities – direkt im Browser ohne zusätzliche Installation.
         </p>
 
-        {/* Action Buttons: Login & Register */}
+        {/* Action Buttons: Only Login & Register */}
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           {isAuthenticated && currentUser ? (
             <button
@@ -132,16 +119,6 @@ export default function LandingPage({ onOpenApp, currentUser, isAuthenticated })
               </button>
             </>
           )}
-
-          {/* Quick Demo Access (Especially useful for Code Review & Instant Testing) */}
-          <button
-            onClick={handleDemoAccess}
-            className="w-full sm:w-auto bg-discord-chat/70 hover:bg-discord-chat text-neutral-300 hover:text-white font-semibold px-6 py-4 rounded-2xl border border-white/10 hover:border-white/25 transition-all flex items-center justify-center gap-2 text-xs"
-            title="Direkt als Demo-Benutzer ohne Passworteingabe starten"
-          >
-            <Zap className="w-3.5 h-3.5 text-amber-400" />
-            <span>Sofort-Demo</span>
-          </button>
         </div>
 
         {/* Security / Quality Trust Indicators */}

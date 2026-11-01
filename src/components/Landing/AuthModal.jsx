@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, QrCode, AlertCircle, CheckCircle, Sparkles } from 'lucide-react';
+import { X, QrCode, AlertCircle, CheckCircle } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 
 export default function AuthModal({ isOpen, onClose, onAuthSuccess, initialMode = 'login' }) {
@@ -98,20 +98,6 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess, initialMode 
       setLoading(false);
       onClose();
     }
-  };
-
-  const handleQuickDemoLogin = () => {
-    onAuthSuccess({
-      id: 'demo_user_1',
-      username: 'DilSedUser',
-      displayName: 'DilSed-Benutzer (Demo)',
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80',
-      status: 'online',
-      statusText: '⚡ Unterwegs auf DilSed Web',
-      email: 'demo@dilsed.web',
-      twoFactorEnabled: false
-    });
-    onClose();
   };
 
   return (
@@ -222,16 +208,6 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess, initialMode 
               className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded font-bold text-sm transition shadow-md disabled:opacity-50"
             >
               {loading ? 'Wird verarbeitet...' : isLogin ? 'Anmelden' : 'Weiter'}
-            </button>
-
-            {/* Schnell-Login mit Demo-Konto */}
-            <button
-              type="button"
-              onClick={handleQuickDemoLogin}
-              className="w-full bg-discord-channels hover:bg-discord-hoverChannel border border-discord-divider/50 text-discord-textNormal hover:text-white py-2.5 rounded text-xs font-bold flex items-center justify-center gap-2 transition"
-            >
-              <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span>Mit einem Klick: Schnelle Demo-Anmeldung</span>
             </button>
           </form>
 
