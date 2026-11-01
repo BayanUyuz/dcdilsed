@@ -297,7 +297,7 @@ export default function VoiceRoomView({
                   </div>
                 ) : null}
               </div>
-              <div className="font-bold text-white text-sm truncate max-w-[150px] text-center">
+              <div className="font-bold text-amber-200 text-sm truncate max-w-[150px] text-center">
                 {currentUser.displayName}
               </div>
             </div>
@@ -341,7 +341,7 @@ export default function VoiceRoomView({
                       </div>
                     ) : null}
                   </div>
-                  <div className="font-bold text-white text-sm truncate max-w-[150px] text-center">
+                  <div className="font-bold text-amber-200 text-sm truncate max-w-[150px] text-center">
                     {member.displayName}
                   </div>
                 </div>

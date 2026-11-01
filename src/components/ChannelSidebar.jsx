@@ -152,11 +152,11 @@ export default function ChannelSidebar({
       <div className="relative">
         <button
           onClick={() => setShowServerDropdown(!showServerDropdown)}
-          className="w-full h-12 px-4 flex items-center justify-between font-bold text-white shadow-sm bg-[#060608] hover:bg-[#121217] transition border-b border-amber-500/15 group"
+          className="w-full h-12 px-4 flex items-center justify-between font-bold text-amber-200 shadow-sm bg-[#060608] hover:bg-[#121217] transition border-b border-amber-500/15 group"
         >
-          <span className="truncate group-hover:text-amber-300 transition-colors">{server.name}</span>
+          <span className="truncate group-hover:text-amber-100 transition-colors font-extrabold">{server.name}</span>
           <ChevronDown
-            className={`w-4 h-4 text-amber-400/80 group-hover:text-amber-400 transition-transform duration-200 ${
+            className={`w-4 h-4 text-amber-400/80 group-hover:text-amber-300 transition-transform duration-200 ${
               showServerDropdown ? 'rotate-180' : ''
             }`}
           />
@@ -316,24 +316,24 @@ export default function ChannelSidebar({
             const isCollapsed = collapsedCategories[cat.id];
             return (
               <div key={cat.id} className="space-y-0.5">
-                <div className="flex items-center justify-between px-1 text-[11px] font-bold text-amber-300/60 tracking-wider uppercase group hover:text-amber-200 cursor-pointer">
+                <div className="flex items-center justify-between px-1 text-[11px] font-extrabold text-amber-400 tracking-wider uppercase group hover:text-amber-300 cursor-pointer">
                   <div
                     className="flex items-center gap-1 flex-1 py-1"
                     onClick={() => toggleCategory(cat.id)}
                   >
                     <ChevronDown
-                      className={`w-3 h-3 transition-transform duration-200 ${
+                      className={`w-3 h-3 text-amber-400 transition-transform duration-200 ${
                         isCollapsed ? '-rotate-90' : ''
                       }`}
                     />
-                    <span>{cat.name}</span>
+                    <span className="tracking-wider">{cat.name}</span>
                   </div>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       onOpenCreateChannel(cat.id);
                     }}
-                    className="opacity-0 group-hover:opacity-100 p-0.5 hover:text-white transition"
+                    className="opacity-0 group-hover:opacity-100 p-0.5 text-amber-400 hover:text-amber-200 transition"
                     title="Kanal erstellen"
                   >
                     <Plus className="w-3.5 h-3.5" />
@@ -353,11 +353,11 @@ export default function ChannelSidebar({
                             onClick={() => onSelectChannel(ch.id)}
                             className={`w-full group px-2 py-1.5 rounded-md flex items-center gap-2 text-sm transition ${
                               isActive
-                                ? 'bg-amber-400/15 text-amber-300 font-semibold border-l-2 border-amber-400 shadow-sm'
-                                : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-discord-textNormal'
+                                ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100 font-medium'
                             }`}
                           >
-                            <Hash className={`w-4 h-4 ${isActive ? 'text-amber-400' : 'text-discord-textMuted group-hover:text-discord-textNormal'}`} />
+                            <Hash className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-amber-400' : 'text-amber-400/60 group-hover:text-amber-300'}`} />
                             <span className="truncate flex-1 text-left">
                               {ch.name}
                             </span>
@@ -376,14 +376,14 @@ export default function ChannelSidebar({
                                 }}
                                 className={`w-full px-2 py-1.5 rounded-md flex items-center gap-2 text-sm transition pr-14 ${
                                   isConnected
-                                    ? 'bg-amber-400/15 text-amber-300 font-semibold border-l-2 border-amber-400 shadow-sm'
-                                    : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-discord-textNormal'
+                                    ? 'bg-amber-400/15 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                                    : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100 font-medium'
                                 }`}
                               >
                                 {ch.isPrivate ? (
                                   <Lock
                                     className={`w-4 h-4 flex-shrink-0 ${
-                                      isConnected ? 'text-amber-400' : 'text-discord-textMuted'
+                                      isConnected ? 'text-amber-400' : 'text-amber-400/60 group-hover/vc:text-amber-300'
                                     }`}
                                   />
                                 ) : (
@@ -391,7 +391,7 @@ export default function ChannelSidebar({
                                     className={`w-4 h-4 flex-shrink-0 ${
                                       isConnected
                                         ? 'text-amber-400'
-                                        : 'text-discord-textMuted group-hover/vc:text-discord-textNormal'
+                                        : 'text-amber-400/60 group-hover/vc:text-amber-300'
                                     }`}
                                   />
                                 )}
@@ -399,21 +399,21 @@ export default function ChannelSidebar({
                                   {ch.name}
                                 </span>
                                 {ch.userLimit > 0 && (
-                                  <span className="text-[11px] text-discord-textMuted group-hover/vc:hidden">
+                                  <span className="text-[11px] text-amber-400/70 font-semibold group-hover/vc:hidden">
                                     {isConnected ? '1' : '0'}/{ch.userLimit}
                                   </span>
                                 )}
                               </button>
 
                               {/* Hover Action Buttons: Invite & Channel Settings Gear */}
-                              <div className="absolute right-1.5 top-1/2 -translate-y-1/2 hidden group-hover/vc:flex items-center gap-0.5 text-discord-textMuted z-10">
+                              <div className="absolute right-1.5 top-1/2 -translate-y-1/2 hidden group-hover/vc:flex items-center gap-0.5 text-amber-400/60 z-10">
                                 <button
                                   type="button"
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     onOpenInvite();
                                   }}
-                                  className="p-1 hover:text-white hover:bg-discord-channels rounded transition"
+                                  className="p-1 hover:text-amber-200 hover:bg-amber-400/15 rounded transition"
                                   title="Soforteinladung erstellen"
                                 >
                                   <UserPlus className="w-3.5 h-3.5" />
@@ -424,7 +424,7 @@ export default function ChannelSidebar({
                                     e.stopPropagation();
                                     if (onOpenVoiceChannelSettings) onOpenVoiceChannelSettings(ch);
                                   }}
-                                  className="p-1 hover:text-white hover:bg-discord-channels rounded transition"
+                                  className="p-1 hover:text-amber-200 hover:bg-amber-400/15 rounded transition"
                                   title="Kanal bearbeiten (Limit, Berechtigungen, Bitrate...)"
                                 >
                                   <Settings className="w-3.5 h-3.5" />
@@ -691,10 +691,10 @@ export default function ChannelSidebar({
             />
           </div>
           <div className="truncate min-w-0">
-            <div className="text-sm font-bold text-white truncate leading-tight">
+            <div className="text-sm font-bold text-amber-200 truncate leading-tight">
               {currentUser.displayName}
             </div>
-            <div className="text-[11px] text-amber-200/50 truncate">
+            <div className="text-[11px] text-amber-300/70 truncate">
               {currentUser.statusText}
             </div>
           </div>

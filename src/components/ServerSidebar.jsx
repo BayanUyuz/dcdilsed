@@ -23,7 +23,7 @@ export default function ServerSidebar({
             >
               {/* Left active / unread pill */}
               <span
-                className={`absolute left-0 w-1 bg-gradient-to-b from-[#d4af37] to-[#f3e5ab] rounded-r-full transition-all duration-200 shadow-[0_0_8px_rgba(212,175,55,0.8)] ${
+                className={`absolute left-0 w-1 bg-gradient-to-b from-amber-400 to-amber-600 rounded-r-full transition-all duration-200 shadow-[0_0_10px_rgba(245,158,11,0.8)] ${
                   isActive
                     ? 'h-10'
                     : hasUnread
@@ -38,8 +38,8 @@ export default function ServerSidebar({
                   onClick={() => onSelectServer(server.id)}
                   className={`w-12 h-12 flex items-center justify-center overflow-hidden transition-all duration-200 ${
                     isActive
-                      ? 'rounded-[16px] bg-gradient-to-b from-[#d4af37] via-[#f3e5ab] to-[#c59b27] text-neutral-950 font-black shadow-lg shadow-amber-500/30 border border-amber-300'
-                      : 'rounded-[24px] bg-[#111114] text-neutral-300 hover:rounded-[16px] hover:bg-[#18181e] hover:text-amber-300 hover:border-amber-500/40 border border-neutral-850'
+                      ? 'rounded-[16px] bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 text-neutral-950 font-black shadow-[0_0_22px_rgba(245,158,11,0.55)] border-2 border-amber-300'
+                      : 'rounded-[24px] bg-[#0e0e12] text-amber-300/80 hover:rounded-[16px] hover:bg-[#15151c] hover:text-amber-200 hover:border-amber-400/60 border border-amber-500/20'
                   }`}
                 >
                   {server.icon ? (
@@ -49,14 +49,14 @@ export default function ServerSidebar({
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <span className="font-semibold text-sm">{server.acronym}</span>
+                    <span className="font-black text-sm tracking-wide">{server.acronym}</span>
                   )}
                 </button>
 
                 {/* Discord Official Unread Notification Badge OUTSIDE the server bubble */}
                 {hasUnread && (
                   <div className="absolute -bottom-1 -right-1 z-10 pointer-events-none animate-in zoom-in-75 duration-150">
-                    <span className="min-w-[18px] h-[18px] px-1 bg-amber-500 text-neutral-950 text-[11px] font-bold rounded-full flex items-center justify-center border-[2px] border-black shadow-md leading-none">
+                    <span className="min-w-[18px] h-[18px] px-1 bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 text-[11px] font-black rounded-full flex items-center justify-center border-[2px] border-black shadow-md leading-none">
                       {server.unread}
                     </span>
                   </div>
@@ -76,10 +76,10 @@ export default function ServerSidebar({
 
         {/* Add a Server Button */}
         <div className="relative group flex items-center justify-center w-full">
-          <span className="absolute left-0 w-1 bg-gradient-to-b from-[#d4af37] to-[#f3e5ab] rounded-r-full transition-all duration-200 h-0 group-hover:h-5" />
+          <span className="absolute left-0 w-1 bg-gradient-to-b from-amber-400 to-amber-600 rounded-r-full transition-all duration-200 h-0 group-hover:h-5" />
           <button
             onClick={onOpenAddServer}
-            className="w-12 h-12 rounded-[24px] bg-[#111114] text-amber-400 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 hover:rounded-[16px] transition-all duration-200 flex items-center justify-center border border-amber-500/30 shadow-md"
+            className="w-12 h-12 rounded-[24px] bg-[#0e0e12] text-amber-400 hover:bg-gradient-to-br hover:from-amber-400 hover:via-amber-500 hover:to-amber-600 hover:text-neutral-950 hover:rounded-[16px] transition-all duration-200 flex items-center justify-center border border-amber-500/30 hover:border-amber-300 shadow-md"
             title="Server hinzufügen"
           >
             <Plus className="w-6 h-6" />
@@ -89,10 +89,10 @@ export default function ServerSidebar({
 
         {/* Explore Discoverable Servers */}
         <div className="relative group flex items-center justify-center w-full">
-          <span className="absolute left-0 w-1 bg-gradient-to-b from-[#d4af37] to-[#f3e5ab] rounded-r-full transition-all duration-200 h-0 group-hover:h-5" />
+          <span className="absolute left-0 w-1 bg-gradient-to-b from-amber-400 to-amber-600 rounded-r-full transition-all duration-200 h-0 group-hover:h-5" />
           <button
             onClick={onOpenExplore}
-            className="w-12 h-12 rounded-[24px] bg-[#111114] text-amber-400 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-neutral-950 hover:rounded-[16px] transition-all duration-200 flex items-center justify-center border border-amber-500/30 shadow-md"
+            className="w-12 h-12 rounded-[24px] bg-[#0e0e12] text-amber-400 hover:bg-gradient-to-br hover:from-amber-400 hover:via-amber-500 hover:to-amber-600 hover:text-neutral-950 hover:rounded-[16px] transition-all duration-200 flex items-center justify-center border border-amber-500/30 hover:border-amber-300 shadow-md"
             title="Öffentliche Server entdecken"
           >
             <Compass className="w-6 h-6" />

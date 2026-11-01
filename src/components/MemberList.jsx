@@ -27,12 +27,12 @@ export default function MemberList({
   };
 
   return (
-    <aside className="w-60 bg-[#08080a] flex flex-col select-none flex-shrink-0 border-l border-amber-500/10 h-full overflow-y-auto px-2 py-4 custom-scrollbar">
+    <aside className="w-60 bg-[#08080a] flex flex-col select-none flex-shrink-0 border-l border-amber-500/15 h-full overflow-y-auto px-2 py-4 custom-scrollbar">
       {Object.entries(categories).map(([categoryName, memberList]) => (
         <div key={categoryName} className="mb-4">
-          <div className="text-[11px] font-bold text-amber-300/60 tracking-wider px-2 mb-1 uppercase flex items-center justify-between">
+          <div className="text-[11px] font-extrabold text-amber-400 tracking-wider px-2 mb-1 uppercase flex items-center justify-between">
             <span>{categoryName}</span>
-            <span className="text-[10px] font-normal text-amber-300/40">— {memberList.length}</span>
+            <span className="text-[10px] font-semibold text-amber-400/60">— {memberList.length}</span>
           </div>
           <div className="space-y-[2px]">
             {memberList.map((member) => {
@@ -47,7 +47,7 @@ export default function MemberList({
                   key={member.id}
                   onClick={() => onSelectMember(member)}
                   onContextMenu={(e) => handleContextMenu(e, member)}
-                  className="w-full px-2 py-1.5 rounded-lg flex items-center gap-2.5 hover:bg-discord-hoverChannel transition text-left group relative"
+                  className="w-full px-2 py-1.5 rounded-lg flex items-center gap-2.5 hover:bg-amber-400/10 transition text-left group relative"
                   title="Linksklick: Profil | Rechtsklick: Moderationsmenü"
                 >
                   {/* Avatar with Status Dot */}
@@ -58,14 +58,14 @@ export default function MemberList({
                       className="w-8 h-8 rounded-full object-cover"
                     />
                     <span
-                      className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-discord-members ${
+                      className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-black ${
                         member.status === 'online'
-                          ? 'bg-discord-green'
+                          ? 'bg-emerald-400'
                           : member.status === 'idle'
-                          ? 'bg-discord-yellow'
+                          ? 'bg-amber-400'
                           : member.status === 'dnd'
-                          ? 'bg-discord-red'
-                          : 'bg-[#747f8d]'
+                          ? 'bg-red-500'
+                          : 'bg-neutral-600'
                       }`}
                     />
                   </div>
@@ -74,8 +74,8 @@ export default function MemberList({
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5 leading-tight">
                       <span
-                        className="font-medium text-sm truncate"
-                        style={{ color: member.roleColor || '#dbdee1' }}
+                        className="font-bold text-sm truncate"
+                        style={{ color: member.roleColor || '#fde68a' }}
                       >
                         {member.displayName}
                       </span>
@@ -83,7 +83,7 @@ export default function MemberList({
                       {/* Verified Badge */}
                       {isVerified && (
                         <CheckCircle2
-                          className="w-3.5 h-3.5 text-discord-green flex-shrink-0"
+                          className="w-3.5 h-3.5 text-amber-400 flex-shrink-0"
                           title="Verifiziertes Mitglied"
                         />
                       )}
@@ -98,7 +98,7 @@ export default function MemberList({
                       {/* Server Deafen */}
                       {isServerDeafened && (
                         <Headphones
-                          className="w-3.5 h-3.5 text-discord-red flex-shrink-0"
+                          className="w-3.5 h-3.5 text-red-400 flex-shrink-0"
                           title="Serverweit taub geschaltet"
                         />
                       )}
@@ -106,7 +106,7 @@ export default function MemberList({
                       {/* Server Muted */}
                       {isServerMuted && !isServerDeafened && (
                         <MicOff
-                          className="w-3.5 h-3.5 text-discord-red flex-shrink-0"
+                          className="w-3.5 h-3.5 text-red-400 flex-shrink-0"
                           title="Serverweit stummgeschaltet"
                         />
                       )}
@@ -114,7 +114,7 @@ export default function MemberList({
                       {/* Timeout badge icon */}
                       {isTimedOut && (
                         <Clock
-                          className="w-3.5 h-3.5 text-discord-yellow flex-shrink-0 animate-pulse"
+                          className="w-3.5 h-3.5 text-amber-400 flex-shrink-0 animate-pulse"
                           title={`Im Timeout (${userTimeouts[member.id]})`}
                         />
                       )}
@@ -122,13 +122,13 @@ export default function MemberList({
                       {/* Local Muted icon */}
                       {isMuted && !isServerMuted && (
                         <VolumeX
-                          className="w-3.5 h-3.5 text-discord-red flex-shrink-0"
+                          className="w-3.5 h-3.5 text-red-400 flex-shrink-0"
                           title="Lokal stummgeschaltet"
                         />
                       )}
                     </div>
                     {member.customStatus && (
-                      <div className="text-[11px] text-discord-textMuted truncate">
+                      <div className="text-[11px] text-amber-200/50 truncate">
                         {member.customStatus}
                       </div>
                     )}
