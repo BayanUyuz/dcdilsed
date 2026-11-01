@@ -25,7 +25,7 @@ export default function LandingPage({ onOpenApp, currentUser, isAuthenticated })
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#050505] text-white flex flex-col justify-between relative overflow-hidden font-sans select-none">
+    <div className="w-full min-h-screen bg-[#050505] text-white flex flex-col justify-between relative overflow-y-auto font-sans select-none">
       {/* Background Royal Gold Ambient Glows */}
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[850px] h-[550px] bg-gradient-to-b from-amber-500/20 via-yellow-600/10 to-transparent rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-amber-700/10 rounded-full blur-[140px] pointer-events-none" />
