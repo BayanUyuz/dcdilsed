@@ -8,27 +8,27 @@ export default {
     extend: {
       colors: {
         discord: {
-          sidebar: '#08080a',
-          channels: '#0d0d10',
-          chat: '#111114',
-          chathover: '#16161a',
-          members: '#0d0d10',
-          input: '#18181c',
-          darkest: '#040405',
-          userdock: '#09090c',
-          blurple: '#d4af37', // Polished Regal Gold
-          blurpleHover: '#c59b27', // Rich Deep Gold
-          dilsedGold: '#d4af37',
-          dilsedGoldHover: '#f3e5ab',
-          green: '#23a55a',
-          yellow: '#f0b232',
-          red: '#f23f43',
-          textMuted: '#8b8d96',
-          textNormal: '#e0e1e6',
-          textHeader: '#ffffff',
-          divider: '#202126',
-          activeChannel: '#1c1d24',
-          hoverChannel: '#15161b'
+          sidebar: '#070709',
+          channels: '#060608',
+          chat: '#09090c',
+          chathover: '#121217',
+          members: '#060608',
+          input: '#0c0c10',
+          darkest: '#050507',
+          userdock: '#070709',
+          blurple: '#f59e0b',
+          blurpleHover: '#d97706',
+          dilsedGold: '#f59e0b',
+          dilsedGoldHover: '#fbbf24',
+          green: '#10b981',
+          yellow: '#f59e0b',
+          red: '#ef4444',
+          textMuted: '#c5a86a',
+          textNormal: '#fef3c7',
+          textHeader: '#fde68a',
+          divider: 'rgba(245, 158, 11, 0.2)',
+          activeChannel: 'rgba(245, 158, 11, 0.16)',
+          hoverChannel: 'rgba(245, 158, 11, 0.08)'
         }
       },
       fontFamily: {

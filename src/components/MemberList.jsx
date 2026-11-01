@@ -75,7 +75,14 @@ export default function MemberList({
                     <div className="flex items-center gap-1.5 leading-tight">
                       <span
                         className="font-bold text-sm truncate"
-                        style={{ color: member.roleColor || '#fde68a' }}
+                        style={{
+                          color:
+                            member.roleColor &&
+                            member.roleColor !== '#949ba4' &&
+                            member.roleColor !== '#dbdee1'
+                              ? member.roleColor
+                              : '#fde68a',
+                        }}
                       >
                         {member.displayName}
                       </span>

@@ -68,7 +68,7 @@ export const initialMembers = [
     isBot: false,
     roleCategory: 'ONLINE — 1',
     role: 'Mitglied',
-    roleColor: '#949ba4',
+    roleColor: '#fde68a',
     status: 'online',
     customStatus: '⚡ DilSed Web'
   }

@@ -912,120 +912,142 @@ export default function UserSettingsModal({
   const POPULAR_STATUS_EMOJIS = ['⚡', '🎧', '🎮', '💻', '🔥', '✨', '💤', '🍕', '🚀', '🐱'];
 
   return (
-    <div className="fixed inset-0 z-50 flex bg-discord-chat animate-in fade-in select-none">
+    <div className="fixed inset-0 z-50 flex bg-[#08080b] text-neutral-200 animate-in fade-in select-none">
       {/* ----------------- LEFT NAVIGATION SIDEBAR ----------------- */}
-      <div className="w-64 bg-discord-channels flex flex-col items-end py-10 pr-6 flex-shrink-0 border-r border-discord-darkest/30 overflow-y-auto">
+      <div className="w-64 bg-[#050507] flex flex-col items-end py-10 pr-6 flex-shrink-0 border-r border-amber-500/15 overflow-y-auto custom-scrollbar">
         <div className="w-52 space-y-1 text-xs font-medium">
           {/* USER SETTINGS */}
-          <div className="text-[10px] font-bold text-discord-textMuted tracking-wider uppercase px-2 mb-1">
+          <div className="text-[10px] font-extrabold text-amber-400 tracking-wider uppercase px-2 mb-1">
             BENUTZEREINSTELLUNGEN
           </div>
           <button
             onClick={() => setActiveTab('profile')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'profile' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'profile'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <Palette className="w-3.5 h-3.5 text-discord-blurple" />
+            <Palette className="w-3.5 h-3.5 text-amber-400" />
             <span>Profile (Profil bearbeiten)</span>
           </button>
           <button
             onClick={() => setActiveTab('account')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'account' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'account'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <User className="w-3.5 h-3.5" />
+            <User className="w-3.5 h-3.5 text-amber-400" />
             <span>Mein Konto</span>
           </button>
           <button
             onClick={() => setActiveTab('privacy')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'privacy' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'privacy'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <Shield className="w-3.5 h-3.5" />
+            <Shield className="w-3.5 h-3.5 text-amber-400" />
             <span>Datenschutz & Privatsphäre</span>
           </button>
           <button
             onClick={() => setActiveTab('messages')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'messages' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'messages'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <MessageSquare className="w-3.5 h-3.5" />
+            <MessageSquare className="w-3.5 h-3.5 text-amber-400" />
             <span>Nachrichtenberechtigungen</span>
           </button>
 
           {/* APP SETTINGS */}
-          <div className="text-[10px] font-bold text-discord-textMuted tracking-wider uppercase px-2 pt-3 mb-1">
+          <div className="text-[10px] font-extrabold text-amber-400 tracking-wider uppercase px-2 pt-3 mb-1">
             APP-EINSTELLUNGEN
           </div>
           <button
             onClick={() => setActiveTab('notifications')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'notifications' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'notifications'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <Bell className="w-3.5 h-3.5" />
+            <Bell className="w-3.5 h-3.5 text-amber-400" />
             <span>Benachrichtigungen</span>
           </button>
           <button
             onClick={() => setActiveTab('voice')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'voice' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'voice'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <Mic className="w-3.5 h-3.5" />
+            <Mic className="w-3.5 h-3.5 text-amber-400" />
             <span>Sprache & Video</span>
           </button>
           <button
             onClick={() => setActiveTab('appearance')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'appearance' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'appearance'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <Sun className="w-3.5 h-3.5" />
+            <Sun className="w-3.5 h-3.5 text-amber-400" />
             <span>Erscheinungsbild</span>
           </button>
           <button
             onClick={() => setActiveTab('accessibility')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'accessibility' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'accessibility'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <Eye className="w-3.5 h-3.5" />
+            <Eye className="w-3.5 h-3.5 text-amber-400" />
             <span>Barrierefreiheit</span>
           </button>
           <button
             onClick={() => setActiveTab('keybinds')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'keybinds' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'keybinds'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <Keyboard className="w-3.5 h-3.5" />
+            <Keyboard className="w-3.5 h-3.5 text-amber-400" />
             <span>Tastenbelegungen</span>
           </button>
           <button
             onClick={() => setActiveTab('system')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'system' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'system'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <Monitor className="w-3.5 h-3.5" />
+            <Monitor className="w-3.5 h-3.5 text-amber-400" />
             <span>Windows & System</span>
           </button>
           <button
             onClick={() => setActiveTab('language')}
-            className={`w-full text-left px-2.5 py-1.5 rounded transition flex items-center gap-2 ${
-              activeTab === 'language' ? 'bg-discord-activeChannel text-white font-semibold' : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+            className={`w-full text-left px-2.5 py-1.5 rounded-lg transition flex items-center gap-2 ${
+              activeTab === 'language'
+                ? 'bg-gradient-to-r from-amber-400/20 to-amber-500/10 text-amber-300 font-bold border-l-2 border-amber-400 shadow-sm'
+                : 'text-amber-200/75 hover:bg-amber-400/10 hover:text-amber-100'
             }`}
           >
-            <Globe className="w-3.5 h-3.5" />
+            <Globe className="w-3.5 h-3.5 text-amber-400" />
             <span>Sprache & Zeit</span>
           </button>
 
-          <div className="h-[1px] bg-discord-divider my-2" />
+          <div className="h-[1px] bg-amber-500/20 my-2" />
 
           {/* LOG OUT */}
           <button
@@ -1035,7 +1057,7 @@ export default function UserSettingsModal({
                 onClose();
               }
             }}
-            className="w-full text-left px-2.5 py-1.5 rounded text-discord-red hover:bg-discord-red/20 transition flex items-center gap-2 font-semibold"
+            className="w-full text-left px-2.5 py-1.5 rounded text-red-400 hover:bg-red-500/15 transition flex items-center gap-2 font-bold"
           >
             <LogOut className="w-3.5 h-3.5" />
             <span>Abmelden</span>
@@ -1044,26 +1066,28 @@ export default function UserSettingsModal({
       </div>
 
       {/* ----------------- RIGHT MAIN CONTENT AREA ----------------- */}
-      <div className="flex-1 flex overflow-y-auto px-8 py-10 relative">
+      <div className="flex-1 flex overflow-y-auto px-8 py-10 relative bg-[#08080b]">
         <div className="w-full max-w-4xl pb-16">
           {/* ==================== PROFILE-TAB (PROFILE BEARBEITEN) ==================== */}
           {activeTab === 'profile' && (
             <div>
               <div className="mb-4">
-                <h2 className="text-xl font-black text-white">Profiller</h2>
-                <p className="text-xs text-discord-textMuted">
+                <h2 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500">
+                  Profile
+                </h2>
+                <p className="text-xs text-amber-300/70 font-medium">
                   Passe dein Aussehen, deine Biografie und deinen Status auf DilSed oder für bestimmte Server an.
                 </p>
               </div>
 
               {/* Unter-Tabs: [Benutzerprofil] [Serverprofile] */}
-              <div className="flex items-center gap-3 border-b border-discord-divider/30 pb-3 mb-6">
+              <div className="flex items-center gap-4 border-b border-amber-500/20 pb-3 mb-6">
                 <button
                   onClick={() => setProfileSubTab('user')}
                   className={`pb-1 text-sm font-bold transition border-b-2 ${
                     profileSubTab === 'user'
-                      ? 'border-discord-blurple text-white'
-                      : 'border-transparent text-discord-textMuted hover:text-discord-textNormal'
+                      ? 'border-amber-400 text-amber-200'
+                      : 'border-transparent text-amber-300/60 hover:text-amber-200'
                   }`}
                 >
                   Benutzerprofil (Global)
@@ -1072,8 +1096,8 @@ export default function UserSettingsModal({
                   onClick={() => setProfileSubTab('server')}
                   className={`pb-1 text-sm font-bold transition border-b-2 ${
                     profileSubTab === 'server'
-                      ? 'border-discord-blurple text-white'
-                      : 'border-transparent text-discord-textMuted hover:text-discord-textNormal'
+                      ? 'border-amber-400 text-amber-200'
+                      : 'border-transparent text-amber-300/60 hover:text-amber-200'
                   }`}
                 >
                   Server-Profile (Serverspezifisch)
@@ -1101,14 +1125,14 @@ export default function UserSettingsModal({
                 {/* LEFT: Edit Controls */}
                 <div className="lg:col-span-7 space-y-5">
                   {profileSubTab === 'server' && (
-                    <div className="bg-discord-channels/80 p-3.5 rounded-xl border border-discord-divider/30 mb-2">
-                      <label className="text-[10px] font-bold text-discord-textMuted uppercase block mb-1">
+                    <div className="bg-[#0c0c10] p-4 rounded-xl border border-amber-500/20 mb-2">
+                      <label className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider block mb-1.5">
                         WÄHLE EINEN SERVER
                       </label>
                       <select
                         value={selectedServerForProfile}
                         onChange={(e) => setSelectedServerForProfile(e.target.value)}
-                        className="w-full bg-discord-darkest rounded px-3 py-2 text-xs text-white border border-discord-divider/30 focus:outline-none"
+                        className="w-full bg-[#070709] rounded-lg px-3 py-2 text-xs text-amber-100 border border-amber-500/30 focus:border-amber-400 focus:outline-none"
                       >
                         {servers.map((s) => (
                           <option key={s.id} value={s.id}>
@@ -1121,7 +1145,7 @@ export default function UserSettingsModal({
 
                   {/* 1. Display Name */}
                   <div>
-                    <label className="text-[10px] font-bold text-discord-textMuted uppercase block mb-1">
+                    <label className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider block mb-1.5">
                       {profileSubTab === 'user' ? 'ANZEIGENAME' : 'SERVER-SPITZNAME'}
                     </label>
                     <input
@@ -1133,14 +1157,14 @@ export default function UserSettingsModal({
                         setHasUnsavedChanges(true);
                       }}
                       placeholder="Dein Name auf DilSed"
-                      className="w-full bg-discord-darkest rounded px-3 py-2 text-xs text-white border border-discord-darkest focus:border-discord-blurple focus:outline-none"
+                      className="w-full bg-[#0c0c10] rounded-lg px-3.5 py-2.5 text-xs text-amber-100 border border-amber-500/25 focus:border-amber-400 focus:outline-none font-medium"
                     />
                   </div>
 
                   {/* 2. Pronouns (Zamirler) */}
                   {profileSubTab === 'user' && (
                     <div>
-                      <label className="text-[10px] font-bold text-discord-textMuted uppercase block mb-1">
+                      <label className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider block mb-1.5">
                         PRONOMEN
                       </label>
                       <input
@@ -1151,23 +1175,23 @@ export default function UserSettingsModal({
                           setHasUnsavedChanges(true);
                         }}
                         placeholder="z. B. er/ihn, sie/ihr, they/them"
-                        className="w-full bg-discord-darkest rounded px-3 py-2 text-xs text-white border border-discord-darkest focus:border-discord-blurple focus:outline-none"
+                        className="w-full bg-[#0c0c10] rounded-lg px-3.5 py-2.5 text-xs text-amber-100 border border-amber-500/25 focus:border-amber-400 focus:outline-none font-medium"
                       />
                     </div>
                   )}
 
                   {/* 3. Avatar & Avatar Decoration */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <div className="text-xs font-bold text-white">Profilbild (Avatar)</div>
-                        <div className="text-[10px] text-discord-textMuted">Lade ein Bild von deinem Computer hoch oder gib eine URL ein.</div>
+                        <div className="text-xs font-bold text-amber-200">Profilbild (Avatar)</div>
+                        <div className="text-[10px] text-amber-300/60 font-medium">Lade ein Bild von deinem Computer hoch oder gib eine URL ein.</div>
                       </div>
                       <div className="flex gap-2">
                         <button
                           type="button"
                           onClick={() => avatarFileRef.current?.click()}
-                          className="bg-discord-blurple hover:bg-discord-blurpleHover text-white px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1.5 shadow"
+                          className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 text-neutral-950 px-3.5 py-1.5 rounded-lg text-xs font-black flex items-center gap-1.5 shadow-md shadow-amber-500/20"
                         >
                           <Upload className="w-3.5 h-3.5" />
                           <span>Bild auswählen</span>
@@ -1181,7 +1205,7 @@ export default function UserSettingsModal({
                               setHasUnsavedChanges(true);
                             }
                           }}
-                          className="bg-discord-darkest hover:bg-discord-hoverChannel text-xs text-white px-2.5 py-1.5 rounded border border-discord-divider/40"
+                          className="bg-[#121217] hover:bg-[#181820] text-amber-300 text-xs px-3 py-1.5 rounded-lg border border-amber-500/30 font-bold"
                         >
                           URL
                         </button>
@@ -1190,8 +1214,8 @@ export default function UserSettingsModal({
 
                     {/* Avatar Decorations */}
                     <div>
-                      <div className="text-[10px] font-bold text-discord-textMuted uppercase mb-2 flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-[#ff73fa]" />
+                      <div className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                        <Sparkles className="w-3 h-3 text-amber-400" />
                         <span>AVATAR-DEKORATION</span>
                       </div>
                       <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
@@ -1204,11 +1228,11 @@ export default function UserSettingsModal({
                             }}
                             className={`p-2 rounded-lg border text-center cursor-pointer transition flex flex-col items-center justify-center ${
                               avatarDecoration === dec.id
-                                ? 'bg-discord-darkest border-discord-blurple font-bold text-white shadow'
-                                : 'bg-discord-darkest/60 border-discord-divider/30 text-discord-textMuted hover:text-white'
+                                ? 'bg-[#15151e] border-amber-400 font-bold text-amber-200 shadow-md shadow-amber-500/20'
+                                : 'bg-[#070709] border-amber-500/20 text-amber-300/60 hover:text-amber-200'
                             }`}
                           >
-                            <div className={`w-8 h-8 rounded-full mb-1 ${dec.border} overflow-hidden bg-neutral-800`}>
+                            <div className={`w-8 h-8 rounded-full mb-1 ${dec.border} overflow-hidden bg-neutral-900`}>
                               <img src={avatar} alt="thumb" className="w-full h-full object-cover" />
                             </div>
                             <span className="text-[9px] leading-tight truncate">{dec.label}</span>
@@ -1219,14 +1243,14 @@ export default function UserSettingsModal({
                   </div>
 
                   {/* 4. Profile Theme & Banner */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     <div>
-                      <div className="text-xs font-bold text-white mb-1">Profil-Design & Banner</div>
-                      <div className="text-[10px] text-discord-textMuted mb-3">Lege die Hintergrund-Farbverläufe oder ein Banner-Bild für dein Profil fest.</div>
+                      <div className="text-xs font-bold text-amber-200 mb-1">Profil-Design & Banner</div>
+                      <div className="text-[10px] text-amber-300/60 font-medium mb-3">Lege die Hintergrund-Farbverläufe oder ein Banner-Bild für dein Profil fest.</div>
 
                       <div className="grid grid-cols-2 gap-3 mb-3">
                         <div>
-                          <label className="text-[9px] font-bold text-discord-textMuted uppercase block mb-1">PRIMÄRFARBE</label>
+                          <label className="text-[9px] font-extrabold text-amber-400 uppercase tracking-wider block mb-1">PRIMÄRFARBE</label>
                           <div className="flex items-center gap-2">
                             <input
                               type="color"
@@ -1237,11 +1261,11 @@ export default function UserSettingsModal({
                               }}
                               className="w-8 h-8 rounded cursor-pointer bg-transparent border-0"
                             />
-                            <span className="font-mono text-xs text-white uppercase">{bannerColor1}</span>
+                            <span className="font-mono text-xs text-amber-200 uppercase font-bold">{bannerColor1}</span>
                           </div>
                         </div>
                         <div>
-                          <label className="text-[9px] font-bold text-discord-textMuted uppercase block mb-1">SEKUNDÄRFARBE (VERLAUF)</label>
+                          <label className="text-[9px] font-extrabold text-amber-400 uppercase tracking-wider block mb-1">SEKUNDÄRFARBE (VERLAUF)</label>
                           <div className="flex items-center gap-2">
                             <input
                               type="color"
@@ -1252,7 +1276,7 @@ export default function UserSettingsModal({
                               }}
                               className="w-8 h-8 rounded cursor-pointer bg-transparent border-0"
                             />
-                            <span className="font-mono text-xs text-white uppercase">{bannerColor2}</span>
+                            <span className="font-mono text-xs text-amber-200 uppercase font-bold">{bannerColor2}</span>
                           </div>
                         </div>
                       </div>
@@ -1261,7 +1285,7 @@ export default function UserSettingsModal({
                         <button
                           type="button"
                           onClick={() => bannerFileRef.current?.click()}
-                          className="bg-discord-darkest hover:bg-discord-hoverChannel text-xs text-white px-3 py-1.5 rounded border border-discord-divider/40 flex items-center gap-1.5"
+                          className="bg-[#121217] hover:bg-[#181820] text-amber-300 text-xs px-3.5 py-1.5 rounded-lg border border-amber-500/30 flex items-center gap-1.5 font-bold"
                         >
                           <Upload className="w-3.5 h-3.5" />
                           <span>Banner-Bild hochladen</span>
@@ -1273,7 +1297,7 @@ export default function UserSettingsModal({
                               setBannerImage('');
                               setHasUnsavedChanges(true);
                             }}
-                            className="text-discord-red text-xs hover:underline flex items-center gap-1"
+                            className="text-red-400 text-xs hover:underline flex items-center gap-1 font-bold"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                             <span>Banner entfernen</span>
@@ -1286,10 +1310,10 @@ export default function UserSettingsModal({
                   {/* 5. Über mich (Biografie) */}
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-[10px] font-bold text-discord-textMuted uppercase">
+                      <label className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider">
                         ÜBER MICH (BIOGRAFIE)
                       </label>
-                      <span className="text-[10px] text-discord-textMuted font-mono">{bio.length}/190</span>
+                      <span className="text-[10px] text-amber-300/60 font-mono">{bio.length}/190</span>
                     </div>
                     <textarea
                       rows={3}
@@ -1300,14 +1324,14 @@ export default function UserSettingsModal({
                         setHasUnsavedChanges(true);
                       }}
                       placeholder="Erzähle etwas über dich..."
-                      className="w-full bg-discord-darkest rounded p-3 text-xs text-white border border-discord-darkest focus:border-discord-blurple focus:outline-none"
+                      className="w-full bg-[#0c0c10] rounded-xl p-3 text-xs text-amber-100 border border-amber-500/25 focus:border-amber-400 focus:outline-none font-medium"
                     />
                   </div>
 
                   {/* 6. Custom Status & Presence */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     <div>
-                      <label className="text-[10px] font-bold text-discord-textMuted uppercase block mb-1">
+                      <label className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider block mb-1.5">
                         BENUTZERDEFINIERTER STATUS & EMOJI
                       </label>
                       <div className="flex items-center gap-2">
@@ -1315,14 +1339,14 @@ export default function UserSettingsModal({
                           <button
                             type="button"
                             onClick={() => setShowStatusEmojiPicker(!showStatusEmojiPicker)}
-                            className="w-9 h-9 rounded-lg bg-discord-darkest border border-discord-divider/40 flex items-center justify-center text-lg hover:scale-105 transition"
+                            className="w-9 h-9 rounded-lg bg-[#070709] border border-amber-500/30 flex items-center justify-center text-lg hover:scale-105 transition"
                             title="Emoji auswählen"
                           >
                             {statusEmoji || '⚡'}
                           </button>
 
                           {showStatusEmojiPicker && (
-                            <div className="absolute top-11 left-0 bg-discord-darkest border border-discord-divider rounded-lg p-2 shadow-2xl z-30 flex flex-wrap gap-1.5 w-44">
+                            <div className="absolute top-11 left-0 bg-[#0c0c10] border border-amber-500/30 rounded-xl p-2.5 shadow-2xl z-30 flex flex-wrap gap-1.5 w-44 animate-in fade-in zoom-in-95">
                               {POPULAR_STATUS_EMOJIS.map((em) => (
                                 <button
                                   key={em}
@@ -1332,7 +1356,7 @@ export default function UserSettingsModal({
                                     setShowStatusEmojiPicker(false);
                                     setHasUnsavedChanges(true);
                                   }}
-                                  className="text-lg p-1 hover:bg-discord-channels rounded"
+                                  className="text-lg p-1.5 hover:bg-amber-400/15 rounded-lg transition hover:scale-110"
                                 >
                                   {em}
                                 </button>
@@ -1349,22 +1373,22 @@ export default function UserSettingsModal({
                             setHasUnsavedChanges(true);
                           }}
                           placeholder="Was machst du gerade?"
-                          className="flex-1 bg-discord-darkest rounded px-3 py-2 text-xs text-white border border-discord-darkest focus:border-discord-blurple focus:outline-none"
+                          className="flex-1 bg-[#070709] rounded-lg px-3 py-2 text-xs text-amber-100 border border-amber-500/25 focus:border-amber-400 focus:outline-none font-medium"
                         />
                       </div>
                     </div>
 
                     {/* Online Presence Status Selector */}
                     <div>
-                      <label className="text-[10px] font-bold text-discord-textMuted uppercase block mb-1.5">
+                      <label className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider block mb-1.5">
                         ONLINE-STATUS
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                         {[
-                          { id: 'online', label: 'Online', color: 'bg-discord-green' },
-                          { id: 'idle', label: 'Abwesend', color: 'bg-discord-yellow' },
-                          { id: 'dnd', label: 'Bitte nicht stören', color: 'bg-discord-red' },
-                          { id: 'offline', label: 'Unsichtbar', color: 'bg-[#747f8d]' },
+                          { id: 'online', label: 'Online', color: 'bg-emerald-400' },
+                          { id: 'idle', label: 'Abwesend', color: 'bg-amber-400' },
+                          { id: 'dnd', label: 'Bitte nicht stören', color: 'bg-red-500' },
+                          { id: 'offline', label: 'Unsichtbar', color: 'bg-neutral-600' },
                         ].map((pr) => (
                           <div
                             key={pr.id}
@@ -1374,12 +1398,12 @@ export default function UserSettingsModal({
                             }}
                             className={`px-2.5 py-1.5 rounded-lg border cursor-pointer transition flex items-center gap-2 ${
                               statusPresence === pr.id
-                                ? 'bg-discord-darkest border-discord-blurple text-white font-semibold shadow'
-                                : 'bg-discord-darkest/60 border-discord-divider/30 text-discord-textMuted hover:text-white'
+                                ? 'bg-amber-400/20 border-amber-400 text-amber-200 font-bold shadow-md shadow-amber-500/15'
+                                : 'bg-[#070709] border-amber-500/20 text-amber-300/60 hover:text-amber-200'
                             }`}
                           >
                             <span className={`w-2.5 h-2.5 rounded-full ${pr.color} flex-shrink-0`} />
-                            <span className="text-[11px] truncate">{pr.label}</span>
+                            <span className="text-[11px] truncate font-medium">{pr.label}</span>
                           </div>
                         ))}
                       </div>
@@ -1389,12 +1413,12 @@ export default function UserSettingsModal({
 
                 {/* RIGHT: Real-time Live Profile Card Preview */}
                 <div className="lg:col-span-5 sticky top-4">
-                  <div className="text-[10px] font-bold text-discord-textMuted uppercase tracking-wider mb-2">
+                  <div className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider mb-2">
                     VORSCHAU
                   </div>
 
                   {/* Profile Card Container */}
-                  <div className="w-full bg-[#111214] rounded-2xl overflow-hidden shadow-2xl border border-discord-divider/40 relative">
+                  <div className="w-full bg-[#0c0c10] rounded-2xl overflow-hidden shadow-2xl border border-amber-500/30 relative">
                     {/* Banner */}
                     <div
                       className="h-28 w-full relative transition-all duration-300"
@@ -1411,7 +1435,7 @@ export default function UserSettingsModal({
                         {/* Avatar with decoration */}
                         <div className="relative">
                           <div
-                            className={`w-20 h-20 rounded-full border-4 border-[#111214] overflow-hidden bg-neutral-800 transition-all ${
+                            className={`w-20 h-20 rounded-full border-4 border-[#0c0c10] overflow-hidden bg-neutral-900 transition-all ${
                               AVATAR_DECORATIONS.find((d) => d.id === avatarDecoration)?.border || ''
                             }`}
                           >
@@ -1419,20 +1443,20 @@ export default function UserSettingsModal({
                           </div>
                           {/* Online Status Dot */}
                           <span
-                            className={`absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full border-2 border-[#111214] ${
+                            className={`absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full border-2 border-[#0c0c10] ${
                               statusPresence === 'online'
-                                ? 'bg-discord-green'
+                                ? 'bg-emerald-400'
                                 : statusPresence === 'idle'
-                                ? 'bg-discord-yellow'
+                                ? 'bg-amber-400'
                                 : statusPresence === 'dnd'
-                                ? 'bg-discord-red'
-                                : 'bg-[#747f8d]'
+                                ? 'bg-red-500'
+                                : 'bg-neutral-600'
                             }`}
                           />
                         </div>
 
                         {/* Badges container */}
-                        <div className="bg-[#232428] rounded-lg px-2 py-1 flex items-center gap-1.5 shadow border border-white/5">
+                        <div className="bg-[#121217] rounded-lg px-2.5 py-1.5 flex items-center gap-1.5 shadow border border-amber-500/20">
                           <img src="/dilsed-logo.png" alt="DilSed" className="w-4 h-4 object-contain" title="DilSed Mitglied" />
                           <span title="Aktiver Entwickler" className="text-xs">⚡</span>
                           <span title="Früher Unterstützer" className="text-xs">👑</span>
@@ -1441,17 +1465,17 @@ export default function UserSettingsModal({
                       </div>
 
                       {/* User Info Box */}
-                      <div className="bg-[#232428] rounded-xl p-3.5 space-y-3 border border-white/5">
+                      <div className="bg-[#070709] rounded-xl p-3.5 space-y-3 border border-amber-500/20">
                         <div>
-                          <div className="font-extrabold text-white text-base leading-tight">
+                          <div className="font-black text-amber-200 text-base leading-tight">
                             {displayName || 'Benutzer'}
                           </div>
-                          <div className="text-xs text-discord-textMuted flex items-center gap-1">
+                          <div className="text-xs text-amber-300/60 flex items-center gap-1 font-medium">
                             <span>@{usernameInput || 'benutzer'}</span>
                             {pronouns && (
                               <>
                                 <span>•</span>
-                                <span className="text-[11px] text-discord-textNormal">{pronouns}</span>
+                                <span className="text-[11px] text-amber-200/60">{pronouns}</span>
                               </>
                             )}
                           </div>
@@ -1459,7 +1483,7 @@ export default function UserSettingsModal({
 
                         {/* Custom Status Display */}
                         {statusText && (
-                          <div className="text-xs text-discord-textNormal flex items-center gap-1.5 py-1 border-t border-b border-white/5">
+                          <div className="text-xs text-amber-300 flex items-center gap-1.5 py-1 border-t border-b border-amber-500/15 font-medium">
                             <span>{statusEmoji}</span>
                             <span className="truncate">{statusText}</span>
                           </div>
@@ -1468,10 +1492,10 @@ export default function UserSettingsModal({
                         {/* About Me / Bio */}
                         {bio && (
                           <div>
-                            <div className="text-[9px] font-bold text-discord-textMuted uppercase mb-1">
+                            <div className="text-[9px] font-extrabold text-amber-400 uppercase tracking-wider mb-1">
                               ÜBER MICH
                             </div>
-                            <div className="text-xs text-discord-textNormal whitespace-pre-wrap leading-relaxed">
+                            <div className="text-xs text-amber-100/90 whitespace-pre-wrap leading-relaxed font-normal">
                               {bio}
                             </div>
                           </div>
@@ -1479,11 +1503,11 @@ export default function UserSettingsModal({
 
                         {/* Membership info */}
                         <div>
-                          <div className="text-[9px] font-bold text-discord-textMuted uppercase mb-1">
+                          <div className="text-[9px] font-extrabold text-amber-400 uppercase tracking-wider mb-1">
                             DILSED-MITGLIED
                           </div>
-                          <div className="text-[11px] text-discord-textMuted flex items-center gap-1.5">
-                            <Clock className="w-3.5 h-3.5" />
+                          <div className="text-[11px] text-amber-300/60 flex items-center gap-1.5 font-medium">
+                            <Clock className="w-3.5 h-3.5 text-amber-400" />
                             <span>Mitglied seit 12. Oktober 2026</span>
                           </div>
                         </div>
@@ -1495,22 +1519,22 @@ export default function UserSettingsModal({
 
               {/* Floating Unsaved Changes Bar */}
               {hasUnsavedChanges && (
-                <div className="fixed bottom-4 left-72 right-12 bg-discord-darkest text-white px-5 py-3 rounded-xl shadow-2xl border border-discord-divider/60 flex items-center justify-between z-50 animate-in slide-in-from-bottom-5">
-                  <span className="text-xs font-semibold text-white">
+                <div className="fixed bottom-4 left-72 right-12 bg-[#0c0c10] text-amber-200 px-5 py-3 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.95),0_0_20px_rgba(245,158,11,0.25)] border border-amber-500/40 flex items-center justify-between z-50 animate-in slide-in-from-bottom-5">
+                  <span className="text-xs font-bold text-amber-200">
                     Vorsicht – du hast ungespeicherte Änderungen!
                   </span>
                   <div className="flex items-center gap-3">
                     <button
                       type="button"
                       onClick={handleResetProfile}
-                      className="text-xs text-white hover:underline font-medium"
+                      className="text-xs text-amber-300/70 hover:text-amber-200 hover:underline font-bold"
                     >
                       Zurücksetzen
                     </button>
                     <button
                       type="button"
                       onClick={handleSaveProfileChanges}
-                      className="bg-discord-green hover:bg-discord-green/90 text-white px-4 py-1.5 rounded text-xs font-bold transition shadow"
+                      className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 text-neutral-950 px-4 py-1.5 rounded-lg text-xs font-black transition shadow-md shadow-amber-500/25"
                     >
                       Änderungen speichern
                     </button>
@@ -1523,7 +1547,7 @@ export default function UserSettingsModal({
           {/* ==================== 1. HESAP ==================== */}
           {activeTab === 'account' && (
             <div>
-              <h2 className="text-xl font-bold text-white mb-6">Mein Konto</h2>
+              <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-6">Mein Konto</h2>
               <div className="bg-discord-channels/60 rounded-xl p-5 border border-discord-divider/30 space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-discord-divider/30">
                   <div>
@@ -1546,7 +1570,7 @@ export default function UserSettingsModal({
           {/* ==================== 2. DATENSCHUTZ & PRIVATSPHÄRE ==================== */}
           {activeTab === 'privacy' && (
             <div>
-              <h2 className="text-xl font-bold text-white mb-2">Datenschutz & Privatsphäre</h2>
+              <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-2">Datenschutz & Privatsphäre</h2>
               <p className="text-xs text-discord-textMuted mb-6">Verwalte, wie deine Daten erfasst werden, und behalte die volle Kontrolle über deine Privatsphäre.</p>
               <div className="bg-discord-channels/60 rounded-xl p-5 border border-discord-divider/30 space-y-4">
                 <div className="flex items-center justify-between">
@@ -1560,7 +1584,7 @@ export default function UserSettingsModal({
           {/* ==================== 3. NACHRICHTENBERECHTIGUNGEN ==================== */}
           {activeTab === 'messages' && (
             <div>
-              <h2 className="text-xl font-bold text-white mb-2">Nachrichtenberechtigungen</h2>
+              <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-2">Nachrichtenberechtigungen</h2>
               <p className="text-xs text-discord-textMuted mb-6">Filtere unerwünschte Direktnachrichten.</p>
               <div className="bg-discord-channels/60 rounded-xl p-5 border border-discord-divider/30 space-y-4">
                 <div className="flex items-center justify-between">
@@ -1574,7 +1598,7 @@ export default function UserSettingsModal({
           {/* ==================== 4. BENACHRICHTIGUNGEN ==================== */}
           {activeTab === 'notifications' && (
             <div>
-              <h2 className="text-xl font-bold text-white mb-2">Benachrichtigungseinstellungen</h2>
+              <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-2">Benachrichtigungseinstellungen</h2>
               <div className="bg-discord-channels/60 rounded-xl p-5 border border-discord-divider/30 space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-white">Desktop-Benachrichtigungen aktivieren</span>
@@ -1588,7 +1612,7 @@ export default function UserSettingsModal({
           {activeTab === 'voice' && (
             <div className="space-y-8">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Sprach- & Videoeinstellungen</h2>
+                <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1">Sprach- & Videoeinstellungen</h2>
                 <p className="text-xs text-discord-textMuted">
                   Konfiguriere dein Mikrofon, Lautsprecher, Webcam und Bildschirmübertragung.
                 </p>
@@ -2534,7 +2558,7 @@ export default function UserSettingsModal({
           {/* ==================== 6. GÖRÜNÜM ==================== */}
           {activeTab === 'appearance' && (
             <div>
-              <h2 className="text-xl font-bold text-white mb-2">Erscheinungsbild</h2>
+              <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-2">Erscheinungsbild</h2>
               <div className="space-y-4">
                 <div className="grid grid-cols-3 gap-3">
                   {['dark', 'light', 'midnight'].map((t) => (
@@ -2551,7 +2575,7 @@ export default function UserSettingsModal({
           {activeTab === 'accessibility' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1 flex items-center gap-2">
                   <Eye className="w-6 h-6 text-discord-blurple" />
                   <span>Barrierefreiheit</span>
                 </h2>
@@ -3316,7 +3340,7 @@ export default function UserSettingsModal({
           {activeTab === 'system' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1 flex items-center gap-2">
                   <Monitor className="w-6 h-6 text-discord-blurple" />
                   <span>Windows- & Systemeinstellungen</span>
                 </h2>
@@ -3500,7 +3524,7 @@ export default function UserSettingsModal({
           {activeTab === 'keybinds' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1 flex items-center gap-2">
                   <Keyboard className="w-6 h-6 text-discord-blurple" />
                   <span>Tastenbelegungen</span>
                 </h2>
@@ -3517,7 +3541,7 @@ export default function UserSettingsModal({
           {activeTab === 'language' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1 flex items-center gap-2">
                   <Globe className="w-6 h-6 text-discord-blurple" />
                   <span>Sprache & Zeit</span>
                 </h2>
@@ -3819,11 +3843,11 @@ export default function UserSettingsModal({
         <div className="absolute top-10 right-6 flex flex-col items-center">
           <button
             onClick={onClose}
-            className="w-9 h-9 rounded-full border-2 border-discord-textMuted text-discord-textMuted hover:border-white hover:text-white flex items-center justify-center transition"
+            className="w-9 h-9 rounded-full border-2 border-amber-500/40 text-amber-400 hover:border-amber-300 hover:text-amber-200 hover:bg-amber-400/15 flex items-center justify-center transition shadow-md shadow-amber-500/10"
           >
             <X className="w-5 h-5" />
           </button>
-          <span className="text-[10px] text-discord-textMuted font-bold mt-1">ESC</span>
+          <span className="text-[10px] text-amber-400 font-extrabold mt-1">ESC</span>
         </div>
       </div>
     </div>

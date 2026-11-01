@@ -293,26 +293,26 @@ export default function DirectMessagesView({
             {activeTab === 'add' ? (
               /* Add Friend Screen */
               <div className="flex-1 p-6">
-                <h3 className="text-white font-bold text-base uppercase mb-1">
+                <h3 className="text-amber-200 font-extrabold text-base uppercase tracking-wider mb-1">
                   FREUND HINZUFÜGEN
                 </h3>
-                <p className="text-xs text-discord-textMuted mb-4">
+                <p className="text-xs text-amber-300/70 mb-5 font-medium">
                   Du kannst Freunde mit ihrem Benutzernamen hinzufügen.
                 </p>
 
                 <form onSubmit={handleAddFriend} className="max-w-xl">
-                  <div className="relative bg-discord-darkest rounded-lg flex items-center px-4 py-2.5 border border-discord-darkest focus-within:border-discord-blurple">
+                  <div className="relative bg-[#0c0c10] rounded-xl flex items-center px-4 py-2 border border-amber-500/30 focus-within:border-amber-400 focus-within:shadow-[0_0_25px_rgba(245,158,11,0.25)] transition">
                     <input
                       type="text"
                       value={addFriendInput}
                       onChange={(e) => setAddFriendInput(e.target.value)}
                       placeholder="Benutzernamen eingeben (z. B. Wumpus#0001)"
-                      className="bg-transparent flex-1 text-sm text-white placeholder-discord-textMuted focus:outline-none"
+                      className="bg-transparent flex-1 text-sm text-amber-100 placeholder:text-amber-200/40 focus:outline-none font-medium pr-2"
                     />
                     <button
                       type="submit"
                       disabled={!addFriendInput.trim()}
-                      className="bg-discord-blurple hover:bg-discord-blurpleHover disabled:opacity-50 text-white text-xs font-semibold px-4 py-2 rounded transition"
+                      className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 disabled:opacity-40 text-neutral-950 text-xs font-black px-4 py-2 rounded-lg transition shadow-md shadow-amber-500/30 flex-shrink-0"
                     >
                       Freundschaftsanfrage senden
                     </button>
@@ -320,8 +320,8 @@ export default function DirectMessagesView({
                 </form>
 
                 {addFriendSuccess && (
-                  <div className="mt-3 text-sm text-discord-green flex items-center gap-1.5">
-                    <Check className="w-4 h-4" />
+                  <div className="mt-3 text-sm text-amber-300 font-bold flex items-center gap-1.5 animate-in fade-in">
+                    <Check className="w-4 h-4 text-amber-400" />
                     <span>Freundschaftsanfrage erfolgreich gesendet und zur Freundesliste hinzugefügt!</span>
                   </div>
                 )}
@@ -329,7 +329,7 @@ export default function DirectMessagesView({
             ) : (
               /* Friends List */
               <div className="flex-1 p-4 overflow-y-auto">
-                <div className="text-xs font-bold text-discord-textMuted uppercase mb-3">
+                <div className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-3">
                   {activeTab === 'online'
                     ? `ONLINE — ${filteredFriends.length}`
                     : `ALLE FREUNDE — ${friends.length}`}
@@ -337,14 +337,14 @@ export default function DirectMessagesView({
 
                 {filteredFriends.length === 0 ? (
                   <div className="text-center py-16 px-4">
-                    <Users className="w-16 h-16 mx-auto mb-4 opacity-20 text-discord-blurple" />
-                    <p className="font-bold text-white text-sm mb-1">Keine Freunde gefunden</p>
-                    <p className="text-xs text-discord-textMuted mb-6 max-w-sm mx-auto">
+                    <Users className="w-16 h-16 mx-auto mb-4 opacity-30 text-amber-400" />
+                    <p className="font-extrabold text-amber-200 text-sm mb-1">Keine Freunde gefunden</p>
+                    <p className="text-xs text-amber-300/70 mb-6 max-w-sm mx-auto font-medium">
                       Niemand ist gerade hier. Füge Freunde über ihren DilSed-Benutzernamen hinzu!
                     </p>
                     <button
                       onClick={() => setActiveTab('add')}
-                      className="bg-discord-green hover:bg-discord-greenHover text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow"
+                      className="bg-gradient-to-r from-amber-400 to-amber-500 hover:brightness-110 text-neutral-950 px-5 py-2.5 rounded-xl text-xs font-black transition shadow-md shadow-amber-500/25"
                     >
                       Freund hinzufügen
                     </button>
@@ -354,7 +354,7 @@ export default function DirectMessagesView({
                     {filteredFriends.map((f) => (
                       <div
                         key={f.id}
-                        className="group flex items-center justify-between p-2.5 hover:bg-discord-chathover rounded-lg transition border-t border-discord-divider/20"
+                        className="group flex items-center justify-between p-2.5 hover:bg-amber-400/10 rounded-xl transition border-t border-amber-500/15"
                       >
                         <div
                           onClick={() => setActiveFriendId(f.id)}
@@ -364,25 +364,25 @@ export default function DirectMessagesView({
                             <img
                               src={f.avatar}
                               alt={f.displayName}
-                              className="w-10 h-10 rounded-full object-cover"
+                              className="w-10 h-10 rounded-full object-cover border border-amber-500/20"
                             />
                             <span
-                              className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-discord-chat ${
+                              className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-black ${
                                 f.status === 'online'
-                                  ? 'bg-discord-green'
+                                  ? 'bg-emerald-400'
                                   : f.status === 'idle'
-                                  ? 'bg-discord-yellow'
+                                  ? 'bg-amber-400'
                                   : f.status === 'dnd'
-                                  ? 'bg-discord-red'
-                                  : 'bg-[#747f8d]'
+                                  ? 'bg-red-500'
+                                  : 'bg-neutral-600'
                               }`}
                             />
                           </div>
                           <div>
-                            <div className="font-semibold text-sm text-white">
+                            <div className="font-bold text-sm text-amber-200">
                               {f.displayName}
                             </div>
-                            <div className="text-xs text-discord-textMuted">
+                            <div className="text-xs text-amber-300/60 font-medium">
                               {f.statusText}
                             </div>
                           </div>
@@ -391,14 +391,14 @@ export default function DirectMessagesView({
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setActiveFriendId(f.id)}
-                            className="w-9 h-9 rounded-full bg-discord-channels flex items-center justify-center text-discord-textNormal hover:text-white hover:bg-discord-hoverChannel transition"
+                            className="w-9 h-9 rounded-full bg-[#111115] border border-amber-500/25 flex items-center justify-center text-amber-400 hover:text-neutral-950 hover:bg-amber-400 transition"
                             title="Nachricht senden"
                           >
                             <MessageSquare className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => alert(`${f.displayName} wird angerufen...`)}
-                            className="w-9 h-9 rounded-full bg-discord-channels flex items-center justify-center text-discord-textNormal hover:text-white hover:bg-discord-hoverChannel transition"
+                            className="w-9 h-9 rounded-full bg-[#111115] border border-amber-500/25 flex items-center justify-center text-amber-400 hover:text-neutral-950 hover:bg-amber-400 transition"
                             title="Sprachanruf"
                           >
                             <Phone className="w-4 h-4" />
@@ -412,8 +412,8 @@ export default function DirectMessagesView({
             )}
 
             {/* Active Now Sidebar */}
-            <div className="w-80 border-l border-discord-darkest/30 p-4 hidden xl:block">
-              <h3 className="font-bold text-white text-base mb-3">
+            <div className="w-80 border-l border-amber-500/15 bg-[#060608] p-4 hidden xl:block">
+              <h3 className="font-extrabold text-amber-200 text-base mb-3">
                 Jetzt aktiv
               </h3>
               {friends.filter((f) => f.status !== 'offline').length > 0 ? (
@@ -423,19 +423,19 @@ export default function DirectMessagesView({
                     .map((f) => (
                       <div
                         key={f.id}
-                        className="bg-discord-channels/40 border border-discord-divider/30 rounded-lg p-3 space-y-2"
+                        className="bg-[#0c0c10] border border-amber-500/20 rounded-xl p-3 space-y-2 shadow-sm"
                       >
                         <div className="flex items-center gap-3">
                           <img
                             src={f.avatar}
                             alt={f.displayName}
-                            className="w-8 h-8 rounded-full object-cover"
+                            className="w-8 h-8 rounded-full object-cover border border-amber-500/20"
                           />
                           <div>
-                            <div className="text-sm font-semibold text-white">
+                            <div className="text-sm font-bold text-amber-200">
                               {f.displayName}
                             </div>
-                            <div className="text-xs text-discord-textMuted">
+                            <div className="text-xs text-amber-300/60 font-medium">
                               {f.statusText || 'Online'}
                             </div>
                           </div>
@@ -444,10 +444,10 @@ export default function DirectMessagesView({
                     ))}
                 </div>
               ) : (
-                <div className="text-center py-8 px-4 bg-discord-channels/20 rounded-xl border border-dashed border-discord-divider/30 text-discord-textMuted text-xs">
-                  <Sparkles className="w-8 h-8 mx-auto mb-2 opacity-30 text-discord-blurple" />
-                  <p className="font-semibold text-white mb-1">Hier ist es im Moment ruhig</p>
-                  <p className="text-[11px] leading-relaxed">
+                <div className="text-center py-8 px-4 bg-[#0c0c10]/60 rounded-xl border border-dashed border-amber-500/20 text-amber-300/70 text-xs">
+                  <Sparkles className="w-8 h-8 mx-auto mb-2 text-amber-400" />
+                  <p className="font-bold text-amber-200 mb-1">Hier ist es im Moment ruhig</p>
+                  <p className="text-[11px] leading-relaxed font-medium">
                     Wenn Freunde online Aktivitäten starten oder Musik hören, siehst du sie hier.
                   </p>
                 </div>
