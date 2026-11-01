@@ -703,20 +703,20 @@ export default function UserSettingsModal({
 
   const renderKeybindsSection = (isEmbedded = false) => (
     <div className="space-y-4">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-discord-divider/40">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-amber-500/20">
         <div>
-          <h3 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-            <Keyboard className="w-4 h-4 text-discord-blurple" />
+          <h3 className="text-sm font-black text-amber-200 uppercase tracking-wider flex items-center gap-2">
+            <Keyboard className="w-4 h-4 text-amber-400" />
             <span>Tastenbelegungen</span>
           </h3>
-          <p className="text-xs text-discord-textMuted mt-0.5">
+          <p className="text-xs text-amber-300/70 mt-0.5">
             Belege häufig genutzte Aktionen mit Tastenkürzeln für blitzschnelle Bedienung.
           </p>
         </div>
         <button
           type="button"
           onClick={handleAddKeybind}
-          className="px-3.5 py-2 rounded-xl bg-discord-blurple hover:bg-discord-blurple/80 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition shadow-md shadow-blue-900/30 active:scale-95 self-start sm:self-auto cursor-pointer"
+          className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 text-neutral-950 text-xs font-black flex items-center justify-center gap-1.5 transition shadow-md shadow-amber-500/20 active:scale-95 self-start sm:self-auto cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Tastenbelegung hinzufügen</span>
@@ -724,12 +724,12 @@ export default function UserSettingsModal({
       </div>
 
       {keybinds.length === 0 ? (
-        <div className="p-8 text-center bg-discord-channels/40 rounded-xl border border-dashed border-discord-divider/40">
-          <Keyboard className="w-8 h-8 text-discord-textMuted mx-auto mb-2 opacity-50" />
-          <p className="text-xs text-discord-textMuted">Noch keine Tastenkürzel belegt.</p>
+        <div className="p-8 text-center bg-[#0c0c10] rounded-xl border border-dashed border-amber-500/30">
+          <Keyboard className="w-8 h-8 text-amber-400/50 mx-auto mb-2" />
+          <p className="text-xs text-amber-300/70">Noch keine Tastenkürzel belegt.</p>
           <button
             onClick={handleAddKeybind}
-            className="mt-3 px-3 py-1.5 rounded-lg bg-discord-blurple text-white text-xs font-semibold cursor-pointer"
+            className="mt-3 px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 text-neutral-950 text-xs font-black cursor-pointer shadow-md shadow-amber-500/20"
           >
             Erstes Tastenkürzel anlegen
           </button>
@@ -743,19 +743,19 @@ export default function UserSettingsModal({
                 key={kb.id}
                 className={`p-3.5 rounded-xl border transition flex flex-col md:flex-row md:items-center justify-between gap-3 ${
                   isRecording
-                    ? 'bg-discord-blurple/15 border-discord-blurple shadow-lg ring-1 ring-discord-blurple'
-                    : 'bg-discord-channels/60 border-discord-divider/40 hover:border-discord-divider/80'
+                    ? 'bg-amber-500/15 border-amber-400 shadow-lg ring-1 ring-amber-400'
+                    : 'bg-[#0c0c10] border-amber-500/20 hover:border-amber-500/40'
                 }`}
               >
                 {/* Aktionsauswahl */}
                 <div className="flex-1 min-w-[200px]">
-                  <label className="text-[10px] font-bold uppercase text-discord-textMuted tracking-wider block mb-1">
-                    Eylem
+                  <label className="text-[10px] font-extrabold uppercase text-amber-400 tracking-wider block mb-1">
+                    Aktion
                   </label>
                   <select
                     value={kb.action}
                     onChange={(e) => handleUpdateKeybindAction(kb.id, e.target.value)}
-                    className="w-full bg-discord-darkest text-xs text-white rounded-lg px-2.5 py-2 border border-discord-divider/40 outline-none focus:border-discord-blurple cursor-pointer font-medium"
+                    className="w-full bg-[#070709] text-xs text-amber-100 rounded-lg px-2.5 py-2 border border-amber-500/30 outline-none focus:border-amber-400 cursor-pointer font-medium"
                   >
                     {KEYBIND_ACTIONS.map((act) => (
                       <option key={act.value} value={act.value}>
@@ -767,7 +767,7 @@ export default function UserSettingsModal({
 
                 {/* Tastenbelegung Aufnahmetaste */}
                 <div className="min-w-[190px]">
-                  <label className="text-[10px] font-bold uppercase text-discord-textMuted tracking-wider block mb-1">
+                  <label className="text-[10px] font-extrabold uppercase text-amber-400 tracking-wider block mb-1">
                     Tastenbelegung
                   </label>
                   <button
@@ -775,12 +775,12 @@ export default function UserSettingsModal({
                     onClick={() => setRecordingKeybindId(isRecording ? null : kb.id)}
                     className={`w-full px-3 py-2 rounded-lg border text-xs font-mono font-bold transition flex items-center justify-center gap-2 select-none cursor-pointer ${
                       isRecording
-                        ? 'bg-discord-red/20 border-discord-red text-discord-red animate-pulse'
-                        : 'bg-discord-darkest hover:bg-discord-hoverChannel border-discord-divider/50 text-white'
+                        ? 'bg-red-500/20 border-red-500 text-red-400 animate-pulse'
+                        : 'bg-[#070709] hover:bg-[#121218] border-amber-500/30 text-amber-200'
                     }`}
                     title={isRecording ? 'Zum Abbrechen ESC drücken' : 'Klicken, um eine neue Taste aufzunehmen'}
                   >
-                    <Keyboard className={`w-3.5 h-3.5 ${isRecording ? 'text-discord-red animate-bounce' : 'text-discord-textMuted'}`} />
+                    <Keyboard className={`w-3.5 h-3.5 ${isRecording ? 'text-red-400 animate-bounce' : 'text-amber-400'}`} />
                     <span>{isRecording ? 'Taste drücken...' : kb.key || 'NICHT BELEGT'}</span>
                   </button>
                 </div>
@@ -790,7 +790,7 @@ export default function UserSettingsModal({
                   <button
                     type="button"
                     onClick={() => handleDeleteKeybind(kb.id)}
-                    className="p-2 rounded-lg text-discord-textMuted hover:text-discord-red hover:bg-discord-red/10 border border-transparent hover:border-discord-red/30 transition cursor-pointer"
+                    className="p-2 rounded-lg text-amber-300/60 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/30 transition cursor-pointer"
                     title="Diese Tastenbelegung entfernen"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -804,13 +804,13 @@ export default function UserSettingsModal({
 
       {/* Auf Standard zurücksetzen */}
       <div className="flex items-center justify-between pt-2 text-xs">
-        <span className="text-[11px] text-discord-textMuted">
+        <span className="text-[11px] text-amber-300/60">
           Tipp: Tastenbelegungen funktionieren im Hintergrund, während die App geöffnet ist.
         </span>
         <button
           type="button"
           onClick={handleResetKeybinds}
-          className="text-discord-textMuted hover:text-white flex items-center gap-1.5 transition font-semibold cursor-pointer"
+          className="text-amber-400 hover:text-amber-200 flex items-center gap-1.5 transition font-bold cursor-pointer"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Auf Standard zurücksetzen</span>
@@ -1548,20 +1548,20 @@ export default function UserSettingsModal({
           {activeTab === 'account' && (
             <div>
               <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-6">Mein Konto</h2>
-              <div className="bg-discord-channels/60 rounded-xl p-5 border border-discord-divider/30 space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-discord-divider/30">
+              <div className="bg-[#0c0c10] rounded-xl p-5 border border-amber-500/20 space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-amber-500/20">
                   <div>
-                    <div className="text-[10px] font-bold text-discord-textMuted uppercase">BENUTZERNAME</div>
-                    <div className="text-xs font-semibold text-white">@{usernameInput}</div>
+                    <div className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider">BENUTZERNAME</div>
+                    <div className="text-xs font-bold text-amber-100">@{usernameInput}</div>
                   </div>
-                  <button onClick={() => { const u = prompt('Neuer Benutzername:', usernameInput); if (u) setUsernameInput(u); }} className="bg-discord-hoverChannel text-xs text-white px-3 py-1.5 rounded">Bearbeiten</button>
+                  <button onClick={() => { const u = prompt('Neuer Benutzername:', usernameInput); if (u) setUsernameInput(u); }} className="bg-[#121217] hover:bg-amber-400/10 text-xs text-amber-300 font-bold px-3 py-1.5 rounded-lg border border-amber-500/30 transition">Bearbeiten</button>
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-[10px] font-bold text-discord-textMuted uppercase">E-MAIL</div>
-                    <div className="text-xs font-semibold text-white">{currentUser?.email || 'ornek@dilsed.web'}</div>
+                    <div className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider">E-MAIL</div>
+                    <div className="text-xs font-bold text-amber-100">{currentUser?.email || 'ornek@dilsed.web'}</div>
                   </div>
-                  <button onClick={() => alert('Bestätigungslink wurde an deine E-Mail gesendet.')} className="bg-discord-hoverChannel text-xs text-white px-3 py-1.5 rounded">Bearbeiten</button>
+                  <button onClick={() => alert('Bestätigungslink wurde an deine E-Mail gesendet.')} className="bg-[#121217] hover:bg-amber-400/10 text-xs text-amber-300 font-bold px-3 py-1.5 rounded-lg border border-amber-500/30 transition">Bearbeiten</button>
                 </div>
               </div>
             </div>
@@ -1571,11 +1571,11 @@ export default function UserSettingsModal({
           {activeTab === 'privacy' && (
             <div>
               <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-2">Datenschutz & Privatsphäre</h2>
-              <p className="text-xs text-discord-textMuted mb-6">Verwalte, wie deine Daten erfasst werden, und behalte die volle Kontrolle über deine Privatsphäre.</p>
-              <div className="bg-discord-channels/60 rounded-xl p-5 border border-discord-divider/30 space-y-4">
+              <p className="text-xs text-amber-300/70 mb-6">Verwalte, wie deine Daten erfasst werden, und behalte die volle Kontrolle über deine Privatsphäre.</p>
+              <div className="bg-[#0c0c10] rounded-xl p-5 border border-amber-500/20 space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-white">Daten zur Verbesserung von DilSed verwenden</span>
-                  <input type="checkbox" checked={dataUsageAnalytics} onChange={(e) => setDataUsageAnalytics(e.target.checked)} className="w-4 h-4 accent-discord-blurple" />
+                  <span className="text-xs font-bold text-amber-100">Daten zur Verbesserung von DilSed verwenden</span>
+                  <input type="checkbox" checked={dataUsageAnalytics} onChange={(e) => setDataUsageAnalytics(e.target.checked)} className="w-4 h-4 accent-amber-500 cursor-pointer" />
                 </div>
               </div>
             </div>
@@ -1585,11 +1585,11 @@ export default function UserSettingsModal({
           {activeTab === 'messages' && (
             <div>
               <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-2">Nachrichtenberechtigungen</h2>
-              <p className="text-xs text-discord-textMuted mb-6">Filtere unerwünschte Direktnachrichten.</p>
-              <div className="bg-discord-channels/60 rounded-xl p-5 border border-discord-divider/30 space-y-4">
+              <p className="text-xs text-amber-300/70 mb-6">Filtere unerwünschte Direktnachrichten.</p>
+              <div className="bg-[#0c0c10] rounded-xl p-5 border border-amber-500/20 space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-white">Direktnachrichten von Servermitgliedern erlauben</span>
-                  <input type="checkbox" checked={allowDmsFromServers} onChange={(e) => setAllowDmsFromServers(e.target.checked)} className="w-4 h-4 accent-discord-blurple" />
+                  <span className="text-xs font-bold text-amber-100">Direktnachrichten von Servermitgliedern erlauben</span>
+                  <input type="checkbox" checked={allowDmsFromServers} onChange={(e) => setAllowDmsFromServers(e.target.checked)} className="w-4 h-4 accent-amber-500 cursor-pointer" />
                 </div>
               </div>
             </div>
@@ -1599,10 +1599,10 @@ export default function UserSettingsModal({
           {activeTab === 'notifications' && (
             <div>
               <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-2">Benachrichtigungseinstellungen</h2>
-              <div className="bg-discord-channels/60 rounded-xl p-5 border border-discord-divider/30 space-y-4">
+              <div className="bg-[#0c0c10] rounded-xl p-5 border border-amber-500/20 space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-white">Desktop-Benachrichtigungen aktivieren</span>
-                  <input type="checkbox" checked={desktopNotifications} onChange={(e) => setDesktopNotifications(e.target.checked)} className="w-4 h-4 accent-discord-blurple" />
+                  <span className="text-xs font-bold text-amber-100">Desktop-Benachrichtigungen aktivieren</span>
+                  <input type="checkbox" checked={desktopNotifications} onChange={(e) => setDesktopNotifications(e.target.checked)} className="w-4 h-4 accent-amber-500 cursor-pointer" />
                 </div>
               </div>
             </div>
@@ -1613,13 +1613,13 @@ export default function UserSettingsModal({
             <div className="space-y-8">
               <div>
                 <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1">Sprach- & Videoeinstellungen</h2>
-                <p className="text-xs text-discord-textMuted">
+                <p className="text-xs text-amber-300/70">
                   Konfiguriere dein Mikrofon, Lautsprecher, Webcam und Bildschirmübertragung.
                 </p>
               </div>
 
               {/* Sub-Tabs Navigation Filter */}
-              <div className="flex items-center gap-2 border-b border-discord-divider/30 pb-3 overflow-x-auto custom-scrollbar">
+              <div className="flex items-center gap-2 border-b border-amber-500/20 pb-3 overflow-x-auto custom-scrollbar">
                 {[
                   { id: 'all', label: 'Alle' },
                   { id: 'audio', label: 'Spracheinstellungen' },
@@ -1632,10 +1632,10 @@ export default function UserSettingsModal({
                   <button
                     key={tab.id}
                     onClick={() => setVoiceSubTab(tab.id)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap cursor-pointer ${
                       voiceSubTab === tab.id
-                        ? 'bg-discord-blurple text-white shadow-md'
-                        : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+                        ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-neutral-950 font-black shadow-md shadow-amber-500/25 ring-1 ring-amber-300'
+                        : 'bg-[#0e0e13] text-amber-200/70 border border-amber-500/20 hover:bg-amber-400/10 hover:text-amber-200'
                     }`}
                   >
                     {tab.label}
@@ -1646,24 +1646,24 @@ export default function UserSettingsModal({
               {/* SECTION 1: AUDIO-EINSTELLUNGEN (EINGABE- & AUSGABEGERÄTE) */}
               {(voiceSubTab === 'all' || voiceSubTab === 'audio') && (
                 <div className="space-y-6">
-                  <div className="text-xs font-extrabold text-discord-textMuted uppercase tracking-wider">
+                  <div className="text-xs font-extrabold text-amber-400 uppercase tracking-wider">
                     SPRACHEINSTELLUNGEN (EINGABE & AUSGABE)
                   </div>
 
                   {/* Device Selectors & Volume Sliders Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {/* Input Device (Microphone) */}
-                    <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-3">
-                      <label className="text-[11px] font-bold text-discord-textMuted uppercase flex items-center justify-between">
+                    <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-3">
+                      <label className="text-[11px] font-extrabold text-amber-400 uppercase flex items-center justify-between">
                         <span className="flex items-center gap-1.5">
-                          <Mic className="w-3.5 h-3.5 text-discord-green" />
+                          <Mic className="w-3.5 h-3.5 text-emerald-400" />
                           <span>EINGABEGERÄT (MIKROFON)</span>
                         </span>
                       </label>
                       <select
                         value={inputDevice}
                         onChange={(e) => setInputDevice(e.target.value)}
-                        className="w-full bg-discord-darkest rounded-lg px-3 py-2 text-xs text-white border border-discord-divider/40 focus:border-discord-blurple focus:outline-none cursor-pointer"
+                        className="w-full bg-[#070709] rounded-lg px-3 py-2 text-xs text-amber-100 border border-amber-500/30 focus:border-amber-400 focus:outline-none cursor-pointer font-medium"
                       >
                         <option value="default_mic">Standard - Mikrofon (Realtek(R) Audio)</option>
                         <option value="mic_intel">Mikrofonarray (Intel® Smart Sound Technologie)</option>
@@ -1674,8 +1674,8 @@ export default function UserSettingsModal({
 
                       <div>
                         <div className="flex justify-between text-xs mb-1">
-                          <span className="text-[10px] font-bold text-discord-textMuted uppercase">EINGANGSLAUTSTÄRKE</span>
-                          <span className="text-white font-bold">%{micVolume}</span>
+                          <span className="text-[10px] font-extrabold text-amber-400 uppercase">EINGANGSLAUTSTÄRKE</span>
+                          <span className="text-amber-200 font-bold">%{micVolume}</span>
                         </div>
                         <input
                           type="range"
@@ -1683,23 +1683,23 @@ export default function UserSettingsModal({
                           max={100}
                           value={micVolume}
                           onChange={(e) => setMicVolume(parseInt(e.target.value))}
-                          className="w-full accent-discord-blurple cursor-pointer"
+                          className="w-full accent-amber-500 cursor-pointer"
                         />
                       </div>
                     </div>
 
                     {/* Output Device (Speakers/Headset) */}
-                    <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-3">
-                      <label className="text-[11px] font-bold text-discord-textMuted uppercase flex items-center justify-between">
+                    <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-3">
+                      <label className="text-[11px] font-extrabold text-amber-400 uppercase flex items-center justify-between">
                         <span className="flex items-center gap-1.5">
-                          <Volume2 className="w-3.5 h-3.5 text-blue-400" />
+                          <Volume2 className="w-3.5 h-3.5 text-amber-400" />
                           <span>AUSGABEGERÄT (LAUTSPRECHER / KOPFHÖRER)</span>
                         </span>
                       </label>
                       <select
                         value={outputDevice}
                         onChange={(e) => setOutputDevice(e.target.value)}
-                        className="w-full bg-discord-darkest rounded-lg px-3 py-2 text-xs text-white border border-discord-divider/40 focus:border-discord-blurple focus:outline-none cursor-pointer"
+                        className="w-full bg-[#070709] rounded-lg px-3 py-2 text-xs text-amber-100 border border-amber-500/30 focus:border-amber-400 focus:outline-none cursor-pointer font-medium"
                       >
                         <option value="default_spk">Standard - Lautsprecher (Realtek(R) Audio)</option>
                         <option value="spk_hyperx">Kopfhörer (HyperX Cloud II Wireless Headset)</option>
@@ -1709,8 +1709,8 @@ export default function UserSettingsModal({
 
                       <div>
                         <div className="flex justify-between text-xs mb-1">
-                          <span className="text-[10px] font-bold text-discord-textMuted uppercase">AUSGANGSLAUTSTÄRKE</span>
-                          <span className="text-white font-bold">%{outputVolume}</span>
+                          <span className="text-[10px] font-extrabold text-amber-400 uppercase">AUSGANGSLAUTSTÄRKE</span>
+                          <span className="text-amber-200 font-bold">%{outputVolume}</span>
                         </div>
                         <input
                           type="range"
@@ -1718,28 +1718,28 @@ export default function UserSettingsModal({
                           max={100}
                           value={outputVolume}
                           onChange={(e) => setOutputVolume(parseInt(e.target.value))}
-                          className="w-full accent-discord-blurple cursor-pointer"
+                          className="w-full accent-amber-500 cursor-pointer"
                         />
                       </div>
                     </div>
                   </div>
 
                   {/* Mic Test Box */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-3">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-3">
                     <div className="flex items-center justify-between">
                       <div>
-                        <div className="text-xs font-bold text-white mb-0.5">MIKROFONTEST ("LASS DICH HÖREN")</div>
-                        <p className="text-[11px] text-discord-textMuted">
+                        <div className="text-xs font-bold text-amber-200 mb-0.5">MIKROFONTEST ("LASS DICH HÖREN")</div>
+                        <p className="text-[11px] text-amber-300/70">
                           Hört sich etwas seltsam an? Teste dein Mikrofon und höre dir deine eigene Stimme an.
                         </p>
                       </div>
                       <button
                         type="button"
                         onClick={() => setMicTestActive(!micTestActive)}
-                        className={`px-4 py-2 rounded-lg text-xs font-bold transition shadow ${
+                        className={`px-4 py-2 rounded-lg text-xs font-black transition shadow-md cursor-pointer ${
                           micTestActive
-                            ? 'bg-discord-red hover:bg-discord-red/90 text-white animate-pulse'
-                            : 'bg-discord-blurple hover:bg-discord-blurpleHover text-white'
+                            ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse'
+                            : 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 text-neutral-950 shadow-amber-500/20'
                         }`}
                       >
                         {micTestActive ? 'Test beenden' : 'Mikrofon testen'}
@@ -1747,7 +1747,7 @@ export default function UserSettingsModal({
                     </div>
 
                     {/* Segmented LED Audio Level Meter */}
-                    <div className="h-4 bg-discord-darkest rounded-md overflow-hidden flex items-center px-1 gap-1 border border-discord-divider/40">
+                    <div className="h-4 bg-[#070709] rounded-md overflow-hidden flex items-center px-1 gap-1 border border-amber-500/30">
                       {Array.from({ length: 24 }).map((_, i) => {
                         const stepValue = (i + 1) * 4.16;
                         const isLit = micTestActive && liveMicLevel >= stepValue;
@@ -1759,10 +1759,10 @@ export default function UserSettingsModal({
                             className={`flex-1 h-2 rounded-sm transition-all duration-75 ${
                               isLit
                                 ? isHigh
-                                  ? 'bg-discord-red shadow-sm shadow-red-500'
+                                  ? 'bg-red-500 shadow-sm shadow-red-500'
                                   : isMed
-                                  ? 'bg-discord-yellow shadow-sm shadow-yellow-500'
-                                  : 'bg-discord-green shadow-sm shadow-green-500'
+                                  ? 'bg-amber-400 shadow-sm shadow-amber-400'
+                                  : 'bg-emerald-400 shadow-sm shadow-emerald-400'
                                 : 'bg-white/5'
                             }`}
                           />
@@ -1772,8 +1772,8 @@ export default function UserSettingsModal({
                   </div>
 
                   {/* Eingabemodus (Sprachaktivierung / Push-to-Talk) */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
-                    <div className="text-[10px] font-bold text-discord-textMuted uppercase">EINGABEMODUS</div>
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
+                    <div className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider">EINGABEMODUS</div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {/* Voice Activity Mode */}
@@ -1781,8 +1781,8 @@ export default function UserSettingsModal({
                         onClick={() => setInputMode('activity')}
                         className={`p-3 rounded-xl border flex items-center justify-between cursor-pointer transition ${
                           inputMode === 'activity'
-                            ? 'border-discord-blurple bg-discord-darkest'
-                            : 'border-discord-divider/40 hover:bg-discord-channels'
+                            ? 'border-amber-400 bg-amber-500/10 shadow-md shadow-amber-500/15'
+                            : 'border-amber-500/20 bg-[#070709] hover:bg-[#121218]'
                         }`}
                       >
                         <div className="flex items-center gap-2.5">
@@ -1791,11 +1791,11 @@ export default function UserSettingsModal({
                             name="inputMode"
                             checked={inputMode === 'activity'}
                             onChange={() => setInputMode('activity')}
-                            className="accent-discord-blurple"
+                            className="accent-amber-500 cursor-pointer"
                           />
-                          <span className="text-xs font-bold text-white">Sprachaktivierung</span>
+                          <span className="text-xs font-bold text-amber-100">Sprachaktivierung</span>
                         </div>
-                        <Radio className="w-4 h-4 text-discord-green" />
+                        <Radio className="w-4 h-4 text-emerald-400" />
                       </label>
 
                       {/* Push to Talk Mode */}
@@ -1803,8 +1803,8 @@ export default function UserSettingsModal({
                         onClick={() => setInputMode('ptt')}
                         className={`p-3 rounded-xl border flex items-center justify-between cursor-pointer transition ${
                           inputMode === 'ptt'
-                            ? 'border-discord-blurple bg-discord-darkest'
-                            : 'border-discord-divider/40 hover:bg-discord-channels'
+                            ? 'border-amber-400 bg-amber-500/10 shadow-md shadow-amber-500/15'
+                            : 'border-amber-500/20 bg-[#070709] hover:bg-[#121218]'
                         }`}
                       >
                         <div className="flex items-center gap-2.5">
@@ -1813,32 +1813,32 @@ export default function UserSettingsModal({
                             name="inputMode"
                             checked={inputMode === 'ptt'}
                             onChange={() => setInputMode('ptt')}
-                            className="accent-discord-blurple"
+                            className="accent-amber-500 cursor-pointer"
                           />
-                          <span className="text-xs font-bold text-white">Push-to-Talk</span>
+                          <span className="text-xs font-bold text-amber-100">Push-to-Talk</span>
                         </div>
-                        <Keyboard className="w-4 h-4 text-blue-400" />
+                        <Keyboard className="w-4 h-4 text-amber-400" />
                       </label>
                     </div>
 
                     {/* Mode Specific Controls */}
                     {inputMode === 'activity' ? (
-                      <div className="pt-2 border-t border-discord-divider/30 space-y-3">
+                      <div className="pt-2 border-t border-amber-500/20 space-y-3">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs text-white font-medium">Eingabeempfindlichkeit automatisch ermitteln</span>
+                          <span className="text-xs text-amber-100 font-medium">Eingabeempfindlichkeit automatisch ermitteln</span>
                           <input
                             type="checkbox"
                             checked={autoSensitivity}
                             onChange={(e) => setAutoSensitivity(e.target.checked)}
-                            className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                            className="w-4 h-4 accent-amber-500 cursor-pointer"
                           />
                         </div>
 
                         {!autoSensitivity && (
                           <div>
                             <div className="flex justify-between text-xs mb-1">
-                              <span className="text-[10px] font-bold text-discord-textMuted uppercase">EMPFINDLICHKEIT</span>
-                              <span className="text-white font-bold">{sensitivity} dB</span>
+                              <span className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider">EMPFINDLICHKEIT</span>
+                              <span className="text-amber-200 font-bold">{sensitivity} dB</span>
                             </div>
                             <input
                               type="range"
@@ -1846,25 +1846,25 @@ export default function UserSettingsModal({
                               max={0}
                               value={sensitivity}
                               onChange={(e) => setSensitivity(parseInt(e.target.value))}
-                              className="w-full accent-discord-blurple cursor-pointer"
+                              className="w-full accent-amber-500 cursor-pointer"
                             />
                           </div>
                         )}
                       </div>
                     ) : (
-                      <div className="pt-2 border-t border-discord-divider/30 space-y-3">
+                      <div className="pt-2 border-t border-amber-500/20 space-y-3">
                         <div className="flex items-center justify-between">
                           <div>
-                            <div className="text-xs font-bold text-white">TASTENKOMBINATION</div>
-                            <div className="text-[11px] text-discord-textMuted">Taste gedrückt halten, um zu sprechen.</div>
+                            <div className="text-xs font-bold text-amber-100">TASTENKOMBINATION</div>
+                            <div className="text-[11px] text-amber-300/70">Taste gedrückt halten, um zu sprechen.</div>
                           </div>
                           <button
                             type="button"
                             onClick={() => setIsRecordingPttKey(true)}
-                            className={`px-4 py-1.5 rounded-lg text-xs font-bold border transition ${
+                            className={`px-4 py-1.5 rounded-lg text-xs font-bold border transition cursor-pointer ${
                               isRecordingPttKey
-                                ? 'bg-discord-red text-white border-discord-red animate-pulse'
-                                : 'bg-discord-darkest text-white border-discord-divider/60 hover:border-discord-blurple'
+                                ? 'bg-red-500/20 text-red-400 border-red-500 animate-pulse'
+                                : 'bg-[#070709] text-amber-200 border-amber-500/30 hover:border-amber-400'
                             }`}
                           >
                             {isRecordingPttKey ? 'Taste drücken...' : pttKey}
@@ -1873,8 +1873,8 @@ export default function UserSettingsModal({
 
                         <div>
                           <div className="flex justify-between text-xs mb-1">
-                            <span className="text-[10px] font-bold text-discord-textMuted uppercase">PUSH-TO-TALK VERZÖGERUNG BEIM LOSLASSEN</span>
-                            <span className="text-white font-bold">{pttDelay} ms</span>
+                            <span className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider">PUSH-TO-TALK VERZÖGERUNG BEIM LOSLASSEN</span>
+                            <span className="text-amber-200 font-bold">{pttDelay} ms</span>
                           </div>
                           <input
                             type="range"
@@ -1883,7 +1883,7 @@ export default function UserSettingsModal({
                             step={10}
                             value={pttDelay}
                             onChange={(e) => setPttDelay(parseInt(e.target.value))}
-                            className="w-full accent-discord-blurple cursor-pointer"
+                            className="w-full accent-amber-500 cursor-pointer"
                           />
                         </div>
                       </div>
@@ -1894,11 +1894,11 @@ export default function UserSettingsModal({
 
               {/* SECTION 2: STUMM- & TAUBSTEUERUNG */}
               {(voiceSubTab === 'all' || voiceSubTab === 'mute_deafen' || voiceSubTab === 'audio') && (
-                <div className="space-y-4 pt-4 border-t border-discord-divider/30">
-                  <div className="text-xs font-extrabold text-discord-textMuted uppercase tracking-wider flex items-center justify-between">
+                <div className="space-y-4 pt-4 border-t border-amber-500/20">
+                  <div className="text-xs font-extrabold text-amber-400 uppercase tracking-wider flex items-center justify-between">
                     <span>STUMM- UND TAUBSCHALTUNG</span>
-                    <span className="text-[10px] text-discord-green font-bold flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-discord-green animate-pulse" />
+                    <span className="text-[10px] text-amber-400 font-bold flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                       Live synchronisiert
                     </span>
                   </div>
@@ -1907,25 +1907,25 @@ export default function UserSettingsModal({
                     {/* 1. MIKROFONU SUSTUR / SUSTURMAYI KALDIR */}
                     <div className={`p-4 rounded-2xl border transition shadow-lg ${
                       isMuted
-                        ? 'bg-discord-red/10 border-discord-red/40'
-                        : 'bg-discord-channels/60 border-discord-divider/30'
+                        ? 'bg-red-500/10 border-red-500/40'
+                        : 'bg-[#0c0c10] border-amber-500/20'
                     }`}>
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2.5">
                           <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                            isMuted ? 'bg-discord-red text-white' : 'bg-discord-green/20 text-discord-green'
+                            isMuted ? 'bg-red-500 text-white' : 'bg-emerald-500/20 text-emerald-400'
                           }`}>
                             {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
                           </div>
                           <div>
-                            <div className="text-xs font-bold text-white">Mikrofonstatus</div>
-                            <div className={`text-[11px] font-semibold ${isMuted ? 'text-discord-red' : 'text-discord-green'}`}>
+                            <div className="text-xs font-bold text-amber-100">Mikrofonstatus</div>
+                            <div className={`text-[11px] font-semibold ${isMuted ? 'text-red-400' : 'text-emerald-400'}`}>
                               {isMuted ? 'Stummgeschaltet (Mikrofon aus)' : 'Aktiv & Bereit'}
                             </div>
                           </div>
                         </div>
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${
-                          isMuted ? 'bg-discord-red/20 text-discord-red' : 'bg-discord-green/20 text-discord-green'
+                          isMuted ? 'bg-red-500/20 text-red-400' : 'bg-emerald-500/20 text-emerald-400'
                         }`}>
                           {isMuted ? 'STUMM' : 'AKTIV'}
                         </span>
@@ -1934,22 +1934,22 @@ export default function UserSettingsModal({
                       <button
                         type="button"
                         onClick={handleToggleMute}
-                        className={`w-full py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow ${
+                        className={`w-full py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow cursor-pointer ${
                           isMuted
-                            ? 'bg-discord-green hover:bg-discord-green/90 text-white'
-                            : 'bg-discord-red hover:bg-discord-red/90 text-white'
+                            ? 'bg-emerald-600 hover:bg-emerald-500 text-white'
+                            : 'bg-red-500 hover:bg-red-600 text-white'
                         }`}
                       >
                         {isMuted ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
                         <span>{isMuted ? 'Stummschaltung aufheben' : 'Mikrofon stummschalten'}</span>
                       </button>
 
-                      <div className="mt-3 pt-3 border-t border-discord-divider/20 flex items-center justify-between text-xs">
-                        <span className="text-discord-textMuted text-[11px]">Push-to-Mute Tastenkürzel:</span>
+                      <div className="mt-3 pt-3 border-t border-amber-500/20 flex items-center justify-between text-xs">
+                        <span className="text-amber-300/70 text-[11px]">Push-to-Mute Tastenkürzel:</span>
                         <button
                           type="button"
                           onClick={() => setIsRecordingPtmKey(true)}
-                          className="px-2.5 py-1 rounded bg-discord-darkest text-white text-[11px] font-mono border border-discord-divider/40 hover:border-discord-blurple"
+                          className="px-2.5 py-1 rounded bg-[#070709] text-amber-200 text-[11px] font-mono border border-amber-500/30 hover:border-amber-400 cursor-pointer"
                         >
                           {isRecordingPtmKey ? 'Taste drücken...' : pushToMuteKey}
                         </button>
@@ -1959,25 +1959,25 @@ export default function UserSettingsModal({
                     {/* 2. TAUB- & ENTTÄUBUNGSSTEUERUNG */}
                     <div className={`p-4 rounded-2xl border transition shadow-lg ${
                       isDeafened
-                        ? 'bg-discord-red/10 border-discord-red/40'
-                        : 'bg-discord-channels/60 border-discord-divider/30'
+                        ? 'bg-red-500/10 border-red-500/40'
+                        : 'bg-[#0c0c10] border-amber-500/20'
                     }`}>
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2.5">
                           <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                            isDeafened ? 'bg-discord-red text-white' : 'bg-blue-500/20 text-blue-400'
+                            isDeafened ? 'bg-red-500 text-white' : 'bg-amber-500/20 text-amber-400'
                           }`}>
                             <Headphones className="w-5 h-5" />
                           </div>
                           <div>
-                            <div className="text-xs font-bold text-white">Kopfhörer / Audioausgabe</div>
-                            <div className={`text-[11px] font-semibold ${isDeafened ? 'text-discord-red' : 'text-blue-400'}`}>
+                            <div className="text-xs font-bold text-amber-100">Kopfhörer / Audioausgabe</div>
+                            <div className={`text-[11px] font-semibold ${isDeafened ? 'text-red-400' : 'text-amber-300'}`}>
                               {isDeafened ? 'Taubgeschaltet (Alle Töne aus)' : 'Töne aktiv & hörbar'}
                             </div>
                           </div>
                         </div>
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${
-                          isDeafened ? 'bg-discord-red/20 text-discord-red' : 'bg-blue-500/20 text-blue-400'
+                          isDeafened ? 'bg-red-500/20 text-red-400' : 'bg-amber-400/20 text-amber-300'
                         }`}>
                           {isDeafened ? 'TAUB' : 'AKTIV'}
                         </span>
@@ -1986,17 +1986,17 @@ export default function UserSettingsModal({
                       <button
                         type="button"
                         onClick={handleToggleDeafen}
-                        className={`w-full py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow ${
+                        className={`w-full py-2.5 rounded-xl text-xs font-black transition flex items-center justify-center gap-2 shadow cursor-pointer ${
                           isDeafened
-                            ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                            : 'bg-discord-red hover:bg-discord-red/90 text-white'
+                            ? 'bg-gradient-to-r from-amber-400 to-amber-500 hover:brightness-110 text-neutral-950'
+                            : 'bg-red-500 hover:bg-red-600 text-white'
                         }`}
                       >
                         <Headphones className="w-4 h-4" />
                         <span>{isDeafened ? 'Taubschaltung aufheben' : 'Kopfhörer taubschalten'}</span>
                       </button>
 
-                      <div className="mt-3 pt-3 border-t border-discord-divider/20 text-[11px] text-discord-textMuted">
+                      <div className="mt-3 pt-3 border-t border-amber-500/20 text-[11px] text-amber-300/70">
                         Wenn du dich taub schaltest, wird dein Mikrofon automatisch mit stummgeschaltet.
                       </div>
                     </div>
@@ -2006,21 +2006,21 @@ export default function UserSettingsModal({
 
               {/* SECTION 3: KAMERA-EINSTELLUNGEN (KAMERA & VIDEO) */}
               {(voiceSubTab === 'all' || voiceSubTab === 'video') && (
-                <div className="space-y-6 pt-4 border-t border-discord-divider/30">
-                  <div className="text-xs font-extrabold text-discord-textMuted uppercase tracking-wider">
+                <div className="space-y-6 pt-4 border-t border-amber-500/20">
+                  <div className="text-xs font-extrabold text-amber-400 uppercase tracking-wider">
                     KAMERAEINSTELLUNGEN & VIDEOVORSCHAU
                   </div>
 
                   {/* Camera Device Picker */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-3">
-                    <label className="text-[11px] font-bold text-discord-textMuted uppercase flex items-center gap-1.5">
-                      <Camera className="w-3.5 h-3.5 text-blue-400" />
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-3">
+                    <label className="text-[11px] font-extrabold text-amber-400 uppercase flex items-center gap-1.5">
+                      <Camera className="w-3.5 h-3.5 text-amber-400" />
                       <span>KAMERAGERÄT</span>
                     </label>
                     <select
                       value={cameraDevice}
                       onChange={(e) => setCameraDevice(e.target.value)}
-                      className="w-full bg-discord-darkest rounded-lg px-3 py-2 text-xs text-white border border-discord-divider/40 focus:border-discord-blurple focus:outline-none cursor-pointer"
+                      className="w-full bg-[#070709] rounded-lg px-3 py-2 text-xs text-amber-100 border border-amber-500/30 focus:border-amber-400 focus:outline-none cursor-pointer font-medium"
                     >
                       <option value="default_cam">Standard - Integrierte HD-Webcam (1bcf:28c1)</option>
                       <option value="cam_obs">OBS Virtual Camera (Virtuelle Kamera)</option>
@@ -2030,19 +2030,19 @@ export default function UserSettingsModal({
                   </div>
 
                   {/* Video Preview Box */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <div className="text-xs font-bold text-white">VIDEOVORSCHAU</div>
-                        <div className="text-[11px] text-discord-textMuted">Teste live, wie dein Videobild für andere aussieht.</div>
+                        <div className="text-xs font-bold text-amber-100">VIDEOVORSCHAU</div>
+                        <div className="text-[11px] text-amber-300/70">Teste live, wie dein Videobild für andere aussieht.</div>
                       </div>
                       <button
                         type="button"
                         onClick={handleToggleCameraTest}
-                        className={`px-4 py-2 rounded-lg text-xs font-bold transition shadow ${
+                        className={`px-4 py-2 rounded-lg text-xs font-black transition shadow-md cursor-pointer ${
                           cameraTestActive
-                            ? 'bg-discord-red hover:bg-discord-red/90 text-white'
-                            : 'bg-discord-blurple hover:bg-discord-blurpleHover text-white'
+                            ? 'bg-red-500 hover:bg-red-600 text-white'
+                            : 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 text-neutral-950 shadow-amber-500/20'
                         }`}
                       >
                         {cameraTestActive ? 'Vorschau beenden' : 'Video testen'}
@@ -2050,7 +2050,7 @@ export default function UserSettingsModal({
                     </div>
 
                     {/* Preview Screen */}
-                    <div className="relative w-full aspect-video max-h-72 bg-neutral-950 rounded-2xl overflow-hidden border border-discord-divider/50 flex items-center justify-center shadow-inner">
+                    <div className="relative w-full aspect-video max-h-72 bg-neutral-950 rounded-2xl overflow-hidden border border-amber-500/30 flex items-center justify-center shadow-inner">
                       {cameraTestActive ? (
                         <>
                           <video
@@ -2061,21 +2061,21 @@ export default function UserSettingsModal({
                             className="w-full h-full object-cover"
                           />
                           {/* Live Overlay Badges */}
-                          <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-bold text-white flex items-center gap-1.5 border border-white/10">
-                            <span className="w-2 h-2 rounded-full bg-discord-green animate-pulse" />
+                          <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-bold text-amber-200 flex items-center gap-1.5 border border-amber-500/30">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                             <span>CANLI • 1080p 30FPS</span>
                           </div>
 
                           {virtualBg !== 'none' && (
-                            <div className="absolute bottom-3 right-3 bg-discord-blurple/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-bold text-white">
+                            <div className="absolute bottom-3 right-3 bg-[#0c0c10]/90 border border-amber-500/30 backdrop-blur-md px-2.5 py-0.5 rounded text-[10px] font-bold text-amber-200">
                               Hintergrundfilter: {virtualBg}
                             </div>
                           )}
                         </>
                       ) : (
-                        <div className="flex flex-col items-center justify-center text-center p-6 text-discord-textMuted">
-                          <Video className="w-12 h-12 mb-2 text-discord-textMuted/60" />
-                          <div className="text-xs font-semibold text-white">Kameratest nicht gestartet</div>
+                        <div className="flex flex-col items-center justify-center text-center p-6 text-amber-300/60">
+                          <Video className="w-12 h-12 mb-2 text-amber-400/40" />
+                          <div className="text-xs font-bold text-amber-200">Kameratest nicht gestartet</div>
                           <div className="text-[11px] max-w-xs mt-1">
                             Klicke auf „Video testen“, um die Vorschau zu starten.
                           </div>
@@ -2086,13 +2086,13 @@ export default function UserSettingsModal({
                     {/* Virtual Background Selection */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-[10px] font-bold text-discord-textMuted uppercase">
+                        <span className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider">
                           VIRTUELLER KAMERAHINTERGRUND
                         </span>
                         <button
                           type="button"
                           onClick={() => bgFileInputRef.current?.click()}
-                          className="text-[11px] text-discord-blurple hover:underline font-bold"
+                          className="text-[11px] text-amber-400 hover:underline font-bold cursor-pointer"
                         >
                           + Eigenen Hintergrund hinzufügen
                         </button>
@@ -2109,22 +2109,22 @@ export default function UserSettingsModal({
                         {[
                           { id: 'none', label: 'Keine', color: 'bg-neutral-800' },
                           { id: 'blur', label: 'Verschwommen', color: 'bg-neutral-600 backdrop-blur' },
-                          { id: 'bg_blue', label: 'DilSed Blau', color: 'bg-blue-600' },
-                          { id: 'bg_cyber', label: 'Cyber-Stadt', color: 'bg-gradient-to-tr from-purple-600 to-pink-600' },
-                          { id: 'bg_space', label: 'Weltraum', color: 'bg-gradient-to-tr from-blue-900 to-indigo-950' },
-                          { id: 'bg_library', label: 'Bibliothek', color: 'bg-amber-900' },
+                          { id: 'bg_blue', label: 'DilSed Altın', color: 'bg-gradient-to-tr from-amber-600 to-amber-400' },
+                          { id: 'bg_cyber', label: 'Obsidian Glow', color: 'bg-gradient-to-tr from-neutral-900 to-amber-900' },
+                          { id: 'bg_space', label: 'Weltraum', color: 'bg-gradient-to-tr from-neutral-950 to-neutral-900' },
+                          { id: 'bg_library', label: 'Bibliothek', color: 'bg-amber-950' },
                         ].map((bg) => (
                           <div
                             key={bg.id}
                             onClick={() => setVirtualBg(bg.id)}
                             className={`p-2 rounded-xl border text-center cursor-pointer transition flex flex-col items-center gap-1.5 ${
                               virtualBg === bg.id
-                                ? 'border-discord-blurple bg-discord-darkest shadow-md'
-                                : 'border-discord-divider/40 hover:bg-discord-channels'
+                                ? 'border-amber-400 bg-amber-500/15 shadow-md shadow-amber-500/20 ring-1 ring-amber-400'
+                                : 'border-amber-500/20 bg-[#070709] hover:bg-[#121218]'
                             }`}
                           >
-                            <div className={`w-8 h-8 rounded-lg ${bg.color} border border-white/20`} />
-                            <span className="text-[10px] font-bold text-white truncate max-w-full">
+                            <div className={`w-8 h-8 rounded-lg ${bg.color} border border-amber-500/30`} />
+                            <span className="text-[10px] font-bold text-amber-200 truncate max-w-full">
                               {bg.label}
                             </span>
                           </div>
@@ -2132,8 +2132,8 @@ export default function UserSettingsModal({
                       </div>
 
                       {customBgUrl && (
-                        <div className="mt-2 p-2 bg-discord-darkest rounded-xl border border-discord-divider/40 flex items-center justify-between text-xs">
-                          <span className="text-[11px] text-discord-green font-bold flex items-center gap-1.5">
+                        <div className="mt-2 p-2 bg-[#070709] rounded-xl border border-amber-500/30 flex items-center justify-between text-xs">
+                          <span className="text-[11px] text-emerald-400 font-bold flex items-center gap-1.5">
                             <CheckCircle className="w-3.5 h-3.5" />
                             Eigener Hintergrund geladen
                           </span>
@@ -2143,7 +2143,7 @@ export default function UserSettingsModal({
                               setCustomBgUrl('');
                               setVirtualBg('none');
                             }}
-                            className="text-[11px] text-discord-red hover:underline"
+                            className="text-[11px] text-red-400 hover:underline cursor-pointer"
                           >
                             Entfernen
                           </button>
@@ -2152,16 +2152,16 @@ export default function UserSettingsModal({
                     </div>
 
                     {/* Camera Hardware Acceleration */}
-                    <div className="pt-2 border-t border-discord-divider/30 flex items-center justify-between">
+                    <div className="pt-2 border-t border-amber-500/20 flex items-center justify-between">
                       <div>
-                        <div className="text-xs font-bold text-white">Hardwarebeschleunigung für Videoverarbeitung</div>
-                        <div className="text-[11px] text-discord-textMuted">Verarbeitet das Kamerabild auf der GPU, um die CPU-Last zu minimieren.</div>
+                        <div className="text-xs font-bold text-amber-100">Hardwarebeschleunigung für Videoverarbeitung</div>
+                        <div className="text-[11px] text-amber-300/70">Verarbeitet das Kamerabild auf der GPU, um die CPU-Last zu minimieren.</div>
                       </div>
                       <input
                         type="checkbox"
                         checked={hardwareCameraAcceleration}
                         onChange={(e) => setHardwareCameraAcceleration(e.target.checked)}
-                        className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                        className="w-4 h-4 accent-amber-500 cursor-pointer"
                       />
                     </div>
                   </div>
@@ -2170,15 +2170,15 @@ export default function UserSettingsModal({
 
               {/* SECTION 4: STREAMING-EINSTELLUNGEN (BILDSCHIRMÜBERTRAGUNG) */}
               {(voiceSubTab === 'all' || voiceSubTab === 'stream') && (
-                <div className="space-y-6 pt-4 border-t border-discord-divider/30">
-                  <div className="text-xs font-extrabold text-discord-textMuted uppercase tracking-wider">
+                <div className="space-y-6 pt-4 border-t border-amber-500/20">
+                  <div className="text-xs font-extrabold text-amber-400 uppercase tracking-wider">
                     STREAM- & BILDSCHIRMÜBERTRAGUNGSEINSTELLUNGEN
                   </div>
 
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     {/* Stream Quality / Resolution */}
                     <div>
-                      <label className="text-[10px] font-bold text-discord-textMuted uppercase block mb-1.5">
+                      <label className="text-[10px] font-extrabold text-amber-400 uppercase block mb-1.5">
                         STREAM-AUFLÖSUNG
                       </label>
                       <div className="grid grid-cols-4 gap-2">
@@ -2187,10 +2187,10 @@ export default function UserSettingsModal({
                             key={res}
                             type="button"
                             onClick={() => setStreamResolution(res)}
-                            className={`py-2 rounded-lg text-xs font-bold transition border ${
+                            className={`py-2 rounded-lg text-xs font-bold transition border cursor-pointer ${
                               streamResolution === res
-                                ? 'bg-discord-blurple text-white border-discord-blurple shadow-md'
-                                : 'bg-discord-darkest text-discord-textMuted border-discord-divider/40 hover:text-white'
+                                ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-neutral-950 font-black border-amber-400 shadow-md shadow-amber-500/20'
+                                : 'bg-[#070709] text-amber-200/60 border-amber-500/20 hover:text-amber-200 hover:border-amber-500/40'
                             }`}
                           >
                             {res === 'source' ? 'Quelle (Original)' : res}
@@ -2201,7 +2201,7 @@ export default function UserSettingsModal({
 
                     {/* Stream FPS */}
                     <div>
-                      <label className="text-[10px] font-bold text-discord-textMuted uppercase block mb-1.5">
+                      <label className="text-[10px] font-extrabold text-amber-400 uppercase block mb-1.5">
                         BILDRATE (FPS)
                       </label>
                       <div className="grid grid-cols-3 gap-2">
@@ -2210,10 +2210,10 @@ export default function UserSettingsModal({
                             key={fps}
                             type="button"
                             onClick={() => setStreamFps(fps)}
-                            className={`py-2 rounded-lg text-xs font-bold transition border ${
+                            className={`py-2 rounded-lg text-xs font-bold transition border cursor-pointer ${
                               streamFps === fps
-                                ? 'bg-discord-blurple text-white border-discord-blurple shadow-md'
-                                : 'bg-discord-darkest text-discord-textMuted border-discord-divider/40 hover:text-white'
+                                ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-neutral-950 font-black border-amber-400 shadow-md shadow-amber-500/20'
+                                : 'bg-[#070709] text-amber-200/60 border-amber-500/20 hover:text-amber-200 hover:border-amber-500/40'
                             }`}
                           >
                             {fps} FPS
@@ -2223,30 +2223,30 @@ export default function UserSettingsModal({
                     </div>
 
                     {/* Toggles */}
-                    <div className="space-y-3 pt-2 border-t border-discord-divider/30">
+                    <div className="space-y-3 pt-2 border-t border-amber-500/20">
                       <div className="flex items-center justify-between">
                         <div>
-                          <div className="text-xs font-bold text-white">Systemsounds in Stream übertragen</div>
-                          <div className="text-[11px] text-discord-textMuted">Teile Spiel- und Videosounds in bester Qualität mit deinen Zuschauern.</div>
+                          <div className="text-xs font-bold text-amber-100">Systemsounds in Stream übertragen</div>
+                          <div className="text-[11px] text-amber-300/70">Teile Spiel- und Videosounds in bester Qualität mit deinen Zuschauern.</div>
                         </div>
                         <input
                           type="checkbox"
                           checked={includeStreamAudio}
                           onChange={(e) => setIncludeStreamAudio(e.target.checked)}
-                          className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                          className="w-4 h-4 accent-amber-500 cursor-pointer"
                         />
                       </div>
 
                       <div className="flex items-center justify-between">
                         <div>
-                          <div className="text-xs font-bold text-white">Hardwarebeschleunigung für Bildschirm-Encoding (GPU)</div>
-                          <div className="text-[11px] text-discord-textMuted">Verwendet NVIDIA NVENC oder AMD VCE Hardware-Encoder deiner Grafikkarte.</div>
+                          <div className="text-xs font-bold text-amber-100">Hardwarebeschleunigung für Bildschirm-Encoding (GPU)</div>
+                          <div className="text-[11px] text-amber-300/70">Verwendet NVIDIA NVENC oder AMD VCE Hardware-Encoder deiner Grafikkarte.</div>
                         </div>
                         <input
                           type="checkbox"
                           checked={hardwareAcceleration}
                           onChange={(e) => setHardwareAcceleration(e.target.checked)}
-                          className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                          className="w-4 h-4 accent-amber-500 cursor-pointer"
                         />
                       </div>
 
@@ -2259,20 +2259,20 @@ export default function UserSettingsModal({
                           type="checkbox"
                           checked={openH264}
                           onChange={(e) => setOpenH264(e.target.checked)}
-                          className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                          className="w-4 h-4 accent-amber-500 cursor-pointer"
                         />
                       </div>
 
                       <div className="flex items-center justify-between">
                         <div>
-                          <div className="text-xs font-bold text-white">Modernster AV1 Video-Encoder</div>
-                          <div className="text-[11px] text-discord-textMuted">Liefert gestochen scharfe Videoübertragungen bei geringerer Bandbreite.</div>
+                          <div className="text-xs font-bold text-amber-100">Modernster AV1 Video-Encoder</div>
+                          <div className="text-[11px] text-amber-300/70">Liefert gestochen scharfe Videoübertragungen bei geringerer Bandbreite.</div>
                         </div>
                         <input
                           type="checkbox"
                           checked={av1Codec}
                           onChange={(e) => setAv1Codec(e.target.checked)}
-                          className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                          className="w-4 h-4 accent-amber-500 cursor-pointer"
                         />
                       </div>
                     </div>
@@ -2282,22 +2282,22 @@ export default function UserSettingsModal({
 
               {/* SECTION 5: ERWEITERTE AUDIO-EINSTELLUNGEN */}
               {(voiceSubTab === 'all' || voiceSubTab === 'advanced') && (
-                <div className="space-y-6 pt-4 border-t border-discord-divider/30">
-                  <div className="text-xs font-extrabold text-discord-textMuted uppercase tracking-wider">
+                <div className="space-y-6 pt-4 border-t border-amber-500/20">
+                  <div className="text-xs font-extrabold text-amber-400 uppercase tracking-wider">
                     ERWEITERTE SPRACHVERARBEITUNG & NETZWERKEINSTELLUNGEN
                   </div>
 
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     {/* Krisp Noise Suppression 3-way radio */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <Sparkles className="w-4 h-4 text-cyan-400" />
-                          <span className="text-xs font-bold text-white">RAUSCHUNTERDRÜCKUNG (KRISP-TECHNOLOGIE)</span>
+                          <Sparkles className="w-4 h-4 text-amber-400" />
+                          <span className="text-xs font-bold text-amber-200">RAUSCHUNTERDRÜCKUNG (KRISP-TECHNOLOGIE)</span>
                         </div>
-                        <span className="text-[10px] bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded font-bold">KI-gestützt</span>
+                        <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-bold">KI-gestützt</span>
                       </div>
-                      <p className="text-[11px] text-discord-textMuted">
+                      <p className="text-[11px] text-amber-300/70">
                         Filtert Tastaturgeräusche, Lüfter, Atmung und Raumhall in Echtzeit aus deinem Mikrofon.
                       </p>
 
@@ -2312,66 +2312,66 @@ export default function UserSettingsModal({
                             onClick={() => setKrispMode(k.id)}
                             className={`p-3 rounded-xl border cursor-pointer transition text-center ${
                               krispMode === k.id
-                                ? 'border-cyan-400 bg-cyan-950/40 text-white shadow-md'
-                                : 'border-discord-divider/40 text-discord-textMuted hover:bg-discord-channels'
+                                ? 'border-amber-400 bg-amber-500/15 text-amber-100 shadow-md ring-1 ring-amber-400'
+                                : 'border-amber-500/20 bg-[#070709] text-amber-300/60 hover:text-amber-200 hover:border-amber-500/40'
                             }`}
                           >
-                            <div className="text-xs font-bold text-white">{k.label}</div>
-                            <div className="text-[10px] text-discord-textMuted mt-0.5">{k.desc}</div>
+                            <div className="text-xs font-bold text-amber-100">{k.label}</div>
+                            <div className="text-[10px] text-amber-300/60 mt-0.5">{k.desc}</div>
                           </div>
                         ))}
                       </div>
                     </div>
 
                     {/* Echo Cancellation */}
-                    <div className="flex items-center justify-between pt-3 border-t border-discord-divider/30">
+                    <div className="flex items-center justify-between pt-3 border-t border-amber-500/20">
                       <div>
-                        <div className="text-xs font-bold text-white">Echounterdrückung (Echo Cancellation)</div>
-                        <div className="text-[11px] text-discord-textMuted">Verhindert Rückkopplungen von deinen Lautsprechern in das Mikrofon.</div>
+                        <div className="text-xs font-bold text-amber-100">Echounterdrückung (Echo Cancellation)</div>
+                        <div className="text-[11px] text-amber-300/70">Verhindert Rückkopplungen von deinen Lautsprechern in das Mikrofon.</div>
                       </div>
                       <input
                         type="checkbox"
                         checked={echoCancellation}
                         onChange={(e) => setEchoCancellation(e.target.checked)}
-                        className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                        className="w-4 h-4 accent-amber-500 cursor-pointer"
                       />
                     </div>
 
                     {/* Auto Gain Control */}
-                    <div className="flex items-center justify-between pt-3 border-t border-discord-divider/30">
+                    <div className="flex items-center justify-between pt-3 border-t border-amber-500/20">
                       <div>
-                        <div className="text-xs font-bold text-white">Automatische Verstärkungsregelung (AGC)</div>
-                        <div className="text-[11px] text-discord-textMuted">Hebt leises Flüstern an und dämpft plötzliche laute Töne automatisch ab.</div>
+                        <div className="text-xs font-bold text-amber-100">Automatische Verstärkungsregelung (AGC)</div>
+                        <div className="text-[11px] text-amber-300/70">Hebt leises Flüstern an und dämpft plötzliche laute Töne automatisch ab.</div>
                       </div>
                       <input
                         type="checkbox"
                         checked={autoGainControl}
                         onChange={(e) => setAutoGainControl(e.target.checked)}
-                        className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                        className="w-4 h-4 accent-amber-500 cursor-pointer"
                       />
                     </div>
 
                     {/* Advanced Voice Processing */}
-                    <div className="flex items-center justify-between pt-3 border-t border-discord-divider/30">
+                    <div className="flex items-center justify-between pt-3 border-t border-amber-500/20">
                       <div>
-                        <div className="text-xs font-bold text-white">Erweiterte Sprachverarbeitung</div>
-                        <div className="text-[11px] text-discord-textMuted">Aktiviert Klangverbesserungsfilter für kristallklare Sprachwiedergabe.</div>
+                        <div className="text-xs font-bold text-amber-100">Erweiterte Sprachverarbeitung</div>
+                        <div className="text-[11px] text-amber-300/70">Aktiviert Klangverbesserungsfilter für kristallklare Sprachwiedergabe.</div>
                       </div>
                       <input
                         type="checkbox"
                         checked={advancedVoiceProcessing}
                         onChange={(e) => setAdvancedVoiceProcessing(e.target.checked)}
-                        className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                        className="w-4 h-4 accent-amber-500 cursor-pointer"
                       />
                     </div>
 
                     {/* Dämpfung (Attenuation) */}
-                    <div className="pt-3 border-t border-discord-divider/30 space-y-3">
+                    <div className="pt-3 border-t border-amber-500/20 space-y-3">
                       <div className="flex justify-between items-center text-xs">
-                        <span className="font-bold text-discord-textMuted uppercase text-[10px]">DÄMPFUNG (ATTENUATION)</span>
-                        <span className="text-white font-bold">%{attenuationPercent}</span>
+                        <span className="font-extrabold text-amber-400 uppercase text-[10px]">DÄMPFUNG (ATTENUATION)</span>
+                        <span className="text-amber-200 font-bold">%{attenuationPercent}</span>
                       </div>
-                      <p className="text-[11px] text-discord-textMuted">
+                      <p className="text-[11px] text-amber-300/70">
                         Verringert automatisch die Lautstärke anderer Programme (Spiele, Musik), wenn jemand spricht.
                       </p>
                       <input
@@ -2380,17 +2380,17 @@ export default function UserSettingsModal({
                         max={100}
                         value={attenuationPercent}
                         onChange={(e) => setAttenuationPercent(parseInt(e.target.value))}
-                        className="w-full accent-discord-blurple cursor-pointer"
+                        className="w-full accent-amber-500 cursor-pointer"
                       />
 
-                      <div className="space-y-2 pt-2 text-xs text-white">
+                      <div className="space-y-2 pt-2 text-xs text-amber-100">
                         <label className="flex items-center justify-between cursor-pointer">
                           <span className="text-xs">Lautstärke anderer Programme senken, wenn andere sprechen</span>
                           <input
                             type="checkbox"
                             checked={attenuateOthers}
                             onChange={(e) => setAttenuateOthers(e.target.checked)}
-                            className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                            className="w-4 h-4 accent-amber-500 cursor-pointer"
                           />
                         </label>
                         <label className="flex items-center justify-between cursor-pointer">
@@ -2399,21 +2399,21 @@ export default function UserSettingsModal({
                             type="checkbox"
                             checked={attenuateSelf}
                             onChange={(e) => setAttenuateSelf(e.target.checked)}
-                            className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                            className="w-4 h-4 accent-amber-500 cursor-pointer"
                           />
                         </label>
                       </div>
                     </div>
 
                     {/* Audio Subsystem */}
-                    <div className="pt-3 border-t border-discord-divider/30 space-y-2">
-                      <label className="text-[10px] font-bold text-discord-textMuted uppercase block">
+                    <div className="pt-3 border-t border-amber-500/20 space-y-2">
+                      <label className="text-[10px] font-extrabold text-amber-400 uppercase block">
                         AUDIO-SUBSYSTEM
                       </label>
                       <select
                         value={audioSubsystem}
                         onChange={(e) => setAudioSubsystem(e.target.value)}
-                        className="w-full bg-discord-darkest rounded-lg px-3 py-2 text-xs text-white border border-discord-divider/40 focus:border-discord-blurple focus:outline-none cursor-pointer"
+                        className="w-full bg-[#070709] rounded-lg px-3 py-2 text-xs text-amber-100 border border-amber-500/30 focus:border-amber-400 focus:outline-none cursor-pointer font-medium"
                       >
                         <option value="standard">Standard (Neueste & stabile WebAudio-Engine)</option>
                         <option value="legacy">Legacy (Vollständige Kompatibilität für ältere Soundkarten)</option>
@@ -2422,30 +2422,30 @@ export default function UserSettingsModal({
                     </div>
 
                     {/* QoS High Priority */}
-                    <div className="flex items-center justify-between pt-3 border-t border-discord-divider/30">
+                    <div className="flex items-center justify-between pt-3 border-t border-amber-500/20">
                       <div>
-                        <div className="text-xs font-bold text-white">Dienstgüte (QoS) – Hohe Paketpriorität</div>
-                        <div className="text-[11px] text-discord-textMuted">Signalisiert deinem Router, DilSed-Sprachpakete mit höchster Priorität zu übertragen.</div>
+                        <div className="text-xs font-bold text-amber-100">Dienstgüte (QoS) – Hohe Paketpriorität</div>
+                        <div className="text-[11px] text-amber-300/70">Signalisiert deinem Router, DilSed-Sprachpakete mit höchster Priorität zu übertragen.</div>
                       </div>
                       <input
                         type="checkbox"
                         checked={qosPriority}
                         onChange={(e) => setQosPriority(e.target.checked)}
-                        className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                        className="w-4 h-4 accent-amber-500 cursor-pointer"
                       />
                     </div>
 
                     {/* Diagnostic Audio */}
-                    <div className="flex items-center justify-between pt-3 border-t border-discord-divider/30">
+                    <div className="flex items-center justify-between pt-3 border-t border-amber-500/20">
                       <div>
-                        <div className="text-xs font-bold text-white">Diagnose-Audioaufzeichnung</div>
-                        <div className="text-[11px] text-discord-textMuted">Speichert lokale Protokolle zur Analyse von Audio- und Verbindungsproblemen.</div>
+                        <div className="text-xs font-bold text-amber-100">Diagnose-Audioaufzeichnung</div>
+                        <div className="text-[11px] text-amber-300/70">Speichert lokale Protokolle zur Analyse von Audio- und Verbindungsproblemen.</div>
                       </div>
                       <input
                         type="checkbox"
                         checked={diagnosticAudio}
                         onChange={(e) => setDiagnosticAudio(e.target.checked)}
-                        className="w-4 h-4 accent-discord-blurple cursor-pointer"
+                        className="w-4 h-4 accent-amber-500 cursor-pointer"
                       />
                     </div>
                   </div>
@@ -2455,7 +2455,7 @@ export default function UserSettingsModal({
                     <button
                       type="button"
                       onClick={handleResetVoiceSettings}
-                      className="text-xs font-bold text-discord-red hover:underline flex items-center gap-1.5"
+                      className="text-xs font-bold text-red-400 hover:underline flex items-center gap-1.5 cursor-pointer"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>Sprach- und Videoeinstellungen auf Standard zurücksetzen</span>
@@ -2466,16 +2466,16 @@ export default function UserSettingsModal({
 
               {/* SECTION 6: TÖNE & BENACHRICHTIGUNGEN (SOUNDBOARD & EFFEKTE) */}
               {(voiceSubTab === 'all' || voiceSubTab === 'sounds') && (
-                <div className="space-y-6 pt-4 border-t border-discord-divider/30">
-                  <div className="text-xs font-extrabold text-discord-textMuted uppercase tracking-wider">
+                <div className="space-y-6 pt-4 border-t border-amber-500/20">
+                  <div className="text-xs font-extrabold text-amber-400 uppercase tracking-wider">
                     AUDIO-EVENTS & BENACHRICHTIGUNGSTÖNE
                   </div>
 
                   {/* Soundboard Volume */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-3">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-3">
                     <div className="flex justify-between items-center text-xs">
-                      <span className="font-bold text-discord-textMuted uppercase text-[10px]">SOUNDBOARD-LAUTSTÄRKE</span>
-                      <span className="text-white font-bold">%{soundboardVolume}</span>
+                      <span className="font-extrabold text-amber-400 uppercase text-[10px]">SOUNDBOARD-LAUTSTÄRKE</span>
+                      <span className="text-amber-200 font-bold">%{soundboardVolume}</span>
                     </div>
                     <input
                       type="range"
@@ -2483,14 +2483,14 @@ export default function UserSettingsModal({
                       max={100}
                       value={soundboardVolume}
                       onChange={(e) => setSoundboardVolume(parseInt(e.target.value))}
-                      className="w-full accent-discord-blurple cursor-pointer"
+                      className="w-full accent-amber-500 cursor-pointer"
                     />
                   </div>
 
                   {/* Audio Cue Preview Buttons */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-3">
-                    <div className="text-xs font-bold text-white mb-1">DILSED BENACHRICHTIGUNGS- & SOUNDTEST</div>
-                    <p className="text-[11px] text-discord-textMuted mb-3">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-3">
+                    <div className="text-xs font-bold text-amber-200 mb-1">DILSED BENACHRICHTIGUNGS- & SOUNDTEST</div>
+                    <p className="text-[11px] text-amber-300/70 mb-3">
                       Klicke auf die Schaltflächen, um die Soundeffekte live anzuhören.
                     </p>
 
@@ -2498,55 +2498,55 @@ export default function UserSettingsModal({
                       <button
                         type="button"
                         onClick={() => playJoinVoiceSound()}
-                        className="p-2.5 rounded-xl bg-discord-darkest hover:bg-discord-channels border border-discord-divider/40 text-xs font-semibold text-white transition flex items-center justify-between group"
+                        className="p-2.5 rounded-xl bg-[#070709] hover:bg-amber-400/10 border border-amber-500/30 text-xs font-bold text-amber-100 transition flex items-center justify-between group cursor-pointer"
                       >
                         <span>Kanal beigetreten</span>
-                        <Volume2 className="w-3.5 h-3.5 text-discord-green group-hover:scale-110" />
+                        <Volume2 className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110" />
                       </button>
 
                       <button
                         type="button"
                         onClick={() => playLeaveVoiceSound()}
-                        className="p-2.5 rounded-xl bg-discord-darkest hover:bg-discord-channels border border-discord-divider/40 text-xs font-semibold text-white transition flex items-center justify-between group"
+                        className="p-2.5 rounded-xl bg-[#070709] hover:bg-amber-400/10 border border-amber-500/30 text-xs font-bold text-amber-100 transition flex items-center justify-between group cursor-pointer"
                       >
                         <span>Kanal verlassen</span>
-                        <Volume2 className="w-3.5 h-3.5 text-discord-red group-hover:scale-110" />
+                        <Volume2 className="w-3.5 h-3.5 text-red-400 group-hover:scale-110" />
                       </button>
 
                       <button
                         type="button"
                         onClick={() => playMuteSound(true)}
-                        className="p-2.5 rounded-xl bg-discord-darkest hover:bg-discord-channels border border-discord-divider/40 text-xs font-semibold text-white transition flex items-center justify-between group"
+                        className="p-2.5 rounded-xl bg-[#070709] hover:bg-amber-400/10 border border-amber-500/30 text-xs font-bold text-amber-100 transition flex items-center justify-between group cursor-pointer"
                       >
                         <span>Stummgeschaltet</span>
-                        <MicOff className="w-3.5 h-3.5 text-discord-red group-hover:scale-110" />
+                        <MicOff className="w-3.5 h-3.5 text-red-400 group-hover:scale-110" />
                       </button>
 
                       <button
                         type="button"
                         onClick={() => playMuteSound(false)}
-                        className="p-2.5 rounded-xl bg-discord-darkest hover:bg-discord-channels border border-discord-divider/40 text-xs font-semibold text-white transition flex items-center justify-between group"
+                        className="p-2.5 rounded-xl bg-[#070709] hover:bg-amber-400/10 border border-amber-500/30 text-xs font-bold text-amber-100 transition flex items-center justify-between group cursor-pointer"
                       >
                         <span>Stummschaltung aufgehoben</span>
-                        <Mic className="w-3.5 h-3.5 text-discord-green group-hover:scale-110" />
+                        <Mic className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110" />
                       </button>
 
                       <button
                         type="button"
                         onClick={() => playMessagePingSound()}
-                        className="p-2.5 rounded-xl bg-discord-darkest hover:bg-discord-channels border border-discord-divider/40 text-xs font-semibold text-white transition flex items-center justify-between group"
+                        className="p-2.5 rounded-xl bg-[#070709] hover:bg-amber-400/10 border border-amber-500/30 text-xs font-bold text-amber-100 transition flex items-center justify-between group cursor-pointer"
                       >
                         <span>Nachrichtenton</span>
-                        <Bell className="w-3.5 h-3.5 text-yellow-400 group-hover:scale-110" />
+                        <Bell className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110" />
                       </button>
 
                       <button
                         type="button"
                         onClick={() => playAirhornSound()}
-                        className="p-2.5 rounded-xl bg-discord-darkest hover:bg-discord-channels border border-discord-divider/40 text-xs font-semibold text-white transition flex items-center justify-between group"
+                        className="p-2.5 rounded-xl bg-[#070709] hover:bg-amber-400/10 border border-amber-500/30 text-xs font-bold text-amber-100 transition flex items-center justify-between group cursor-pointer"
                       >
                         <span>Soundboard (Lufthorn)</span>
-                        <Sparkles className="w-3.5 h-3.5 text-pink-400 group-hover:scale-110" />
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110" />
                       </button>
                     </div>
                   </div>
@@ -2559,11 +2559,24 @@ export default function UserSettingsModal({
           {activeTab === 'appearance' && (
             <div>
               <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-2">Erscheinungsbild</h2>
+              <p className="text-xs text-amber-300/70 mb-6">Passe das Erscheinungsbild der DilSed-Oberfläche an deine persönlichen Vorlieben an.</p>
               <div className="space-y-4">
-                <div className="grid grid-cols-3 gap-3">
-                  {['dark', 'light', 'midnight'].map((t) => (
-                    <div key={t} onClick={() => setSelectedTheme(t)} className={`p-3 rounded-lg border text-center cursor-pointer ${selectedTheme === t ? 'border-discord-blurple text-white font-bold' : 'border-discord-divider/40 text-discord-textMuted'}`}>
-                      {t.toUpperCase()}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {[
+                    { id: 'dark', label: 'Dunkel (Obsidian)' },
+                    { id: 'midnight', label: 'Mitternachtsgold' },
+                    { id: 'light', label: 'Klassisch' },
+                  ].map((t) => (
+                    <div
+                      key={t.id}
+                      onClick={() => setSelectedTheme(t.id)}
+                      className={`p-4 rounded-xl border text-center cursor-pointer transition ${
+                        selectedTheme === t.id
+                          ? 'border-amber-400 bg-amber-500/15 text-amber-200 font-black shadow-md shadow-amber-500/15 ring-1 ring-amber-400'
+                          : 'border-amber-500/20 bg-[#0c0c10] text-amber-300/60 hover:text-amber-200 hover:border-amber-500/40'
+                      }`}
+                    >
+                      <span className="text-xs uppercase tracking-wider font-extrabold">{t.label}</span>
                     </div>
                   ))}
                 </div>
@@ -2576,16 +2589,16 @@ export default function UserSettingsModal({
             <div className="space-y-6">
               <div>
                 <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1 flex items-center gap-2">
-                  <Eye className="w-6 h-6 text-discord-blurple" />
+                  <Eye className="w-6 h-6 text-amber-400" />
                   <span>Barrierefreiheit</span>
                 </h2>
-                <p className="text-xs text-discord-textMuted">
+                <p className="text-xs text-amber-300/70">
                   Passe DilSed an deine individuellen Seh-, Farb-, Bewegungs- und Screenreader-Bedürfnisse an.
                 </p>
               </div>
 
               {/* Schnellauswahl-Unterkategorien */}
-              <div className="flex flex-wrap gap-2 pb-2 border-b border-discord-divider/40">
+              <div className="flex flex-wrap gap-2 pb-2 border-b border-amber-500/20">
                 {[
                   { id: 'all', label: 'Alle' },
                   { id: 'text', label: 'Text & Lesbarkeit' },
@@ -2599,10 +2612,10 @@ export default function UserSettingsModal({
                     key={st.id}
                     type="button"
                     onClick={() => setAccessSubTab(st.id)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
                       accessSubTab === st.id
-                        ? 'bg-discord-blurple text-white shadow-md'
-                        : 'bg-discord-channels/60 text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+                        ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-neutral-950 font-black shadow-md shadow-amber-500/25 ring-1 ring-amber-300'
+                        : 'bg-[#0e0e13] text-amber-200/70 border border-amber-500/20 hover:bg-amber-400/10 hover:text-amber-200'
                     }`}
                   >
                     {st.label}
@@ -2611,13 +2624,13 @@ export default function UserSettingsModal({
               </div>
 
               {/* ==================== LIVE-CHAT-VORSCHAU ==================== */}
-              <div className="bg-discord-channels/40 rounded-xl p-4 border border-discord-divider/40 space-y-2">
+              <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-discord-textMuted uppercase tracking-wider flex items-center gap-1.5">
-                    <Sliders className="w-3.5 h-3.5 text-discord-blurple" />
+                  <span className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <Sliders className="w-3.5 h-3.5 text-amber-400" />
                     <span>Live-Chat-Vorschau für Barrierefreiheit</span>
                   </span>
-                  <span className="text-[11px] text-discord-textMuted font-mono">
+                  <span className="text-[11px] text-amber-300/60 font-mono">
                     {fontSize}px · {messageDisplay === 'cozy' ? 'Gemütlich' : 'Kompakt'} · Abstand: {messageSpacing}px
                   </span>
                 </div>
@@ -2626,10 +2639,10 @@ export default function UserSettingsModal({
                   style={{
                     filter: `grayscale(${100 - saturation}%)`,
                   }}
-                  className={`rounded-xl p-4 bg-discord-chat transition-all ${
+                  className={`rounded-xl p-4 bg-[#070709] transition-all ${
                     highContrast
-                      ? 'border-2 border-white ring-2 ring-white/30 contrast-125'
-                      : 'border border-discord-divider/30'
+                      ? 'border-2 border-amber-400 ring-2 ring-amber-400/30 contrast-125'
+                      : 'border border-amber-500/20'
                   }`}
                 >
                   {/* Mesaj 1 */}
@@ -2638,39 +2651,39 @@ export default function UserSettingsModal({
                       <img
                         src={currentUser?.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150'}
                         alt="Avatar"
-                        className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                        className="w-10 h-10 rounded-full object-cover flex-shrink-0 border border-amber-500/30"
                       />
                       <div className="min-w-0 flex-1 leading-snug">
                         <div className="flex items-center gap-2 mb-1">
                           {/* Görünen Ad & Rol Rengi Stili */}
                           <span
-                            className={`font-semibold transition-colors flex items-center gap-1 ${
+                            className={`font-bold transition-colors flex items-center gap-1 ${
                               roleColorStyle === 'name'
                                 ? desaturateRoleColors
-                                  ? 'text-blue-300'
-                                  : 'text-discord-blurple'
-                                : 'text-white'
+                                  ? 'text-amber-300'
+                                  : 'text-amber-400'
+                                : 'text-amber-100'
                             }`}
                           >
                             {roleColorStyle === 'dot' && (
                               <span
                                 className={`w-2 h-2 rounded-full inline-block ${
-                                  desaturateRoleColors ? 'bg-blue-300' : 'bg-discord-blurple'
+                                  desaturateRoleColors ? 'bg-amber-300' : 'bg-amber-400'
                                 }`}
                               />
                             )}
                             {currentUser?.displayName || 'Benutzer'}
                           </span>
                           {showProfileBadges && (
-                            <span className="px-1.5 py-0.5 rounded text-[10px] bg-discord-blurple/30 text-discord-blurple font-bold uppercase tracking-wider">
+                            <span className="px-1.5 py-0.5 rounded text-[10px] bg-amber-400/20 text-amber-300 font-bold uppercase tracking-wider border border-amber-500/30">
                               Administrator
                             </span>
                           )}
-                          <span className="text-[11px] text-discord-textMuted font-normal">
+                          <span className="text-[11px] text-amber-300/60 font-normal">
                             Heute um 14:45
                           </span>
                         </div>
-                        <p className="text-discord-textNormal leading-relaxed">
+                        <p className="text-amber-100/90 leading-relaxed">
                           Willkommen im DilSed-Barrierefreiheitslabor! Schriftgröße, Zeilenabstände und Farbsättigung können hier direkt getestet werden.
                         </p>
                       </div>
@@ -2678,28 +2691,28 @@ export default function UserSettingsModal({
                   ) : (
                     /* Kompakt Mod */
                     <div className="flex items-baseline gap-2 select-text font-mono" style={{ fontSize: `${fontSize}px` }}>
-                      <span className="text-[11px] text-discord-textMuted flex-shrink-0">
+                      <span className="text-[11px] text-amber-300/60 flex-shrink-0">
                         14:45
                       </span>
                       <span
                         className={`font-bold flex items-center gap-1 flex-shrink-0 ${
                           roleColorStyle === 'name'
                             ? desaturateRoleColors
-                              ? 'text-blue-300'
-                              : 'text-discord-blurple'
-                            : 'text-white'
+                              ? 'text-amber-300'
+                              : 'text-amber-400'
+                            : 'text-amber-100'
                         }`}
                       >
                         {roleColorStyle === 'dot' && (
                           <span
                             className={`w-2 h-2 rounded-full inline-block ${
-                              desaturateRoleColors ? 'bg-blue-300' : 'bg-discord-blurple'
+                              desaturateRoleColors ? 'bg-amber-300' : 'bg-amber-400'
                             }`}
                           />
                         )}
                         {currentUser?.displayName || 'Benutzer'}:
                       </span>
-                      <span className="text-discord-textNormal font-sans">
+                      <span className="text-amber-100/90 font-sans">
                         Kompakter DilSed-Modus aktiv. Einzeilige Darstellung im IRC-Stil mit ausgeblendeten Avataren.
                       </span>
                     </div>
@@ -2721,13 +2734,13 @@ export default function UserSettingsModal({
                       <>
                         <div className="w-10 flex-shrink-0" />
                         <div className="min-w-0 flex-1 leading-snug">
-                          <p className="text-discord-textNormal">
+                          <p className="text-amber-100/90">
                             Weitere Informationen findest du auf unserer{' '}
                             <span
                               className={`cursor-pointer transition ${
                                 underlineLinks
-                                  ? 'underline font-semibold text-cyan-400'
-                                  : 'text-discord-blurple hover:underline'
+                                  ? 'underline font-semibold text-amber-300'
+                                  : 'text-amber-400 hover:underline'
                               }`}
                             >
                               https://dilsed.com/accessibility
@@ -2738,19 +2751,19 @@ export default function UserSettingsModal({
                       </>
                     ) : (
                       <>
-                        <span className="text-[11px] text-discord-textMuted flex-shrink-0">
+                        <span className="text-[11px] text-amber-300/60 flex-shrink-0">
                           14:46
                         </span>
-                        <span className="font-bold text-white flex-shrink-0">
+                        <span className="font-bold text-amber-100 flex-shrink-0">
                           {currentUser?.displayName || 'Benutzer'}:
                         </span>
-                        <span className="text-discord-textNormal font-sans">
+                        <span className="text-amber-100/90 font-sans">
                           Link-Unterstützung:{' '}
                           <span
                             className={`cursor-pointer ${
                               underlineLinks
-                                ? 'underline font-semibold text-cyan-400'
-                                : 'text-discord-blurple hover:underline'
+                                ? 'underline font-semibold text-amber-300'
+                                : 'text-amber-400 hover:underline'
                             }`}
                           >
                             https://dilsed.com/accessibility
@@ -2765,20 +2778,20 @@ export default function UserSettingsModal({
               {/* ==================== 1. TEXT & LESBARKEIT ==================== */}
               {(accessSubTab === 'all' || accessSubTab === 'text') && (
                 <div className="space-y-4">
-                  <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-1">
+                  <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-1">
                     Text und Lesbarkeit
                   </h3>
 
                   {/* Schriftgröße-Schieberegler */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-3">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-3">
                     <div className="flex items-center justify-between">
                       <div>
-                        <div className="text-sm font-semibold text-white">Chat-Schriftgröße</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">Chat-Schriftgröße</div>
+                        <div className="text-xs text-amber-300/70">
                           Bestimmt die Schriftgröße für Nachrichten und Überschriften im Chat.
                         </div>
                       </div>
-                      <span className="px-2.5 py-1 rounded-lg bg-discord-darkest border border-discord-divider/40 text-xs font-mono font-bold text-discord-blurple">
+                      <span className="px-2.5 py-1 rounded-lg bg-[#070709] border border-amber-500/30 text-xs font-mono font-bold text-amber-400">
                         {fontSize}px {fontSize === 16 && '(Standard)'}
                       </span>
                     </div>
@@ -2791,12 +2804,12 @@ export default function UserSettingsModal({
                         step="1"
                         value={fontSize}
                         onChange={(e) => setFontSize(parseInt(e.target.value))}
-                        className="w-full accent-discord-blurple cursor-pointer"
+                        className="w-full accent-amber-500 cursor-pointer"
                       />
-                      <div className="flex justify-between text-[10px] text-discord-textMuted font-mono mt-1">
+                      <div className="flex justify-between text-[10px] text-amber-300/60 font-mono mt-1">
                         <span>12px</span>
                         <span>14px</span>
-                        <span className="text-discord-blurple font-bold">16px (Standard)</span>
+                        <span className="text-amber-400 font-bold">16px (Standard)</span>
                         <span>18px</span>
                         <span>20px</span>
                         <span>24px</span>
@@ -2808,7 +2821,7 @@ export default function UserSettingsModal({
                         <button
                           type="button"
                           onClick={() => setFontSize(16)}
-                          className="text-xs text-discord-textMuted hover:text-white flex items-center gap-1 transition"
+                          className="text-xs text-amber-400 hover:text-amber-200 flex items-center gap-1 transition font-bold cursor-pointer"
                         >
                           <RotateCcw className="w-3 h-3" />
                           <span>Auf Standardgröße zurücksetzen (16px)</span>
@@ -2818,15 +2831,15 @@ export default function UserSettingsModal({
                   </div>
 
                   {/* Abstand zwischen Nachrichtengruppen */}
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-3">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-3">
                     <div className="flex items-center justify-between">
                       <div>
-                        <div className="text-sm font-semibold text-white">Abstand zwischen Nachrichtengruppen</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">Abstand zwischen Nachrichtengruppen</div>
+                        <div className="text-xs text-amber-300/70">
                           Regelt den vertikalen Abstand zwischen Nachrichten verschiedener Nutzer oder Zeitblöcke.
                         </div>
                       </div>
-                      <span className="px-2.5 py-1 rounded-lg bg-discord-darkest border border-discord-divider/40 text-xs font-mono font-bold text-discord-blurple">
+                      <span className="px-2.5 py-1 rounded-lg bg-[#070709] border border-amber-500/30 text-xs font-mono font-bold text-amber-400">
                         {messageSpacing}px {messageSpacing === 16 && '(Standard)'}
                       </span>
                     </div>
@@ -2839,13 +2852,13 @@ export default function UserSettingsModal({
                         step="4"
                         value={messageSpacing}
                         onChange={(e) => setMessageSpacing(parseInt(e.target.value))}
-                        className="w-full accent-discord-blurple cursor-pointer"
+                        className="w-full accent-amber-500 cursor-pointer"
                       />
-                      <div className="flex justify-between text-[10px] text-discord-textMuted font-mono mt-1">
+                      <div className="flex justify-between text-[10px] text-amber-300/60 font-mono mt-1">
                         <span>0px (Kompakt)</span>
                         <span>4px</span>
                         <span>8px</span>
-                        <span className="text-discord-blurple font-bold">16px</span>
+                        <span className="text-amber-400 font-bold">16px</span>
                         <span>24px (Weit)</span>
                       </div>
                     </div>
@@ -2856,7 +2869,7 @@ export default function UserSettingsModal({
               {/* ==================== 2. VISUELLE DICHTE ==================== */}
               {(accessSubTab === 'all' || accessSubTab === 'density') && (
                 <div className="space-y-4">
-                  <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-1">
+                  <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-1">
                     Visuelle Dichte (Nachrichtenansicht)
                   </h3>
 
@@ -2866,28 +2879,28 @@ export default function UserSettingsModal({
                       onClick={() => setMessageDisplay('cozy')}
                       className={`p-4 rounded-xl border transition cursor-pointer flex flex-col justify-between ${
                         messageDisplay === 'cozy'
-                          ? 'bg-discord-blurple/20 border-discord-blurple ring-1 ring-discord-blurple'
-                          : 'bg-discord-channels/60 border-discord-divider/30 hover:border-discord-divider/70'
+                          ? 'bg-amber-500/15 border-amber-400 ring-1 ring-amber-400 shadow-md shadow-amber-500/15'
+                          : 'bg-[#0c0c10] border-amber-500/20 hover:border-amber-500/40'
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-bold text-white">Gemütlich (Cozy)</span>
+                          <span className="text-sm font-bold text-amber-100">Gemütlich (Cozy)</span>
                           <div
                             className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                              messageDisplay === 'cozy' ? 'border-discord-blurple bg-discord-blurple' : 'border-discord-divider'
+                              messageDisplay === 'cozy' ? 'border-amber-400 bg-amber-400' : 'border-amber-500/30'
                             }`}
                           >
-                            {messageDisplay === 'cozy' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                            {messageDisplay === 'cozy' && <span className="w-1.5 h-1.5 rounded-full bg-neutral-950" />}
                           </div>
                         </div>
-                        <p className="text-xs text-discord-textMuted leading-relaxed">
+                        <p className="text-xs text-amber-300/70 leading-relaxed">
                           Moderne und großzügige Ansicht. Große Avatare, klare Zeilenabstände und lesefreundliche Nachrichten.
                         </p>
                       </div>
-                      <div className="mt-3 pt-3 border-t border-discord-divider/30 flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-discord-blurple/40" />
-                        <div className="h-2 w-24 bg-discord-divider/60 rounded" />
+                      <div className="mt-3 pt-3 border-t border-amber-500/20 flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-amber-400/30 border border-amber-500/40" />
+                        <div className="h-2 w-24 bg-amber-500/20 rounded" />
                       </div>
                     </div>
 
@@ -2896,28 +2909,28 @@ export default function UserSettingsModal({
                       onClick={() => setMessageDisplay('compact')}
                       className={`p-4 rounded-xl border transition cursor-pointer flex flex-col justify-between ${
                         messageDisplay === 'compact'
-                          ? 'bg-discord-blurple/20 border-discord-blurple ring-1 ring-discord-blurple'
-                          : 'bg-discord-channels/60 border-discord-divider/30 hover:border-discord-divider/70'
+                          ? 'bg-amber-500/15 border-amber-400 ring-1 ring-amber-400 shadow-md shadow-amber-500/15'
+                          : 'bg-[#0c0c10] border-amber-500/20 hover:border-amber-500/40'
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-bold text-white">Kompakt (Compact)</span>
+                          <span className="text-sm font-bold text-amber-100">Kompakt (Compact)</span>
                           <div
                             className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                              messageDisplay === 'compact' ? 'border-discord-blurple bg-discord-blurple' : 'border-discord-divider'
+                              messageDisplay === 'compact' ? 'border-amber-400 bg-amber-400' : 'border-amber-500/30'
                             }`}
                           >
-                            {messageDisplay === 'compact' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                            {messageDisplay === 'compact' && <span className="w-1.5 h-1.5 rounded-full bg-neutral-950" />}
                           </div>
                         </div>
-                        <p className="text-xs text-discord-textMuted leading-relaxed">
+                        <p className="text-xs text-amber-300/70 leading-relaxed">
                           Klassischer IRC-Stil. Avatare werden ausgeblendet, Zeit und Name stehen in einer Zeile. Mehr Text auf einen Blick.
                         </p>
                       </div>
-                      <div className="mt-3 pt-3 border-t border-discord-divider/30 flex items-center gap-2">
-                        <div className="h-2 w-8 bg-discord-divider/60 rounded" />
-                        <div className="h-2 w-28 bg-discord-divider/60 rounded" />
+                      <div className="mt-3 pt-3 border-t border-amber-500/20 flex items-center gap-2">
+                        <div className="h-2 w-8 bg-amber-500/20 rounded" />
+                        <div className="h-2 w-28 bg-amber-500/20 rounded" />
                       </div>
                     </div>
                   </div>
@@ -2927,14 +2940,14 @@ export default function UserSettingsModal({
               {/* ==================== 3. ANZEIGENAMEN-STILE ==================== */}
               {(accessSubTab === 'all' || accessSubTab === 'roles') && (
                 <div className="space-y-4">
-                  <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-1">
+                  <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-1">
                     Anzeigenamen & Rollenfarben
                   </h3>
 
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     <div>
-                      <div className="text-sm font-semibold text-white mb-1">Rollenfarben anzeigen</div>
-                      <div className="text-xs text-discord-textMuted mb-3">
+                      <div className="text-sm font-bold text-amber-100 mb-1">Rollenfarben anzeigen</div>
+                      <div className="text-xs text-amber-300/70 mb-3">
                         Wähle, wie Benutzernamen mit ihren jeweiligen Server-Rollenfarben hervorgehoben werden.
                       </div>
 
@@ -2949,24 +2962,24 @@ export default function UserSettingsModal({
                             onClick={() => setRoleColorStyle(opt.id)}
                             className={`p-3 rounded-xl border transition cursor-pointer flex flex-col justify-between ${
                               roleColorStyle === opt.id
-                                ? 'bg-discord-blurple/20 border-discord-blurple text-white font-semibold'
-                                : 'bg-discord-darkest border-discord-divider/40 text-discord-textMuted hover:border-discord-divider/80'
+                                ? 'bg-amber-500/15 border-amber-400 text-amber-100 ring-1 ring-amber-400 font-bold shadow-md'
+                                : 'bg-[#070709] border-amber-500/20 text-amber-300/60 hover:border-amber-500/40 hover:text-amber-200'
                             }`}
                           >
-                            <span className="text-xs font-bold text-white mb-1">{opt.label}</span>
-                            <span className="text-[10px] text-discord-textMuted">{opt.desc}</span>
+                            <span className="text-xs font-bold text-amber-200 mb-1">{opt.label}</span>
+                            <span className="text-[10px] text-amber-300/60">{opt.desc}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="h-[1px] bg-discord-divider/30" />
+                    <div className="h-[1px] bg-amber-500/20" />
 
                     {/* Profil-Abzeichen und Avatar-Rahmen anzeigen */}
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <div className="text-sm font-semibold text-white">Profilabzeichen und Avatar-Dekorationen anzeigen</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">Profilabzeichen und Avatar-Dekorationen anzeigen</div>
+                        <div className="text-xs text-amber-300/70">
                           Zeigt Avatar-Dekorationen, Kronen und Profil-Badges im Chat an.
                         </div>
                       </div>
@@ -2974,11 +2987,11 @@ export default function UserSettingsModal({
                         type="button"
                         onClick={() => setShowProfileBadges(!showProfileBadges)}
                         className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                          showProfileBadges ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                          showProfileBadges ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                         }`}
                       >
                         <span
-                          className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                          className={`w-5 h-5 rounded-full ${showProfileBadges ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                             showProfileBadges ? 'translate-x-5' : 'translate-x-0'
                           }`}
                         />
@@ -2991,16 +3004,16 @@ export default function UserSettingsModal({
               {/* ==================== 4. FARBE & KONTRAST ==================== */}
               {(accessSubTab === 'all' || accessSubTab === 'color') && (
                 <div className="space-y-4">
-                  <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-1">
+                  <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-1">
                     Farbe und Kontrast
                   </h3>
 
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     {/* Hoher Kontrast Modus */}
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <div className="text-sm font-semibold text-white">Hoher Kontrast (High Contrast)</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">Hoher Kontrast (High Contrast)</div>
+                        <div className="text-xs text-amber-300/70">
                           Verstärkt den Kontrast zwischen Texten, Schaltflächen und Rändern für bessere Lesbarkeit.
                         </div>
                       </div>
@@ -3008,29 +3021,29 @@ export default function UserSettingsModal({
                         type="button"
                         onClick={() => setHighContrast(!highContrast)}
                         className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                          highContrast ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                          highContrast ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                         }`}
                       >
                         <span
-                          className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                          className={`w-5 h-5 rounded-full ${highContrast ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                             highContrast ? 'translate-x-5' : 'translate-x-0'
                           }`}
                         />
                       </button>
                     </div>
 
-                    <div className="h-[1px] bg-discord-divider/30" />
+                    <div className="h-[1px] bg-amber-500/20" />
 
                     {/* Sättigungsregler */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <div>
-                          <div className="text-sm font-semibold text-white">Farbsättigung (Saturation)</div>
-                          <div className="text-xs text-discord-textMuted">
+                          <div className="text-sm font-bold text-amber-100">Farbsättigung (Saturation)</div>
+                          <div className="text-xs text-amber-300/70">
                             Passe die Intensität aller Farben an (0% Graustufen / Schwarz-Weiß, 100% volle Farbe).
                           </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-discord-darkest border border-discord-divider/40 text-xs font-mono font-bold text-discord-blurple">
+                        <span className="px-2 py-0.5 rounded bg-[#070709] border border-amber-500/30 text-xs font-mono font-bold text-amber-400">
                           %{saturation}
                         </span>
                       </div>
@@ -3041,22 +3054,22 @@ export default function UserSettingsModal({
                         step="5"
                         value={saturation}
                         onChange={(e) => setSaturation(parseInt(e.target.value))}
-                        className="w-full accent-discord-blurple cursor-pointer"
+                        className="w-full accent-amber-500 cursor-pointer"
                       />
-                      <div className="flex justify-between text-[10px] text-discord-textMuted font-mono">
+                      <div className="flex justify-between text-[10px] text-amber-300/60 font-mono">
                         <span>0% (Schwarz-Weiß)</span>
                         <span>%50</span>
-                        <span className="text-discord-blurple font-bold">100% (Volle Sättigung)</span>
+                        <span className="text-amber-400 font-bold">100% (Volle Sättigung)</span>
                       </div>
                     </div>
 
-                    <div className="h-[1px] bg-discord-divider/30" />
+                    <div className="h-[1px] bg-amber-500/20" />
 
                     {/* Links unterstreichen */}
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <div className="text-sm font-semibold text-white">Links immer unterstreichen</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">Links immer unterstreichen</div>
+                        <div className="text-xs text-amber-300/70">
                           Hebt Weblinks im Text dauerhaft durch eine Unterstreichung hervor.
                         </div>
                       </div>
@@ -3064,24 +3077,24 @@ export default function UserSettingsModal({
                         type="button"
                         onClick={() => setUnderlineLinks(!underlineLinks)}
                         className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                          underlineLinks ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                          underlineLinks ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                         }`}
                       >
                         <span
-                          className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                          className={`w-5 h-5 rounded-full ${underlineLinks ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                             underlineLinks ? 'translate-x-5' : 'translate-x-0'
                           }`}
                         />
                       </button>
                     </div>
 
-                    <div className="h-[1px] bg-discord-divider/30" />
+                    <div className="h-[1px] bg-amber-500/20" />
 
                     {/* Rollenfarben-Sättigung reduzieren */}
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <div className="text-sm font-semibold text-white">Rollenfarben-Sättigung reduzieren</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">Rollenfarben-Sättigung reduzieren</div>
+                        <div className="text-xs text-amber-300/70">
                           Wandelt grelle Neon-Namen in sanftere, augenschonende Pastelltöne um.
                         </div>
                       </div>
@@ -3089,11 +3102,11 @@ export default function UserSettingsModal({
                         type="button"
                         onClick={() => setDesaturateRoleColors(!desaturateRoleColors)}
                         className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                          desaturateRoleColors ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                          desaturateRoleColors ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                         }`}
                       >
                         <span
-                          className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                          className={`w-5 h-5 rounded-full ${desaturateRoleColors ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                             desaturateRoleColors ? 'translate-x-5' : 'translate-x-0'
                           }`}
                         />
@@ -3106,14 +3119,14 @@ export default function UserSettingsModal({
               {/* ==================== 5. REDUZIERTE BEWEGUNG ==================== */}
               {(accessSubTab === 'all' || accessSubTab === 'motion') && (
                 <div className="space-y-4">
-                  <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-1">
+                  <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-1">
                     Reduzierte Bewegung (Reduced Motion)
                   </h3>
 
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     <div>
-                      <div className="text-sm font-semibold text-white mb-1">Modus für reduzierte Bewegung</div>
-                      <div className="text-xs text-discord-textMuted mb-3">
+                      <div className="text-sm font-bold text-amber-100 mb-1">Modus für reduzierte Bewegung</div>
+                      <div className="text-xs text-amber-300/70 mb-3">
                         Schränkt Animationen bei Übergängen, Dialogen und Bildläufen ein.
                       </div>
 
@@ -3128,24 +3141,24 @@ export default function UserSettingsModal({
                             onClick={() => setReducedMotionMode(m.id)}
                             className={`p-3 rounded-xl border transition cursor-pointer flex flex-col justify-between ${
                               reducedMotionMode === m.id
-                                ? 'bg-discord-blurple/20 border-discord-blurple text-white font-semibold'
-                                : 'bg-discord-darkest border-discord-divider/40 text-discord-textMuted hover:border-discord-divider/80'
+                                ? 'bg-amber-500/15 border-amber-400 text-amber-100 ring-1 ring-amber-400 font-bold shadow-md'
+                                : 'bg-[#070709] border-amber-500/20 text-amber-300/60 hover:border-amber-500/40 hover:text-amber-200'
                             }`}
                           >
-                            <span className="text-xs font-bold text-white mb-1">{m.label}</span>
-                            <span className="text-[10px] text-discord-textMuted">{m.desc}</span>
+                            <span className="text-xs font-bold text-amber-200 mb-1">{m.label}</span>
+                            <span className="text-[10px] text-amber-300/60">{m.desc}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="h-[1px] bg-discord-divider/30" />
+                    <div className="h-[1px] bg-amber-500/20" />
 
                     {/* Otomatik GIF Oynatma */}
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <div className="text-sm font-semibold text-white">GIFs und Sticker automatisch abspielen</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">GIFs und Sticker automatisch abspielen</div>
+                        <div className="text-xs text-amber-300/70">
                           Spielt animierte GIFs und Sticker automatisch ab. Wenn deaktiviert, nur beim Daraufzeigen mit der Maus.
                         </div>
                       </div>
@@ -3153,24 +3166,24 @@ export default function UserSettingsModal({
                         type="button"
                         onClick={() => setAutoplayGifs(!autoplayGifs)}
                         className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                          autoplayGifs ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                          autoplayGifs ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                         }`}
                       >
                         <span
-                          className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                          className={`w-5 h-5 rounded-full ${autoplayGifs ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                             autoplayGifs ? 'translate-x-5' : 'translate-x-0'
                           }`}
                         />
                       </button>
                     </div>
 
-                    <div className="h-[1px] bg-discord-divider/30" />
+                    <div className="h-[1px] bg-amber-500/20" />
 
                     {/* Animasyonlu Emojileri Oynat */}
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <div className="text-sm font-semibold text-white">Animierte Emojis abspielen</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">Animierte Emojis abspielen</div>
+                        <div className="text-xs text-amber-300/70">
                           Animiert dynamische Emojis automatisch im Chat.
                         </div>
                       </div>
@@ -3178,11 +3191,11 @@ export default function UserSettingsModal({
                         type="button"
                         onClick={() => setAnimateEmojis(!animateEmojis)}
                         className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                          animateEmojis ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                          animateEmojis ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                         }`}
                       >
                         <span
-                          className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                          className={`w-5 h-5 rounded-full ${animateEmojis ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                             animateEmojis ? 'translate-x-5' : 'translate-x-0'
                           }`}
                         />
@@ -3195,16 +3208,16 @@ export default function UserSettingsModal({
               {/* ==================== 6. SES VE EKRAN OKUYUCUSU ==================== */}
               {(accessSubTab === 'all' || accessSubTab === 'tts') && (
                 <div className="space-y-4">
-                  <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-1">
+                  <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-1">
                     Screenreader & Sprachausgabe (TTS)
                   </h3>
 
-                  <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                     {/* Screenreader-Unterstützung */}
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <div className="text-sm font-semibold text-white">Screenreader-Unterstützung</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">Screenreader-Unterstützung</div>
+                        <div className="text-xs text-amber-300/70">
                           Optimiert ARIA-Labels und Sprachansagen für NVDA, JAWS und Windows-Sprachausgabe.
                         </div>
                       </div>
@@ -3212,25 +3225,25 @@ export default function UserSettingsModal({
                         type="button"
                         onClick={() => setScreenReaderSupport(!screenReaderSupport)}
                         className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                          screenReaderSupport ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                          screenReaderSupport ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                         }`}
                       >
                         <span
-                          className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                          className={`w-5 h-5 rounded-full ${screenReaderSupport ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                             screenReaderSupport ? 'translate-x-5' : 'translate-x-0'
                           }`}
                         />
                       </button>
                     </div>
 
-                    <div className="h-[1px] bg-discord-divider/30" />
+                    <div className="h-[1px] bg-amber-500/20" />
 
                     {/* Metin Okuma (TTS) */}
                     <div>
                       <div className="flex items-center justify-between gap-4 mb-3">
                         <div>
-                          <div className="text-sm font-semibold text-white">Text-in-Sprache (Text-to-Speech / TTS)</div>
-                          <div className="text-xs text-discord-textMuted">
+                          <div className="text-sm font-bold text-amber-100">Text-in-Sprache (Text-to-Speech / TTS)</div>
+                          <div className="text-xs text-amber-300/70">
                             Lässt Nachrichten mit dem /tts-Befehl und Benachrichtigungen akustisch vorlesen.
                           </div>
                         </div>
@@ -3238,11 +3251,11 @@ export default function UserSettingsModal({
                           type="button"
                           onClick={() => setEnableTts(!enableTts)}
                           className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                            enableTts ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                            enableTts ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                           }`}
                         >
                           <span
-                            className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                            className={`w-5 h-5 rounded-full ${enableTts ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                               enableTts ? 'translate-x-5' : 'translate-x-0'
                             }`}
                           />
@@ -3250,9 +3263,9 @@ export default function UserSettingsModal({
                       </div>
 
                       {enableTts && (
-                        <div className="p-3.5 bg-discord-darkest rounded-xl border border-discord-divider/40 space-y-3">
+                        <div className="p-3.5 bg-[#070709] rounded-xl border border-amber-500/30 space-y-3">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-semibold text-white">TTS-Vorlesegeschwindigkeit</span>
+                            <span className="text-xs font-bold text-amber-100">TTS-Vorlesegeschwindigkeit</span>
                             <div className="flex items-center gap-1.5">
                               {[
                                 { rate: 0.75, label: '0.75x' },
@@ -3266,8 +3279,8 @@ export default function UserSettingsModal({
                                   onClick={() => setTtsSpeed(sp.rate)}
                                   className={`px-2 py-1 rounded text-[11px] font-bold transition cursor-pointer ${
                                     ttsSpeed === sp.rate
-                                      ? 'bg-discord-blurple text-white'
-                                      : 'bg-discord-channels text-discord-textMuted hover:text-white'
+                                      ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 font-black shadow'
+                                      : 'bg-[#121218] text-amber-200/60 border border-amber-500/20 hover:text-amber-200'
                                   }`}
                                 >
                                   {sp.label}
@@ -3280,10 +3293,10 @@ export default function UserSettingsModal({
                             <button
                               type="button"
                               onClick={() => handleTestTts()}
-                              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                              className={`px-3 py-1.5 rounded-lg text-xs font-black transition flex items-center gap-1.5 cursor-pointer shadow-md ${
                                 isSpeakingTts
-                                  ? 'bg-discord-green text-white animate-pulse'
-                                  : 'bg-discord-blurple hover:bg-discord-blurple/80 text-white'
+                                  ? 'bg-emerald-600 text-white animate-pulse'
+                                  : 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:brightness-110 text-neutral-950 shadow-amber-500/20'
                               }`}
                             >
                               <Volume2 className="w-3.5 h-3.5" />
@@ -3294,13 +3307,13 @@ export default function UserSettingsModal({
                       )}
                     </div>
 
-                    <div className="h-[1px] bg-discord-divider/30" />
+                    <div className="h-[1px] bg-amber-500/20" />
 
                     {/* Barrierefreiheits-Audiohinweise */}
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <div className="text-sm font-semibold text-white">Barrierefreiheits-Signaltöne (Audio Cues)</div>
-                        <div className="text-xs text-discord-textMuted">
+                        <div className="text-sm font-bold text-amber-100">Barrierefreiheits-Signaltöne (Audio Cues)</div>
+                        <div className="text-xs text-amber-300/70">
                           Spielt dezente akustische Töne bei Navigation oder Fokuswechsel ab.
                         </div>
                       </div>
@@ -3308,11 +3321,11 @@ export default function UserSettingsModal({
                         type="button"
                         onClick={() => setAudioCues(!audioCues)}
                         className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                          audioCues ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                          audioCues ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                         }`}
                       >
                         <span
-                          className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                          className={`w-5 h-5 rounded-full ${audioCues ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                             audioCues ? 'translate-x-5' : 'translate-x-0'
                           }`}
                         />
@@ -3327,7 +3340,7 @@ export default function UserSettingsModal({
                 <button
                   type="button"
                   onClick={handleResetAccessibility}
-                  className="px-3.5 py-2 rounded-xl bg-discord-channels/60 hover:bg-discord-hoverChannel border border-discord-divider/40 text-xs font-semibold text-discord-textMuted hover:text-white transition flex items-center gap-2 cursor-pointer"
+                  className="px-3.5 py-2 rounded-xl bg-[#0c0c10] hover:bg-amber-400/10 border border-amber-500/30 text-xs font-bold text-amber-400 hover:text-amber-200 transition flex items-center gap-2 cursor-pointer shadow-md"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Alle Barrierefreiheits-Einstellungen zurücksetzen</span>
@@ -3341,25 +3354,25 @@ export default function UserSettingsModal({
             <div className="space-y-6">
               <div>
                 <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1 flex items-center gap-2">
-                  <Monitor className="w-6 h-6 text-discord-blurple" />
+                  <Monitor className="w-6 h-6 text-amber-400" />
                   <span>Windows- & Systemeinstellungen</span>
                 </h2>
-                <p className="text-xs text-discord-textMuted">
+                <p className="text-xs text-amber-300/70">
                   Konfiguriere, wie DilSed beim Systemstart, im Infobereich (Tray) und im Hintergrund arbeitet.
                 </p>
               </div>
 
               {/* 1. SYSTEMSTART-VERHALTEN */}
               <div>
-                <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-2.5">
+                <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-2.5">
                   Systemstart-Verhalten
                 </h3>
-                <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                   {/* DilSed beim Systemstart automatisch öffnen */}
                   <div className="flex items-center justify-between gap-4">
                     <div className="space-y-1">
-                      <div className="text-sm font-semibold text-white">DilSed beim Windows-Start öffnen</div>
-                      <div className="text-xs text-discord-textMuted leading-relaxed">
+                      <div className="text-sm font-bold text-amber-100">DilSed beim Windows-Start öffnen</div>
+                      <div className="text-xs text-amber-300/70 leading-relaxed">
                         Startet DilSed automatisch beim Hochfahren deines PCs, damit du sofort mit deinen Freunden verbunden bist.
                       </div>
                     </div>
@@ -3367,24 +3380,24 @@ export default function UserSettingsModal({
                       type="button"
                       onClick={() => setStartOnBoot(!startOnBoot)}
                       className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                        startOnBoot ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                        startOnBoot ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                       }`}
                     >
                       <span
-                        className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                        className={`w-5 h-5 rounded-full ${startOnBoot ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                           startOnBoot ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />
                     </button>
                   </div>
 
-                  <div className="h-[1px] bg-discord-divider/30" />
+                  <div className="h-[1px] bg-amber-500/20" />
 
                   {/* Minimiert starten */}
                   <div className="flex items-center justify-between gap-4">
                     <div className="space-y-1">
-                      <div className="text-sm font-semibold text-white">Minimiert starten</div>
-                      <div className="text-xs text-discord-textMuted leading-relaxed">
+                      <div className="text-sm font-bold text-amber-100">Minimiert starten</div>
+                      <div className="text-xs text-amber-300/70 leading-relaxed">
                         Startet DilSed unaufdringlich im System-Tray, ohne das Hauptfenster in den Vordergrund zu holen.
                       </div>
                     </div>
@@ -3392,11 +3405,11 @@ export default function UserSettingsModal({
                       type="button"
                       onClick={() => setStartMinimized(!startMinimized)}
                       className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                        startMinimized ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                        startMinimized ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                       }`}
                     >
                       <span
-                        className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                        className={`w-5 h-5 rounded-full ${startMinimized ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                           startMinimized ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />
@@ -3407,14 +3420,14 @@ export default function UserSettingsModal({
 
               {/* 2. VERHALTEN BEIM SCHLIESSEN */}
               <div>
-                <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-2.5">
+                <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-2.5">
                   Fenster-Schließverhalten
                 </h3>
-                <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                   <div className="flex items-center justify-between gap-4">
                     <div className="space-y-1">
-                      <div className="text-sm font-semibold text-white">In den Infobereich (Tray) minimieren</div>
-                      <div className="text-xs text-discord-textMuted leading-relaxed">
+                      <div className="text-sm font-bold text-amber-100">In den Infobereich (Tray) minimieren</div>
+                      <div className="text-xs text-amber-300/70 leading-relaxed">
                         Beim Klick auf das Schließen-Kreuz (X) bleibt DilSed im Hintergrund aktiv und empfängt weiterhin Benachrichtigungen.
                       </div>
                     </div>
@@ -3422,11 +3435,11 @@ export default function UserSettingsModal({
                       type="button"
                       onClick={() => setMinimizeToTray(!minimizeToTray)}
                       className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                        minimizeToTray ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                        minimizeToTray ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                       }`}
                     >
                       <span
-                        className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                        className={`w-5 h-5 rounded-full ${minimizeToTray ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                           minimizeToTray ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />
@@ -3437,14 +3450,14 @@ export default function UserSettingsModal({
 
               {/* 3. DONANIM VE PERFORMANS */}
               <div>
-                <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-2.5">
+                <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-2.5">
                   Hardware & Erweitertes System
                 </h3>
-                <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30 space-y-4">
+                <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20 space-y-4">
                   <div className="flex items-center justify-between gap-4">
                     <div className="space-y-1">
-                      <div className="text-sm font-semibold text-white">Hardwarebeschleunigung (GPU)</div>
-                      <div className="text-xs text-discord-textMuted leading-relaxed">
+                      <div className="text-sm font-bold text-amber-100">Hardwarebeschleunigung (GPU)</div>
+                      <div className="text-xs text-amber-300/70 leading-relaxed">
                         Nutzt deine Grafikkarte für flüssigere Animationen und schnellere Reaktionszeiten.
                       </div>
                     </div>
@@ -3452,23 +3465,23 @@ export default function UserSettingsModal({
                       type="button"
                       onClick={() => setGpuAcceleration(!gpuAcceleration)}
                       className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                        gpuAcceleration ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                        gpuAcceleration ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                       }`}
                     >
                       <span
-                        className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                        className={`w-5 h-5 rounded-full ${gpuAcceleration ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                           gpuAcceleration ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />
                     </button>
                   </div>
 
-                  <div className="h-[1px] bg-discord-divider/30" />
+                  <div className="h-[1px] bg-amber-500/20" />
 
                   <div className="flex items-center justify-between gap-4">
                     <div className="space-y-1">
-                      <div className="text-sm font-semibold text-white">Automatische Updates im Hintergrund</div>
-                      <div className="text-xs text-discord-textMuted leading-relaxed">
+                      <div className="text-sm font-bold text-amber-100">Automatische Updates im Hintergrund</div>
+                      <div className="text-xs text-amber-300/70 leading-relaxed">
                         Lädt die neuesten DilSed-Updates leise herunter und wendet sie beim Neustart an.
                       </div>
                     </div>
@@ -3476,23 +3489,23 @@ export default function UserSettingsModal({
                       type="button"
                       onClick={() => setAutoUpdate(!autoUpdate)}
                       className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                        autoUpdate ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                        autoUpdate ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                       }`}
                     >
                       <span
-                        className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                        className={`w-5 h-5 rounded-full ${autoUpdate ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                           autoUpdate ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />
                     </button>
                   </div>
 
-                  <div className="h-[1px] bg-discord-divider/30" />
+                  <div className="h-[1px] bg-amber-500/20" />
 
                   <div className="flex items-center justify-between gap-4">
                     <div className="space-y-1">
-                      <div className="text-sm font-semibold text-white">Entwicklermodus</div>
-                      <div className="text-xs text-discord-textMuted leading-relaxed">
+                      <div className="text-sm font-bold text-amber-100">Entwicklermodus</div>
+                      <div className="text-xs text-amber-300/70 leading-relaxed">
                         Ermöglicht das schnelle Kopieren von Benutzer-, Kanal- und Server-IDs per Rechtsklick.
                       </div>
                     </div>
@@ -3500,11 +3513,11 @@ export default function UserSettingsModal({
                       type="button"
                       onClick={() => setDevMode(!devMode)}
                       className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-0.5 flex-shrink-0 cursor-pointer ${
-                        devMode ? 'bg-discord-green' : 'bg-discord-darkest border border-discord-divider'
+                        devMode ? 'bg-gradient-to-r from-amber-400 to-amber-500 shadow-md shadow-amber-500/30' : 'bg-[#070709] border border-amber-500/30'
                       }`}
                     >
                       <span
-                        className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 shadow-md ${
+                        className={`w-5 h-5 rounded-full ${devMode ? 'bg-neutral-950' : 'bg-neutral-400'} transition-transform duration-200 shadow-md ${
                           devMode ? 'translate-x-5' : 'translate-x-0'
                         }`}
                       />
@@ -3525,10 +3538,10 @@ export default function UserSettingsModal({
             <div className="space-y-6">
               <div>
                 <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1 flex items-center gap-2">
-                  <Keyboard className="w-6 h-6 text-discord-blurple" />
+                  <Keyboard className="w-6 h-6 text-amber-400" />
                   <span>Tastenbelegungen</span>
                 </h2>
-                <p className="text-xs text-discord-textMuted">
+                <p className="text-xs text-amber-300/70">
                   Passe alle deine Tastenkürzel an einem zentralen Ort an, speichere und verwalte sie.
                 </p>
               </div>
@@ -3542,16 +3555,16 @@ export default function UserSettingsModal({
             <div className="space-y-6">
               <div>
                 <h2 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mb-1 flex items-center gap-2">
-                  <Globe className="w-6 h-6 text-discord-blurple" />
+                  <Globe className="w-6 h-6 text-amber-400" />
                   <span>Sprache & Zeit</span>
                 </h2>
-                <p className="text-xs text-discord-textMuted">
+                <p className="text-xs text-amber-300/70">
                   Passe die Oberflächensprache, das Zeitformat (12/24 Std.) und regionale Einstellungen an.
                 </p>
               </div>
 
               {/* Schnellauswahl-Unterkategorien */}
-              <div className="flex flex-wrap gap-2 pb-2 border-b border-discord-divider/40">
+              <div className="flex flex-wrap gap-2 pb-2 border-b border-amber-500/20">
                 {[
                   { id: 'all', label: 'Alle' },
                   { id: 'time', label: 'Zeit- & Datumsformat' },
@@ -3561,10 +3574,10 @@ export default function UserSettingsModal({
                     key={st.id}
                     type="button"
                     onClick={() => setLangSubTab(st.id)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
                       langSubTab === st.id
-                        ? 'bg-discord-blurple text-white shadow-md'
-                        : 'bg-discord-channels/60 text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white'
+                        ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-neutral-950 font-black shadow-md shadow-amber-500/25 ring-1 ring-amber-300'
+                        : 'bg-[#0e0e13] text-amber-200/70 border border-amber-500/20 hover:bg-amber-400/10 hover:text-amber-200'
                     }`}
                   >
                     {st.label}
@@ -3576,11 +3589,11 @@ export default function UserSettingsModal({
               {(langSubTab === 'all' || langSubTab === 'time') && (
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-discord-blurple" />
+                    <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-amber-400" />
                       <span>Zeit- & Datumsformat</span>
                     </h3>
-                    <p className="text-xs text-discord-textMuted">
+                    <p className="text-xs text-amber-300/70">
                       Wähle, wie Uhrzeiten in Chatnachrichten, Profilen und Events dargestellt werden.
                     </p>
                   </div>
@@ -3592,30 +3605,30 @@ export default function UserSettingsModal({
                       onClick={() => setTimeFormat('auto')}
                       className={`p-4 rounded-xl border transition cursor-pointer flex flex-col justify-between ${
                         timeFormat === 'auto'
-                          ? 'bg-discord-blurple/15 border-discord-blurple ring-1 ring-discord-blurple'
-                          : 'bg-discord-channels/60 border-discord-divider/30 hover:border-discord-divider/80'
+                          ? 'bg-amber-500/15 border-amber-400 ring-1 ring-amber-400 shadow-md shadow-amber-500/15'
+                          : 'bg-[#0c0c10] border-amber-500/20 hover:border-amber-500/40'
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-bold text-white">Automatisch</span>
+                          <span className="text-sm font-bold text-amber-100">Automatisch</span>
                           <div
                             className={`w-4 h-4 rounded-full border flex items-center justify-center ${
                               timeFormat === 'auto'
-                                ? 'border-discord-blurple bg-discord-blurple'
-                                : 'border-discord-divider'
+                                ? 'border-amber-400 bg-amber-400'
+                                : 'border-amber-500/30'
                             }`}
                           >
-                            {timeFormat === 'auto' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                            {timeFormat === 'auto' && <span className="w-1.5 h-1.5 rounded-full bg-neutral-950" />}
                           </div>
                         </div>
-                        <p className="text-xs text-discord-textMuted leading-relaxed mb-3">
+                        <p className="text-xs text-amber-300/70 leading-relaxed mb-3">
                           Verwendet das Standardformat der gewählten Sprache und deines Betriebssystems.
                         </p>
                       </div>
-                      <div className="pt-2 border-t border-discord-divider/30 flex items-center justify-between text-[11px]">
-                        <span className="text-discord-textMuted">Aktuelle Uhrzeit:</span>
-                        <span className="font-mono font-bold text-discord-green">
+                      <div className="pt-2 border-t border-amber-500/20 flex items-center justify-between text-[11px]">
+                        <span className="text-amber-300/70">Aktuelle Uhrzeit:</span>
+                        <span className="font-mono font-bold text-amber-400">
                           {getFormattedTimePreview('auto')}
                         </span>
                       </div>
@@ -3626,30 +3639,30 @@ export default function UserSettingsModal({
                       onClick={() => setTimeFormat('12h')}
                       className={`p-4 rounded-xl border transition cursor-pointer flex flex-col justify-between ${
                         timeFormat === '12h'
-                          ? 'bg-discord-blurple/15 border-discord-blurple ring-1 ring-discord-blurple'
-                          : 'bg-discord-channels/60 border-discord-divider/30 hover:border-discord-divider/80'
+                          ? 'bg-amber-500/15 border-amber-400 ring-1 ring-amber-400 shadow-md shadow-amber-500/15'
+                          : 'bg-[#0c0c10] border-amber-500/20 hover:border-amber-500/40'
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-bold text-white">12-Stunden-Format</span>
+                          <span className="text-sm font-bold text-amber-100">12-Stunden-Format</span>
                           <div
                             className={`w-4 h-4 rounded-full border flex items-center justify-center ${
                               timeFormat === '12h'
-                                ? 'border-discord-blurple bg-discord-blurple'
-                                : 'border-discord-divider'
+                                ? 'border-amber-400 bg-amber-400'
+                                : 'border-amber-500/30'
                             }`}
                           >
-                            {timeFormat === '12h' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                            {timeFormat === '12h' && <span className="w-1.5 h-1.5 rounded-full bg-neutral-950" />}
                           </div>
                         </div>
-                        <p className="text-xs text-discord-textMuted leading-relaxed mb-3">
+                        <p className="text-xs text-amber-300/70 leading-relaxed mb-3">
                           Zeigt Uhrzeiten im AM/PM-Format an (z. B. 02:45 PM).
                         </p>
                       </div>
-                      <div className="pt-2 border-t border-discord-divider/30 flex items-center justify-between text-[11px]">
-                        <span className="text-discord-textMuted">Aktuelle Uhrzeit:</span>
-                        <span className="font-mono font-bold text-discord-green">
+                      <div className="pt-2 border-t border-amber-500/20 flex items-center justify-between text-[11px]">
+                        <span className="text-amber-300/70">Aktuelle Uhrzeit:</span>
+                        <span className="font-mono font-bold text-amber-400">
                           {getFormattedTimePreview('12h')}
                         </span>
                       </div>
@@ -3660,30 +3673,30 @@ export default function UserSettingsModal({
                       onClick={() => setTimeFormat('24h')}
                       className={`p-4 rounded-xl border transition cursor-pointer flex flex-col justify-between ${
                         timeFormat === '24h'
-                          ? 'bg-discord-blurple/15 border-discord-blurple ring-1 ring-discord-blurple'
-                          : 'bg-discord-channels/60 border-discord-divider/30 hover:border-discord-divider/80'
+                          ? 'bg-amber-500/15 border-amber-400 ring-1 ring-amber-400 shadow-md shadow-amber-500/15'
+                          : 'bg-[#0c0c10] border-amber-500/20 hover:border-amber-500/40'
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-bold text-white">24-Stunden-Format</span>
+                          <span className="text-sm font-bold text-amber-100">24-Stunden-Format</span>
                           <div
                             className={`w-4 h-4 rounded-full border flex items-center justify-center ${
                               timeFormat === '24h'
-                                ? 'border-discord-blurple bg-discord-blurple'
-                                : 'border-discord-divider'
+                                ? 'border-amber-400 bg-amber-400'
+                                : 'border-amber-500/30'
                             }`}
                           >
-                            {timeFormat === '24h' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                            {timeFormat === '24h' && <span className="w-1.5 h-1.5 rounded-full bg-neutral-950" />}
                           </div>
                         </div>
-                        <p className="text-xs text-discord-textMuted leading-relaxed mb-3">
+                        <p className="text-xs text-amber-300/70 leading-relaxed mb-3">
                           Zeigt Uhrzeiten standardmäßig im 24-Stunden-Format an (z. B. 14:45).
                         </p>
                       </div>
-                      <div className="pt-2 border-t border-discord-divider/30 flex items-center justify-between text-[11px]">
-                        <span className="text-discord-textMuted">Aktuelle Uhrzeit:</span>
-                        <span className="font-mono font-bold text-discord-green">
+                      <div className="pt-2 border-t border-amber-500/20 flex items-center justify-between text-[11px]">
+                        <span className="text-amber-300/70">Aktuelle Uhrzeit:</span>
+                        <span className="font-mono font-bold text-amber-400">
                           {getFormattedTimePreview('24h')}
                         </span>
                       </div>
@@ -3691,26 +3704,26 @@ export default function UserSettingsModal({
                   </div>
 
                   {/* Live-Chat-Nachrichten-Vorschaukarte */}
-                  <div className="bg-discord-channels/40 rounded-xl p-4 border border-discord-divider/30">
-                    <span className="text-[10px] font-bold text-discord-textMuted uppercase tracking-wider block mb-2.5">
+                  <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20">
+                    <span className="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider block mb-2.5">
                       Live-Vorschau des Chat-Zeitstempels
                     </span>
-                    <div className="flex items-start gap-3 p-3 bg-discord-chat rounded-lg border border-discord-divider/20">
+                    <div className="flex items-start gap-3 p-3 bg-[#070709] rounded-lg border border-amber-500/20">
                       <img
                         src={currentUser?.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150'}
                         alt="Avatar"
-                        className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                        className="w-10 h-10 rounded-full object-cover flex-shrink-0 border border-amber-500/30"
                       />
                       <div className="min-w-0 flex-1">
                         <div className="flex items-baseline gap-2">
-                          <span className="font-semibold text-white text-sm">
+                          <span className="font-bold text-amber-100 text-sm">
                             {currentUser?.displayName || 'Benutzer'}
                           </span>
-                          <span className="text-[11px] text-discord-textMuted font-mono">
+                          <span className="text-[11px] text-amber-300/60 font-mono">
                             Heute um {getFormattedTimePreview(timeFormat)}
                           </span>
                         </div>
-                        <p className="text-xs text-discord-textNormal mt-1 leading-relaxed">
+                        <p className="text-xs text-amber-100/90 mt-1 leading-relaxed">
                           Viel Spaß auf den Sprach- und Textkanälen von DilSed! Der Zeitstempel aktualisiert sich sofort nach deiner Auswahl.
                         </p>
                       </div>
@@ -3719,15 +3732,15 @@ export default function UserSettingsModal({
 
                   {/* Zeitzone und erster Tag der Woche */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                    <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30">
-                      <label className="text-xs font-bold text-white block mb-1">Zeitzone</label>
-                      <p className="text-[11px] text-discord-textMuted mb-2">
+                    <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20">
+                      <label className="text-xs font-bold text-amber-200 block mb-1">Zeitzone</label>
+                      <p className="text-[11px] text-amber-300/70 mb-2">
                         Zeitzone zur Berechnung von Events und Zeitstempeln.
                       </p>
                       <select
                         value={timeZone}
                         onChange={(e) => setTimeZone(e.target.value)}
-                        className="w-full bg-discord-darkest text-xs text-white rounded-lg px-3 py-2 border border-discord-divider/40 outline-none focus:border-discord-blurple cursor-pointer font-medium"
+                        className="w-full bg-[#070709] text-xs text-amber-100 rounded-lg px-3 py-2 border border-amber-500/30 outline-none focus:border-amber-400 cursor-pointer font-medium"
                       >
                         <option value="Europe/Istanbul">Europe/Istanbul (UTC+03:00 - Türkei)</option>
                         <option value="UTC">UTC (Koordinierte Weltzeit)</option>
@@ -3740,15 +3753,15 @@ export default function UserSettingsModal({
                       </select>
                     </div>
 
-                    <div className="bg-discord-channels/60 rounded-xl p-4 border border-discord-divider/30">
-                      <label className="text-xs font-bold text-white block mb-1">Erster Tag der Woche</label>
-                      <p className="text-[11px] text-discord-textMuted mb-2">
+                    <div className="bg-[#0c0c10] rounded-xl p-4 border border-amber-500/20">
+                      <label className="text-xs font-bold text-amber-200 block mb-1">Erster Tag der Woche</label>
+                      <p className="text-[11px] text-amber-300/70 mb-2">
                         Beginn der Woche in Kalendern und geplanten Events.
                       </p>
                       <select
                         value={firstDayOfWeek}
                         onChange={(e) => setFirstDayOfWeek(e.target.value)}
-                        className="w-full bg-discord-darkest text-xs text-white rounded-lg px-3 py-2 border border-discord-divider/40 outline-none focus:border-discord-blurple cursor-pointer font-medium"
+                        className="w-full bg-[#070709] text-xs text-amber-100 rounded-lg px-3 py-2 border border-amber-500/30 outline-none focus:border-amber-400 cursor-pointer font-medium"
                       >
                         <option value="auto">Automatisch (Regionaler Standard)</option>
                         <option value="monday">Montag</option>
@@ -3764,24 +3777,24 @@ export default function UserSettingsModal({
                 <div className="space-y-4 pt-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1">
                     <div>
-                      <h3 className="text-xs font-bold text-discord-textMuted uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                        <Globe className="w-3.5 h-3.5 text-discord-blurple" />
+                      <h3 className="text-xs font-extrabold text-amber-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                        <Globe className="w-3.5 h-3.5 text-amber-400" />
                         <span>Sprachauswahl</span>
                       </h3>
-                      <p className="text-xs text-discord-textMuted">
+                      <p className="text-xs text-amber-300/70">
                         Wähle die Sprache für die DilSed-Oberfläche. Die Änderung wird sofort übernommen.
                       </p>
                     </div>
 
                     {/* Sprach-Suchleiste */}
                     <div className="relative min-w-[220px]">
-                      <Search className="w-3.5 h-3.5 text-discord-textMuted absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      <Search className="w-3.5 h-3.5 text-amber-400/60 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                       <input
                         type="text"
                         value={languageSearch}
                         onChange={(e) => setLanguageSearch(e.target.value)}
                         placeholder={`${DISCORD_LANGUAGES.length} Sprachen durchsuchen...`}
-                        className="w-full bg-discord-darkest text-xs text-white rounded-lg pl-8 pr-3 py-2 border border-discord-divider/40 outline-none focus:border-discord-blurple placeholder:text-discord-textMuted/60"
+                        className="w-full bg-[#070709] text-xs text-amber-100 rounded-lg pl-8 pr-3 py-2 border border-amber-500/30 outline-none focus:border-amber-400 placeholder:text-amber-300/40 font-medium"
                       />
                     </div>
                   </div>
@@ -3804,17 +3817,17 @@ export default function UserSettingsModal({
                           }}
                           className={`p-3 rounded-xl border transition cursor-pointer flex items-center justify-between gap-3 ${
                             isSelected
-                              ? 'bg-discord-blurple/20 border-discord-blurple ring-1 ring-discord-blurple shadow-md'
-                              : 'bg-discord-channels/60 border-discord-divider/30 hover:bg-discord-hoverChannel hover:border-discord-divider/70'
+                              ? 'bg-amber-500/20 border-amber-400 ring-1 ring-amber-400 shadow-md shadow-amber-500/15'
+                              : 'bg-[#0c0c10] border-amber-500/20 hover:bg-amber-400/5 hover:border-amber-500/40'
                           }`}
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
                             <span className="text-xl flex-shrink-0 select-none">{langItem.flag}</span>
                             <div className="min-w-0">
-                              <div className={`text-xs font-bold truncate ${isSelected ? 'text-white' : 'text-discord-textNormal'}`}>
+                              <div className={`text-xs font-bold truncate ${isSelected ? 'text-amber-200' : 'text-amber-100'}`}>
                                 {langItem.native}
                               </div>
-                              <div className="text-[10px] text-discord-textMuted truncate">
+                              <div className="text-[10px] text-amber-300/60 truncate">
                                 {langItem.english}
                               </div>
                             </div>
@@ -3823,8 +3836,8 @@ export default function UserSettingsModal({
                           <div
                             className={`w-5 h-5 rounded-full border flex items-center justify-center flex-shrink-0 transition ${
                               isSelected
-                                ? 'border-discord-blurple bg-discord-blurple text-white'
-                                : 'border-discord-divider/50'
+                                ? 'border-amber-400 bg-amber-400 text-neutral-950'
+                                : 'border-amber-500/30'
                             }`}
                           >
                             {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
