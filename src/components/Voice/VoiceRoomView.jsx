@@ -372,7 +372,7 @@ export default function VoiceRoomView({
           onClick={startCamera}
           className={`p-3.5 rounded-full transition shadow-lg ${
             isCameraActive
-              ? 'bg-discord-blurple text-white'
+              ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 shadow-amber-500/20'
               : 'bg-discord-channels hover:bg-discord-hoverChannel text-white'
           }`}
           title={isCameraActive ? 'Kamera ausschalten' : 'Kamera einschalten'}
@@ -402,7 +402,7 @@ export default function VoiceRoomView({
             }}
             className={`p-3.5 rounded-full transition shadow-lg ${
               showSoundboard
-                ? 'bg-discord-blurple text-white'
+                ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 shadow-amber-500/20'
                 : 'bg-discord-channels hover:bg-discord-hoverChannel text-white'
             }`}
             title="Soundboard"

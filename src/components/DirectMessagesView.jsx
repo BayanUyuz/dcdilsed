@@ -137,7 +137,7 @@ export default function DirectMessagesView({
             onClick={() => setActiveFriendId(null)}
             className={`w-full px-3 py-2 rounded-md flex items-center gap-3 text-sm transition ${
               activeFriendId === null
-                ? 'bg-discord-activeChannel text-white font-medium'
+                ? 'bg-amber-400/15 text-amber-300 font-semibold border-l-2 border-amber-400 shadow-sm'
                 : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-discord-textNormal'
             }`}
           >
@@ -169,7 +169,7 @@ export default function DirectMessagesView({
                 onClick={() => setActiveFriendId(friend.id)}
                 className={`w-full px-2 py-2 rounded-md flex items-center gap-3 text-sm transition group ${
                   isActive
-                    ? 'bg-discord-activeChannel text-white'
+                    ? 'bg-amber-400/15 text-amber-300 font-semibold border-l-2 border-amber-400 shadow-sm'
                     : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-discord-textNormal'
                 }`}
               >
@@ -246,9 +246,9 @@ export default function DirectMessagesView({
               <div className="flex items-center gap-2 text-sm font-medium">
                 <button
                   onClick={() => setActiveTab('online')}
-                  className={`px-2 py-1 rounded transition ${
+                  className={`px-2.5 py-1 rounded-lg transition ${
                     activeTab === 'online'
-                      ? 'bg-discord-activeChannel text-white'
+                      ? 'bg-amber-400/20 text-amber-300 font-semibold'
                       : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-discord-textNormal'
                   }`}
                 >
@@ -256,9 +256,9 @@ export default function DirectMessagesView({
                 </button>
                 <button
                   onClick={() => setActiveTab('all')}
-                  className={`px-2 py-1 rounded transition ${
+                  className={`px-2.5 py-1 rounded-lg transition ${
                     activeTab === 'all'
-                      ? 'bg-discord-activeChannel text-white'
+                      ? 'bg-amber-400/20 text-amber-300 font-semibold'
                       : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-discord-textNormal'
                   }`}
                 >
@@ -266,9 +266,9 @@ export default function DirectMessagesView({
                 </button>
                 <button
                   onClick={() => setActiveTab('pending')}
-                  className={`px-2 py-1 rounded transition ${
+                  className={`px-2.5 py-1 rounded-lg transition ${
                     activeTab === 'pending'
-                      ? 'bg-discord-activeChannel text-white'
+                      ? 'bg-amber-400/20 text-amber-300 font-semibold'
                       : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-discord-textNormal'
                   }`}
                 >
@@ -276,10 +276,10 @@ export default function DirectMessagesView({
                 </button>
                 <button
                   onClick={() => setActiveTab('add')}
-                  className={`px-2 py-1 rounded transition font-semibold ${
+                  className={`px-3 py-1 rounded-lg transition font-bold ${
                     activeTab === 'add'
-                      ? 'bg-discord-green/20 text-discord-green'
-                      : 'bg-discord-green text-white hover:bg-discord-green/90'
+                      ? 'bg-amber-400/30 text-amber-300 border border-amber-400/50'
+                      : 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 hover:from-amber-300 hover:to-amber-400 shadow-md'
                   }`}
                 >
                   Freund hinzufügen

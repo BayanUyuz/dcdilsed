@@ -985,11 +985,11 @@ export default function App() {
                   />
                 ) : (
                   <main className="flex-1 bg-discord-chat flex flex-col items-center justify-center p-8 text-center select-none">
-                    <div className="w-16 h-16 rounded-2xl bg-discord-channels/60 border border-discord-divider/40 flex items-center justify-center mb-4 text-discord-textMuted">
-                      <FolderPlus className="w-8 h-8 text-discord-blurple" />
+                    <div className="w-16 h-16 rounded-2xl bg-[#0a0a0d] border border-amber-500/20 flex items-center justify-center mb-4 text-discord-textMuted shadow-lg shadow-amber-500/5">
+                      <FolderPlus className="w-8 h-8 text-amber-400" />
                     </div>
                     <h3 className="text-lg font-bold text-white mb-1">Keine Kanäle auf diesem Server</h3>
-                    <p className="text-xs text-discord-textMuted max-w-sm mb-6">
+                    <p className="text-xs text-amber-200/60 max-w-sm mb-6">
                       Erstelle deinen ersten Kanal oder eine Kategorie, um Unterhaltungen zu starten.
                     </p>
                     <button
@@ -997,7 +997,7 @@ export default function App() {
                         setCreateChannelCategoryId(null);
                         setIsCreateChannelOpen(true);
                       }}
-                      className="bg-discord-blurple hover:bg-discord-blurpleHover text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow"
+                      className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:brightness-110 text-neutral-950 px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-lg shadow-amber-500/20 active:scale-95"
                     >
                       Kanal erstellen
                     </button>
@@ -1021,33 +1021,33 @@ export default function App() {
             ) : (
               /* When there are no servers (Keine Server vorhanden) */
               <div className="flex-1 bg-discord-chat flex flex-col items-center justify-center p-8 text-center select-none">
-                <div className="w-20 h-20 rounded-3xl bg-discord-channels/70 border border-discord-divider/50 flex items-center justify-center mb-5 shadow-2xl">
-                  <Compass className="w-10 h-10 text-discord-blurple animate-pulse" />
+                <div className="w-20 h-20 rounded-3xl bg-[#0a0a0d] border border-amber-500/30 flex items-center justify-center mb-5 shadow-2xl shadow-amber-500/10">
+                  <Compass className="w-10 h-10 text-amber-400 animate-pulse" />
                 </div>
                 <h2 className="text-2xl font-black text-white mb-2">
                   Keine Server vorhanden
                 </h2>
-                <p className="text-xs text-discord-textMuted max-w-md mb-6 leading-relaxed">
+                <p className="text-xs text-amber-200/60 max-w-md mb-6 leading-relaxed">
                   Du bist derzeit auf keinem Server. Erstelle deine eigene Community von Grund auf neu oder entdecke öffentliche Server!
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-3">
                   <button
                     onClick={() => setIsAddServerOpen(true)}
-                    className="bg-discord-blurple hover:bg-discord-blurpleHover text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-lg flex items-center gap-2"
+                    className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:brightness-110 text-neutral-950 px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-lg shadow-amber-500/20 flex items-center gap-2 active:scale-95"
                   >
-                    <Plus className="w-4 h-4" />
+                    <Plus className="w-4 h-4 stroke-[3]" />
                     <span>Server erstellen</span>
                   </button>
                   <button
                     onClick={() => setIsExploreOpen(true)}
-                    className="bg-discord-channels hover:bg-discord-hoverChannel border border-discord-divider/50 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2"
+                    className="bg-[#0e0e12] hover:bg-[#16161c] border border-amber-500/30 text-amber-200 hover:text-amber-100 hover:border-amber-400/60 px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 active:scale-95"
                   >
-                    <Compass className="w-4 h-4 text-discord-green" />
+                    <Compass className="w-4 h-4 text-amber-400" />
                     <span>Öffentliche Server entdecken</span>
                   </button>
                   <button
                     onClick={() => setIsHomeActive(true)}
-                    className="bg-discord-channels hover:bg-discord-hoverChannel border border-discord-divider/50 text-discord-textMuted hover:text-white px-4 py-2.5 rounded-xl text-xs font-semibold transition"
+                    className="bg-[#0e0e12] hover:bg-[#16161c] border border-white/10 text-discord-textMuted hover:text-white px-4 py-2.5 rounded-xl text-xs font-semibold transition active:scale-95"
                   >
                     Direktnachrichten (DMs)
                   </button>

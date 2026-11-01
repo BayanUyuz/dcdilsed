@@ -12,7 +12,7 @@ export default function TopNavBar({
   isDeafened = false,
 }) {
   return (
-    <header className="w-full h-12 bg-discord-darkest border-b border-discord-divider/40 flex items-center justify-between px-3.5 select-none flex-shrink-0 z-30 shadow-md">
+    <header className="w-full h-12 bg-[#060608] border-b border-amber-500/15 flex items-center justify-between px-3.5 select-none flex-shrink-0 z-30 shadow-lg shadow-black/40">
       {/* LEFT SECTION: Logo & The 3 Main Buttons */}
       <div className="flex items-center gap-4">
         {/* Brand App Icon & Name */}
@@ -21,24 +21,24 @@ export default function TopNavBar({
           className="flex items-center gap-2.5 cursor-pointer group pr-2"
           title="Dilsed Web"
         >
-          <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform p-0.5 shadow">
+          <div className="w-8 h-8 rounded-xl bg-amber-400/10 flex items-center justify-center border border-amber-500/30 group-hover:scale-105 group-hover:border-amber-400 transition-all p-0.5 shadow-sm shadow-amber-500/10">
             <img src="/dilsed-logo.png" alt="Dilsed" className="w-full h-full object-contain drop-shadow" />
           </div>
-          <span className="font-extrabold text-sm text-white tracking-tight group-hover:text-blue-400 transition-colors">
+          <span className="font-extrabold text-sm text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-300 to-amber-500 tracking-tight group-hover:brightness-125 transition-all">
             DilSed
           </span>
         </div>
 
         {/* Small vertical divider */}
-        <div className="w-[1px] h-5 bg-discord-divider/60" />
+        <div className="w-[1px] h-5 bg-amber-500/20" />
 
         {/* --- 1. BUTTON: SERVER --- */}
         <button
           onClick={onSelectServers}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 relative ${
             !isHomeActive
-              ? 'bg-discord-blurple text-white shadow-sm shadow-blue-600/30 ring-1 ring-white/10'
-              : 'text-discord-textMuted hover:bg-discord-channels/80 hover:text-white'
+              ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-neutral-950 font-black shadow-md shadow-amber-500/20 ring-1 ring-amber-400/50'
+              : 'text-amber-200/70 hover:bg-white/5 hover:text-white'
           }`}
           title="Server anzeigen"
         >
@@ -58,8 +58,8 @@ export default function TopNavBar({
           onClick={onSelectHome}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 ${
             isHomeActive
-              ? 'bg-discord-blurple text-white shadow-sm shadow-blue-600/30 ring-1 ring-white/10'
-              : 'text-discord-textMuted hover:bg-discord-channels/80 hover:text-white'
+              ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-neutral-950 font-black shadow-md shadow-amber-500/20 ring-1 ring-amber-400/50'
+              : 'text-amber-200/70 hover:bg-white/5 hover:text-white'
           }`}
           title="Direktnachrichten (DMs)"
         >
@@ -70,10 +70,10 @@ export default function TopNavBar({
         {/* --- 3. BUTTON: EINSTELLUNGEN --- */}
         <button
           onClick={onOpenSettings}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold text-discord-textMuted hover:bg-discord-channels/80 hover:text-white transition-all duration-200 group"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold text-amber-200/70 hover:bg-white/5 hover:text-white transition-all duration-200 group"
           title="Benutzereinstellungen"
         >
-          <Settings className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300 text-discord-textMuted group-hover:text-white" />
+          <Settings className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300 text-amber-200/70 group-hover:text-amber-300" />
           <span>Einstellungen</span>
         </button>
       </div>

@@ -9,12 +9,12 @@ export default function LeftNavRail({
   totalServerUnread = 0,
 }) {
   return (
-    <nav className="w-[76px] bg-discord-sidebar flex flex-col items-center py-3 select-none flex-shrink-0 z-30 border-r border-discord-darkest/40">
+    <nav className="w-[76px] bg-[#070709] flex flex-col items-center py-3 select-none flex-shrink-0 z-30 border-r border-amber-500/15">
       {/* DilSed Brand Logo at the top */}
       <div className="relative group flex items-center justify-center w-full mb-2.5">
         <button
           onClick={onSelectHome}
-          className="w-14 h-14 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-all duration-200 group-hover:scale-105 p-1.5 shadow-lg group-hover:border-blue-500/40"
+          className="w-14 h-14 rounded-2xl bg-neutral-950 hover:bg-neutral-900 border border-amber-500/30 flex items-center justify-center transition-all duration-200 group-hover:scale-105 p-1.5 shadow-[0_0_15px_rgba(212,175,55,0.15)] group-hover:border-amber-400/70"
           title="DilSed Web"
         >
           <img
@@ -25,14 +25,14 @@ export default function LeftNavRail({
         </button>
       </div>
 
-      {/* Subtle Divider */}
-      <div className="w-8 h-[2px] bg-discord-divider/60 rounded-full mb-2.5" />
+      {/* Subtle Gold Divider */}
+      <div className="w-8 h-[2px] bg-gradient-to-r from-transparent via-amber-500/40 to-transparent rounded-full mb-2.5" />
 
       {/* --- 1. BUTTON: SERVER --- */}
       <div className="relative group flex items-center justify-center w-full mb-2.5">
-        {/* Left active white pill indicator */}
+        {/* Left active gold pill indicator */}
         <span
-          className={`absolute left-0 w-1 bg-white rounded-r-full transition-all duration-200 ${
+          className={`absolute left-0 w-1 bg-gradient-to-b from-[#d4af37] to-[#f3e5ab] rounded-r-full transition-all duration-200 shadow-[0_0_8px_rgba(212,175,55,0.8)] ${
             !isHomeActive ? 'h-10' : 'h-0 group-hover:h-5'
           }`}
         />
@@ -40,8 +40,8 @@ export default function LeftNavRail({
           onClick={onSelectServers}
           className={`w-14 h-14 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all duration-200 select-none relative ${
             !isHomeActive
-              ? 'bg-discord-blurple text-white shadow-lg shadow-blue-900/40'
-              : 'bg-discord-channels text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white hover:rounded-xl'
+              ? 'bg-gradient-to-b from-[#d4af37] via-[#f3e5ab] to-[#c59b27] text-neutral-950 font-black shadow-lg shadow-amber-500/30 border border-amber-300'
+              : 'bg-[#111114] text-neutral-400 hover:bg-[#18181e] hover:text-amber-300 hover:border-amber-500/40 border border-neutral-850 hover:rounded-xl shadow'
           }`}
           title="Server"
         >
@@ -51,7 +51,7 @@ export default function LeftNavRail({
           {/* Total server unread badge if any */}
           {totalServerUnread > 0 && isHomeActive && (
             <div className="absolute -bottom-1 -right-1 z-10 pointer-events-none animate-in zoom-in-75">
-              <span className="min-w-[18px] h-[18px] px-1 bg-discord-red text-white text-[10px] font-extrabold rounded-full flex items-center justify-center border-[2px] border-discord-sidebar shadow-md leading-none">
+              <span className="min-w-[18px] h-[18px] px-1 bg-amber-500 text-neutral-950 text-[10px] font-extrabold rounded-full flex items-center justify-center border-[2px] border-black shadow-md leading-none">
                 {totalServerUnread}
               </span>
             </div>
@@ -61,9 +61,9 @@ export default function LeftNavRail({
 
       {/* --- 2. BUTTON: DM --- */}
       <div className="relative group flex items-center justify-center w-full mb-2.5">
-        {/* Left active white pill indicator */}
+        {/* Left active gold pill indicator */}
         <span
-          className={`absolute left-0 w-1 bg-white rounded-r-full transition-all duration-200 ${
+          className={`absolute left-0 w-1 bg-gradient-to-b from-[#d4af37] to-[#f3e5ab] rounded-r-full transition-all duration-200 shadow-[0_0_8px_rgba(212,175,55,0.8)] ${
             isHomeActive ? 'h-10' : 'h-0 group-hover:h-5'
           }`}
         />
@@ -71,8 +71,8 @@ export default function LeftNavRail({
           onClick={onSelectHome}
           className={`w-14 h-14 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all duration-200 select-none relative ${
             isHomeActive
-              ? 'bg-discord-blurple text-white shadow-lg shadow-blue-900/40'
-              : 'bg-discord-channels text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white hover:rounded-xl'
+              ? 'bg-gradient-to-b from-[#d4af37] via-[#f3e5ab] to-[#c59b27] text-neutral-950 font-black shadow-lg shadow-amber-500/30 border border-amber-300'
+              : 'bg-[#111114] text-neutral-400 hover:bg-[#18181e] hover:text-amber-300 hover:border-amber-500/40 border border-neutral-850 hover:rounded-xl shadow'
           }`}
           title="Direktnachrichten (DMs)"
         >
@@ -85,10 +85,10 @@ export default function LeftNavRail({
       <div className="relative group flex items-center justify-center w-full mb-2.5">
         <button
           onClick={onOpenSettings}
-          className="w-14 h-14 rounded-2xl flex flex-col items-center justify-center gap-1 bg-discord-channels text-discord-textMuted hover:bg-discord-hoverChannel hover:text-white transition-all duration-200 group select-none hover:rounded-xl hover:shadow-md"
+          className="w-14 h-14 rounded-2xl flex flex-col items-center justify-center gap-1 bg-[#111114] text-neutral-400 hover:bg-[#18181e] hover:text-amber-300 hover:border-amber-500/40 border border-neutral-850 transition-all duration-200 group select-none hover:rounded-xl hover:shadow-md"
           title="Einstellungen"
         >
-          <Settings className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300 text-discord-textMuted group-hover:text-white" />
+          <Settings className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300 text-neutral-400 group-hover:text-amber-400" />
           <span className="text-[10px] font-bold tracking-tight">Einstellungen</span>
         </button>
       </div>

@@ -77,7 +77,7 @@ export default function ChatArea({
       {/* Top Header Bar */}
       <header className="h-12 px-4 border-b border-discord-darkest/30 flex items-center justify-between shadow-sm select-none flex-shrink-0 z-10">
         <div className="flex items-center gap-2 min-w-0">
-          <Hash className="w-6 h-6 text-discord-textMuted flex-shrink-0" />
+          <Hash className="w-6 h-6 text-amber-400 flex-shrink-0" />
           <h2 className="font-bold text-white text-base truncate">
             {channel?.name || 'kanal'}
           </h2>
@@ -95,11 +95,11 @@ export default function ChatArea({
         <div className="flex items-center gap-4 text-discord-textMuted flex-shrink-0">
           {/* Supabase Status Pill */}
           <div
-            className="flex items-center gap-1.5 px-2 py-1 rounded bg-discord-channels/80 text-[11px] font-medium"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-amber-500/30 text-[11px] font-medium"
             title="Supabase-Echtzeit-Verbindungsstatus"
           >
-            <span className="w-2 h-2 rounded-full bg-discord-green animate-pulse" />
-            <span className="hidden sm:inline text-discord-textNormal">Supabase Realtime</span>
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <span className="hidden sm:inline text-amber-200">Supabase Realtime</span>
           </div>
 
           <button
@@ -284,7 +284,7 @@ export default function ChatArea({
 
       {/* Message Input Container */}
       <div className="px-4 pb-6 pt-1 select-none">
-        <div className="relative bg-discord-input rounded-lg flex items-center px-4 py-2.5 focus-within:ring-1 focus-within:ring-discord-blurple">
+        <div className="relative bg-discord-input rounded-xl flex items-center px-4 py-2.5 border border-neutral-800 focus-within:border-amber-400/60 focus-within:shadow-[0_0_20px_rgba(212,175,55,0.18)] transition">
           {/* File attachment simulation button */}
           <button
             onClick={() => {
@@ -363,7 +363,7 @@ export default function ChatArea({
             {inputText.trim() && (
               <button
                 onClick={handleSubmit}
-                className="p-1 text-discord-blurple hover:text-white bg-discord-blurple/20 hover:bg-discord-blurple rounded transition"
+                className="p-1.5 text-neutral-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-300 rounded-lg transition shadow-md shadow-amber-500/25 font-bold"
                 title="Senden"
               >
                 <Send className="w-4 h-4" />

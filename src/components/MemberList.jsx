@@ -27,12 +27,12 @@ export default function MemberList({
   };
 
   return (
-    <aside className="w-60 bg-discord-members flex flex-col select-none flex-shrink-0 border-l border-discord-darkest/20 h-full overflow-y-auto px-2 py-4 custom-scrollbar">
+    <aside className="w-60 bg-[#08080a] flex flex-col select-none flex-shrink-0 border-l border-amber-500/10 h-full overflow-y-auto px-2 py-4 custom-scrollbar">
       {Object.entries(categories).map(([categoryName, memberList]) => (
         <div key={categoryName} className="mb-4">
-          <div className="text-[11px] font-bold text-discord-textMuted tracking-wider px-2 mb-1 uppercase flex items-center justify-between">
+          <div className="text-[11px] font-bold text-amber-300/60 tracking-wider px-2 mb-1 uppercase flex items-center justify-between">
             <span>{categoryName}</span>
-            <span className="text-[10px] font-normal opacity-70">— {memberList.length}</span>
+            <span className="text-[10px] font-normal text-amber-300/40">— {memberList.length}</span>
           </div>
           <div className="space-y-[2px]">
             {memberList.map((member) => {
@@ -90,7 +90,7 @@ export default function MemberList({
 
                       {/* Bot tag */}
                       {member.isBot && (
-                        <span className="bg-discord-blurple text-[10px] text-white font-bold px-1 rounded uppercase">
+                        <span className="bg-gradient-to-r from-amber-400 to-amber-500 text-[10px] text-neutral-950 font-black px-1.5 py-0.2 rounded uppercase shadow-xs">
                           BOT
                         </span>
                       )}

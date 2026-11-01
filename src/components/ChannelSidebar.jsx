@@ -316,7 +316,7 @@ export default function ChannelSidebar({
             const isCollapsed = collapsedCategories[cat.id];
             return (
               <div key={cat.id} className="space-y-0.5">
-                <div className="flex items-center justify-between px-1 text-[11px] font-bold text-discord-textMuted tracking-wider uppercase group hover:text-discord-textNormal cursor-pointer">
+                <div className="flex items-center justify-between px-1 text-[11px] font-bold text-amber-300/60 tracking-wider uppercase group hover:text-amber-200 cursor-pointer">
                   <div
                     className="flex items-center gap-1 flex-1 py-1"
                     onClick={() => toggleCategory(cat.id)}
@@ -353,11 +353,11 @@ export default function ChannelSidebar({
                             onClick={() => onSelectChannel(ch.id)}
                             className={`w-full group px-2 py-1.5 rounded-md flex items-center gap-2 text-sm transition ${
                               isActive
-                                ? 'bg-discord-activeChannel text-white font-medium'
+                                ? 'bg-amber-400/15 text-amber-300 font-semibold border-l-2 border-amber-400 shadow-sm'
                                 : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-discord-textNormal'
                             }`}
                           >
-                            <Hash className="w-4 h-4 text-discord-textMuted group-hover:text-discord-textNormal" />
+                            <Hash className={`w-4 h-4 ${isActive ? 'text-amber-400' : 'text-discord-textMuted group-hover:text-discord-textNormal'}`} />
                             <span className="truncate flex-1 text-left">
                               {ch.name}
                             </span>
@@ -376,21 +376,21 @@ export default function ChannelSidebar({
                                 }}
                                 className={`w-full px-2 py-1.5 rounded-md flex items-center gap-2 text-sm transition pr-14 ${
                                   isConnected
-                                    ? 'bg-discord-green/20 text-discord-green font-medium'
+                                    ? 'bg-amber-400/15 text-amber-300 font-semibold border-l-2 border-amber-400 shadow-sm'
                                     : 'text-discord-textMuted hover:bg-discord-hoverChannel hover:text-discord-textNormal'
                                 }`}
                               >
                                 {ch.isPrivate ? (
                                   <Lock
                                     className={`w-4 h-4 flex-shrink-0 ${
-                                      isConnected ? 'text-discord-green' : 'text-discord-textMuted'
+                                      isConnected ? 'text-amber-400' : 'text-discord-textMuted'
                                     }`}
                                   />
                                 ) : (
                                   <Volume2
                                     className={`w-4 h-4 flex-shrink-0 ${
                                       isConnected
-                                        ? 'text-discord-green'
+                                        ? 'text-amber-400'
                                         : 'text-discord-textMuted group-hover/vc:text-discord-textNormal'
                                     }`}
                                   />
