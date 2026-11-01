@@ -81,15 +81,14 @@ export default function LeftNavRail({
         </button>
       </div>
 
-      {/* --- 3. BUTTON: EINSTELLUNGEN --- */}
+      {/* --- 3. BUTTON: EINSTELLUNGEN (Nur Zahnrad) --- */}
       <div className="relative group flex items-center justify-center w-full mb-2.5">
         <button
           onClick={onOpenSettings}
-          className="w-14 h-14 rounded-2xl flex flex-col items-center justify-center gap-1 bg-[#111114] text-neutral-400 hover:bg-[#18181e] hover:text-amber-300 hover:border-amber-500/40 border border-neutral-850 transition-all duration-200 group select-none hover:rounded-xl hover:shadow-md"
+          className="w-12 h-12 rounded-2xl flex items-center justify-center bg-[#111114] text-amber-400 hover:bg-[#18181e] hover:text-amber-300 hover:border-amber-500/40 border border-neutral-850 transition-all duration-200 group select-none hover:rounded-xl hover:shadow-md"
           title="Einstellungen"
         >
-          <Settings className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300 text-neutral-400 group-hover:text-amber-400" />
-          <span className="text-[10px] font-bold tracking-tight">Einstellungen</span>
+          <Settings className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300 text-amber-400 group-hover:text-amber-300" />
         </button>
       </div>
 

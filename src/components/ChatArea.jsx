@@ -73,9 +73,9 @@ export default function ChatArea({
   };
 
   return (
-    <main className="flex-1 bg-discord-chat flex flex-col min-w-0 h-full relative">
+    <main className="flex-1 bg-[#0a0a0d] flex flex-col min-w-0 h-full relative">
       {/* Top Header Bar */}
-      <header className="h-12 px-4 border-b border-discord-darkest/30 flex items-center justify-between shadow-sm select-none flex-shrink-0 z-10">
+      <header className="h-12 px-4 border-b border-amber-500/15 bg-[#060608] flex items-center justify-between shadow-sm select-none flex-shrink-0 z-10">
         <div className="flex items-center gap-2 min-w-0">
           <Hash className="w-6 h-6 text-amber-400 flex-shrink-0" />
           <h2 className="font-bold text-white text-base truncate">
@@ -83,35 +83,26 @@ export default function ChatArea({
           </h2>
           {channel?.description && (
             <>
-              <div className="w-[1px] h-4 bg-discord-divider mx-2 flex-shrink-0 hidden md:block" />
-              <p className="text-xs text-discord-textMuted truncate hidden md:block font-normal">
+              <div className="w-[1px] h-4 bg-amber-500/20 mx-2 flex-shrink-0 hidden md:block" />
+              <p className="text-xs text-amber-200/50 truncate hidden md:block font-normal">
                 {channel.description}
               </p>
             </>
           )}
         </div>
 
-        {/* Header Right Actions */}
-        <div className="flex items-center gap-4 text-discord-textMuted flex-shrink-0">
-          {/* Supabase Status Pill */}
-          <div
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-amber-500/30 text-[11px] font-medium"
-            title="Supabase-Echtzeit-Verbindungsstatus"
-          >
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-            <span className="hidden sm:inline text-amber-200">Supabase Realtime</span>
-          </div>
-
+        {/* Header Right Actions (Supabase pill removed as requested) */}
+        <div className="flex items-center gap-4 text-neutral-400 flex-shrink-0">
           <button
             onClick={() => alert('Benachrichtigungen für diesen Kanal sind aktiviert.')}
-            className="hover:text-discord-textNormal transition"
+            className="hover:text-amber-300 transition"
             title="Benachrichtigungen"
           >
             <Bell className="w-5 h-5" />
           </button>
           <button
-            onClick={() => alert('Gepinnte Nachrichten: Regeln und Supabase-Ankündigung wurden angepinnt.')}
-            className="hover:text-discord-textNormal transition"
+            onClick={() => alert('Gepinnte Nachrichten: Regeln wurden angepinnt.')}
+            className="hover:text-amber-300 transition"
             title="Gepinnte Nachrichten"
           >
             <Pin className="w-5 h-5" />
@@ -120,8 +111,8 @@ export default function ChatArea({
             onClick={() => setShowMemberList(!showMemberList)}
             className={`transition ${
               showMemberList
-                ? 'text-white'
-                : 'hover:text-discord-textNormal'
+                ? 'text-amber-400'
+                : 'hover:text-amber-300'
             }`}
             title="Mitgliederliste ein-/ausblenden"
           >
@@ -133,9 +124,9 @@ export default function ChatArea({
             <input
               type="text"
               placeholder="Suchen"
-              className="bg-discord-darkest text-xs px-2 py-1 pr-6 rounded text-discord-textNormal focus:outline-none focus:w-44 w-32 transition-all placeholder-discord-textMuted"
+              className="bg-[#121216] border border-amber-500/20 text-xs px-2.5 py-1 pr-7 rounded-lg text-white focus:outline-none focus:border-amber-400 focus:w-44 w-32 transition-all placeholder:text-neutral-500"
             />
-            <Search className="w-3.5 h-3.5 text-discord-textMuted absolute right-2 pointer-events-none" />
+            <Search className="w-3.5 h-3.5 text-amber-400 absolute right-2 pointer-events-none" />
           </div>
         </div>
       </header>
@@ -335,10 +326,10 @@ export default function ChatArea({
                 <Smile className="w-5 h-5" />
               </button>
 
-              {/* Emoji Picker Popover */}
+              {/* Emoji Picker Popover in Black & Gold */}
               {showEmojiPicker && (
-                <div className="absolute bottom-10 right-0 bg-discord-darkest border border-discord-divider rounded-lg p-3 shadow-2xl z-30 w-56 animate-in fade-in zoom-in-95">
-                  <div className="text-xs font-bold text-discord-textMuted uppercase mb-2">
+                <div className="absolute bottom-12 right-0 bg-[#0c0c10] border border-amber-500/30 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.95),0_0_30px_rgba(212,175,55,0.15)] z-30 w-56 animate-in fade-in zoom-in-95">
+                  <div className="text-[10px] font-bold text-amber-300/80 uppercase tracking-wider mb-2">
                     Schnelle Emojis
                   </div>
                   <div className="grid grid-cols-6 gap-2">
@@ -349,7 +340,7 @@ export default function ChatArea({
                           setInputText((prev) => prev + emoji);
                           setShowEmojiPicker(false);
                         }}
-                        className="text-xl p-1 hover:bg-discord-channels rounded hover:scale-125 transition"
+                        className="text-xl p-1 hover:bg-white/10 rounded-lg hover:scale-125 transition"
                       >
                         {emoji}
                       </button>

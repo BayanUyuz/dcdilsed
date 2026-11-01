@@ -492,7 +492,7 @@ export default function ChannelSidebar({
       {/* REAL DISCORD BOTTOM VOICE CONNECTION DOCK (KRISP, RTC, EKRAN)  */}
       {/* ============================================================== */}
       {connectedVoiceChannel && (
-        <div className="bg-discord-darkest/95 border-t border-discord-divider/40 flex flex-col relative z-30 animate-in slide-in-from-bottom-2">
+        <div className="bg-[#07070a] border-t border-amber-500/20 flex flex-col relative z-30 animate-in slide-in-from-bottom-2">
           {/* 1. Top Row: RTC Signal Status + Channel + Krisp + Disconnect */}
           <div className="px-3 py-2 flex items-center justify-between">
             {/* Status & Signal */}
@@ -502,15 +502,15 @@ export default function ChannelSidebar({
               title="Ping: 18ms (Frankfurt - RTC verbunden)"
             >
               <div className="flex items-end gap-[2px] h-3.5">
-                <span className="w-1 h-1.5 bg-discord-green rounded-sm" />
-                <span className="w-1 h-2.5 bg-discord-green rounded-sm" />
-                <span className="w-1 h-3.5 bg-discord-green rounded-sm" />
+                <span className="w-1 h-1.5 bg-amber-400 rounded-sm" />
+                <span className="w-1 h-2.5 bg-amber-400 rounded-sm" />
+                <span className="w-1 h-3.5 bg-amber-400 rounded-sm" />
               </div>
               <div className="min-w-0">
-                <div className="text-[11px] font-bold text-discord-green leading-tight">
+                <div className="text-[11px] font-bold text-amber-300 leading-tight">
                   Sprachverbindung hergestellt
                 </div>
-                <div className="text-[10px] text-discord-textMuted truncate max-w-[100px]">
+                <div className="text-[10px] text-amber-200/60 truncate max-w-[100px]">
                   {connectedVoiceChannel.name} / {server.name}
                 </div>
               </div>
@@ -524,10 +524,10 @@ export default function ChannelSidebar({
                   onClick={() => setIsKrispEnabled(!isKrispEnabled)}
                   onMouseEnter={() => setShowKrispTooltip(true)}
                   onMouseLeave={() => setShowKrispTooltip(false)}
-                  className={`p-1.5 rounded transition ${
+                  className={`p-1.5 rounded-lg transition ${
                     isKrispEnabled
-                      ? 'text-discord-green bg-discord-green/10 hover:bg-discord-green/20'
-                      : 'text-discord-textMuted hover:text-white hover:bg-discord-hoverChannel'
+                      ? 'text-amber-400 bg-amber-400/15 hover:bg-amber-400/25 border border-amber-500/30'
+                      : 'text-neutral-400 hover:text-white hover:bg-white/5'
                   }`}
                   title="Rauschunterdrückung (Krisp)"
                 >
@@ -536,7 +536,7 @@ export default function ChannelSidebar({
 
                 {/* Krisp Tooltip / Status */}
                 {showKrispTooltip && (
-                  <div className="absolute bottom-9 right-0 bg-[#111214] text-white text-[10px] font-semibold px-2.5 py-1 rounded shadow-xl whitespace-nowrap border border-white/10 z-50 pointer-events-none">
+                  <div className="absolute bottom-9 right-0 bg-[#0c0c10] text-amber-200 text-[10px] font-semibold px-2.5 py-1 rounded-lg shadow-xl whitespace-nowrap border border-amber-500/30 z-50 pointer-events-none">
                     Krisp-Rauschunterdrückung: {isKrispEnabled ? 'Aktiviert' : 'Deaktiviert'}
                   </div>
                 )}
@@ -545,7 +545,7 @@ export default function ChannelSidebar({
               {/* Red Disconnect Button */}
               <button
                 onClick={handleDisconnectVoice}
-                className="p-1.5 rounded hover:bg-discord-red/20 text-discord-textMuted hover:text-discord-red transition"
+                className="p-1.5 rounded-lg hover:bg-red-500/20 text-neutral-400 hover:text-red-400 transition"
                 title="Verbindung trennen"
               >
                 <PhoneOff className="w-3.5 h-3.5" />
@@ -558,20 +558,20 @@ export default function ChannelSidebar({
             {/* Quick Video / Camera */}
             <button
               onClick={onOpenVoiceRoomView}
-              className="py-1.5 px-1 bg-discord-channels hover:bg-discord-hoverChannel rounded text-discord-textNormal hover:text-white text-[10px] font-semibold flex items-center justify-center gap-1 transition"
+              className="py-1.5 px-1 bg-[#101015] hover:bg-[#181820] border border-amber-500/15 hover:border-amber-400/40 rounded-lg text-amber-200/80 hover:text-white text-[10px] font-semibold flex items-center justify-center gap-1 transition"
               title="Kamera an"
             >
-              <Video className="w-3.5 h-3.5 text-discord-textMuted" />
+              <Video className="w-3.5 h-3.5 text-amber-400" />
               <span>Video</span>
             </button>
 
             {/* Quick Screen Share */}
             <button
               onClick={onOpenVoiceRoomView}
-              className="py-1.5 px-1 bg-discord-channels hover:bg-discord-hoverChannel rounded text-discord-textNormal hover:text-white text-[10px] font-semibold flex items-center justify-center gap-1 transition"
+              className="py-1.5 px-1 bg-[#101015] hover:bg-[#181820] border border-amber-500/15 hover:border-amber-400/40 rounded-lg text-amber-200/80 hover:text-white text-[10px] font-semibold flex items-center justify-center gap-1 transition"
               title="Bildschirm übertragen"
             >
-              <Monitor className="w-3.5 h-3.5 text-discord-green" />
+              <Monitor className="w-3.5 h-3.5 text-amber-400" />
               <span>Bildschirm</span>
             </button>
 
@@ -582,19 +582,21 @@ export default function ChannelSidebar({
                   setShowActivities(!showActivities);
                   setShowSoundboard(false);
                 }}
-                className={`w-full py-1.5 px-1 rounded text-[10px] font-semibold flex items-center justify-center gap-1 transition ${
-                  showActivities ? 'bg-discord-blurple text-white' : 'bg-discord-channels hover:bg-discord-hoverChannel text-discord-textNormal hover:text-white'
+                className={`w-full py-1.5 px-1 rounded-lg text-[10px] font-semibold flex items-center justify-center gap-1 transition ${
+                  showActivities
+                    ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 font-bold shadow-sm shadow-amber-500/20'
+                    : 'bg-[#101015] hover:bg-[#181820] border border-amber-500/15 hover:border-amber-400/40 text-amber-200/80 hover:text-white'
                 }`}
                 title="Aktivität starten"
               >
-                <Rocket className="w-3.5 h-3.5 text-[#ff73fa]" />
+                <Rocket className="w-3.5 h-3.5 text-amber-400" />
                 <span>Aktivität</span>
               </button>
 
-              {/* Activities Popover */}
+              {/* Activities Popover in Black & Gold */}
               {showActivities && (
-                <div className="absolute bottom-11 left-0 bg-discord-darkest border border-discord-divider/50 rounded-xl p-3 shadow-2xl z-50 w-56 animate-in zoom-in-95">
-                  <div className="text-[10px] font-bold text-discord-textMuted uppercase mb-2">
+                <div className="absolute bottom-11 left-0 bg-[#0c0c10] border border-amber-500/30 rounded-2xl p-3 shadow-2xl z-50 w-56 animate-in zoom-in-95">
+                  <div className="text-[10px] font-bold text-amber-300/80 uppercase mb-2">
                     EINE AKTIVITÄT STARTEN
                   </div>
                   <div className="space-y-1.5">
@@ -605,12 +607,12 @@ export default function ChannelSidebar({
                           alert(`🚀 "${act.name}" im Sprachkanal gestartet!`);
                           setShowActivities(false);
                         }}
-                        className="w-full p-2 rounded-lg bg-discord-channels/60 hover:bg-discord-hoverChannel flex items-center gap-2.5 text-left transition"
+                        className="w-full p-2 rounded-xl bg-[#131318] hover:bg-[#1a1a22] border border-amber-500/15 hover:border-amber-400/40 flex items-center gap-2.5 text-left transition"
                       >
                         <span className="text-xl">{act.icon}</span>
                         <div className="min-w-0">
                           <div className="text-xs font-bold text-white truncate">{act.name}</div>
-                          <div className="text-[9px] text-discord-textMuted truncate">{act.desc}</div>
+                          <div className="text-[9px] text-amber-200/50 truncate">{act.desc}</div>
                         </div>
                       </button>
                     ))}
@@ -626,19 +628,21 @@ export default function ChannelSidebar({
                   setShowSoundboard(!showSoundboard);
                   setShowActivities(false);
                 }}
-                className={`w-full py-1.5 px-1 rounded text-[10px] font-semibold flex items-center justify-center gap-1 transition ${
-                  showSoundboard ? 'bg-discord-blurple text-white' : 'bg-discord-channels hover:bg-discord-hoverChannel text-discord-textNormal hover:text-white'
+                className={`w-full py-1.5 px-1 rounded-lg text-[10px] font-semibold flex items-center justify-center gap-1 transition ${
+                  showSoundboard
+                    ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 font-bold shadow-sm shadow-amber-500/20'
+                    : 'bg-[#101015] hover:bg-[#181820] border border-amber-500/15 hover:border-amber-400/40 text-amber-200/80 hover:text-white'
                 }`}
                 title="Soundboard"
               >
-                <Music className="w-3.5 h-3.5 text-discord-yellow" />
+                <Music className="w-3.5 h-3.5 text-amber-400" />
                 <span>Sound</span>
               </button>
 
-              {/* Soundboard Popover */}
+              {/* Soundboard Popover in Black & Gold */}
               {showSoundboard && (
-                <div className="absolute bottom-11 right-0 bg-discord-darkest border border-discord-divider/50 rounded-xl p-3 shadow-2xl z-50 w-52 animate-in zoom-in-95">
-                  <div className="text-[10px] font-bold text-discord-textMuted uppercase mb-2">
+                <div className="absolute bottom-11 right-0 bg-[#0c0c10] border border-amber-500/30 rounded-2xl p-3 shadow-2xl z-50 w-52 animate-in zoom-in-95">
+                  <div className="text-[10px] font-bold text-amber-300/80 uppercase mb-2">
                     SOUNDBOARD
                   </div>
                   <div className="grid grid-cols-2 gap-2">
@@ -648,7 +652,7 @@ export default function ChannelSidebar({
                         onClick={() => {
                           snd.play();
                         }}
-                        className="p-2 rounded-lg bg-discord-channels/70 hover:bg-discord-hoverChannel flex flex-col items-center justify-center text-center transition hover:scale-105"
+                        className="p-2 rounded-xl bg-[#131318] hover:bg-[#1a1a22] border border-amber-500/15 hover:border-amber-400/40 flex flex-col items-center justify-center text-center transition hover:scale-105"
                       >
                         <span className="text-xl mb-1">{snd.emoji}</span>
                         <span className="text-[10px] font-bold text-white leading-tight">{snd.name}</span>
@@ -696,31 +700,31 @@ export default function ChannelSidebar({
           </div>
         </div>
 
-        <div className="flex items-center text-neutral-400">
+        <div className="flex items-center text-amber-400 gap-0.5">
           <button
             onClick={toggleMute}
-            className={`p-1.5 rounded-lg hover:bg-white/5 transition ${
-              isMuted ? 'text-red-400' : 'hover:text-amber-300'
+            className={`p-1.5 rounded-lg hover:bg-white/5 transition hover:scale-105 ${
+              isMuted ? 'text-red-400' : 'text-amber-400 hover:text-amber-300'
             }`}
             title={isMuted ? 'Stummschaltung aufheben' : 'Stummschalten'}
           >
-            {isMuted ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+            {isMuted ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4 text-amber-400" />}
           </button>
           <button
             onClick={toggleDeafen}
-            className={`p-1.5 rounded-lg hover:bg-white/5 transition ${
-              isDeafened ? 'text-red-400' : 'hover:text-amber-300'
+            className={`p-1.5 rounded-lg hover:bg-white/5 transition hover:scale-105 ${
+              isDeafened ? 'text-red-400' : 'text-amber-400 hover:text-amber-300'
             }`}
             title={isDeafened ? 'Taubschaltung aufheben' : 'Taub schalten'}
           >
-            <Headphones className="w-4 h-4" />
+            <Headphones className="w-4 h-4 text-amber-400" />
           </button>
           <button
             onClick={onOpenSettings}
-            className="p-1.5 rounded-lg hover:bg-white/5 hover:text-amber-300 transition"
+            className="p-1.5 rounded-lg hover:bg-white/5 text-amber-400 hover:text-amber-300 transition hover:scale-105 group"
             title="Benutzereinstellungen"
           >
-            <Settings className="w-4 h-4" />
+            <Settings className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform duration-300" />
           </button>
         </div>
       </div>

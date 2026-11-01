@@ -67,14 +67,13 @@ export default function TopNavBar({
           <span>DMs</span>
         </button>
 
-        {/* --- 3. BUTTON: EINSTELLUNGEN --- */}
+        {/* --- 3. BUTTON: EINSTELLUNGEN (Nur Zahnrad) --- */}
         <button
           onClick={onOpenSettings}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold text-amber-200/70 hover:bg-white/5 hover:text-white transition-all duration-200 group"
+          className="p-1.5 rounded-lg text-amber-300/80 hover:bg-white/5 hover:text-amber-300 transition-all duration-200 group flex items-center justify-center"
           title="Benutzereinstellungen"
         >
-          <Settings className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300 text-amber-200/70 group-hover:text-amber-300" />
-          <span>Einstellungen</span>
+          <Settings className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300 text-amber-400 group-hover:text-amber-300" />
         </button>
       </div>
 

@@ -198,25 +198,25 @@ export default function VoiceRoomView({
   return (
     <div
       ref={containerRef}
-      className="flex-1 bg-discord-chat flex flex-col h-full overflow-hidden select-none relative"
+      className="flex-1 bg-[#08080a] flex flex-col h-full overflow-hidden select-none relative"
     >
       {/* Top Header Bar */}
-      <div className="h-12 px-4 border-b border-discord-darkest/30 flex items-center justify-between shadow-sm z-10">
+      <div className="h-12 px-4 border-b border-amber-500/15 bg-[#060608] flex items-center justify-between shadow-sm z-10">
         <div className="flex items-center gap-2">
-          <Radio className="w-5 h-5 text-discord-green animate-pulse" />
-          <h2 className="font-bold text-white text-base">
+          <Radio className="w-5 h-5 text-amber-400 animate-pulse" />
+          <h2 className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-amber-300 text-base">
             {voiceChannel.name}
           </h2>
-          <span className="text-xs text-discord-green font-semibold bg-discord-green/10 px-2 py-0.5 rounded flex items-center gap-1">
+          <span className="text-xs text-amber-300 font-bold bg-amber-400/15 border border-amber-500/30 px-2.5 py-0.5 rounded-full flex items-center gap-1.5 shadow-sm">
             <span>LIVE SPRACHE & STREAM</span>
-            <span className="text-[10px] bg-discord-green/20 px-1 rounded">1080p 60FPS</span>
+            <span className="text-[10px] bg-amber-400/25 text-amber-200 px-1.5 py-0.2 rounded font-extrabold">1080p 60FPS</span>
           </span>
         </div>
 
-        <div className="flex items-center gap-3 text-discord-textMuted">
+        <div className="flex items-center gap-3 text-neutral-400">
           <button
             onClick={toggleFullscreen}
-            className="hover:text-white transition p-1"
+            className="hover:text-amber-300 transition p-1"
             title={isFullscreen ? 'Vollbild beenden' : 'Vollbild'}
           >
             {isFullscreen ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}
@@ -225,16 +225,16 @@ export default function VoiceRoomView({
       </div>
 
       {/* Main Video / Screen Share Stage */}
-      <div className="flex-1 p-4 flex flex-col items-center justify-center relative overflow-hidden bg-discord-darkest/80">
+      <div className="flex-1 p-4 flex flex-col items-center justify-center relative overflow-hidden bg-[#040406]">
         {streamError && (
-          <div className="absolute top-4 bg-discord-red/80 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-lg z-20">
+          <div className="absolute top-4 bg-red-950/90 border border-red-500 text-red-200 px-4 py-2 rounded-xl text-xs font-semibold shadow-lg z-20">
             {streamError}
           </div>
         )}
 
         {isScreenSharing || isCameraActive ? (
           /* Active Screen / Camera Video Container */
-          <div className="relative w-full h-full max-w-5xl max-h-[75vh] bg-black rounded-xl overflow-hidden shadow-2xl flex items-center justify-center group border border-discord-divider/30">
+          <div className="relative w-full h-full max-w-5xl max-h-[75vh] bg-black rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.9),0_0_30px_rgba(212,175,55,0.15)] flex items-center justify-center group border border-amber-500/30">
             <video
               ref={videoRef}
               autoPlay
@@ -244,22 +244,22 @@ export default function VoiceRoomView({
             />
 
             {/* Top Left Live Stream Badge */}
-            <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/70 backdrop-blur px-3 py-1.5 rounded-lg border border-white/10 text-white text-xs font-bold">
-              <span className="w-2.5 h-2.5 rounded-full bg-discord-red animate-ping" />
-              <span>{isScreenSharing ? 'BILDSCHIRMÜBERTRAGUNG' : 'KAMERA'}</span>
-              <span className="text-discord-green text-[10px] bg-discord-green/20 px-1.5 py-0.5 rounded">
+            <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/80 backdrop-blur px-3 py-1.5 rounded-xl border border-amber-500/30 text-white text-xs font-bold shadow-lg">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping" />
+              <span className="text-amber-200">{isScreenSharing ? 'BILDSCHIRMÜBERTRAGUNG' : 'KAMERA'}</span>
+              <span className="text-amber-300 text-[10px] bg-amber-400/20 px-1.5 py-0.5 rounded font-extrabold">
                 1080p 60FPS
               </span>
             </div>
 
             {/* Streamer Avatar pill */}
-            <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/70 backdrop-blur px-3 py-1.5 rounded-lg border border-white/10 text-white text-xs">
+            <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/80 backdrop-blur px-3 py-1.5 rounded-xl border border-amber-500/30 text-white text-xs shadow-lg">
               <img
                 src={currentUser.avatar}
                 alt={currentUser.displayName}
-                className="w-6 h-6 rounded-full object-cover"
+                className="w-6 h-6 rounded-full object-cover border border-amber-400"
               />
-              <span className="font-semibold">{currentUser.displayName}</span>
+              <span className="font-bold text-amber-200">{currentUser.displayName}</span>
             </div>
           </div>
         ) : (
@@ -268,7 +268,7 @@ export default function VoiceRoomView({
             {/* Current User Card */}
             <div
               onContextMenu={(e) => onOpenContextMenu && onOpenContextMenu(e, currentUser)}
-              className="bg-discord-channels rounded-2xl p-6 flex flex-col items-center justify-center relative shadow-lg border border-discord-divider/20 group cursor-pointer hover:border-discord-divider/50 transition select-none"
+              className="bg-[#0e0e13] rounded-2xl p-6 flex flex-col items-center justify-center relative shadow-2xl border border-amber-500/25 group cursor-pointer hover:border-amber-400/60 hover:shadow-amber-500/10 transition select-none"
               title="Rechtsklick: Moderationsmenü"
             >
               <div className="relative mb-3">
@@ -277,27 +277,27 @@ export default function VoiceRoomView({
                   alt={currentUser.displayName}
                   className={`w-24 h-24 rounded-full object-cover border-4 transition-all duration-200 ${
                     !isMuted && !serverMutedUsers[currentUser.id] && !serverDeafenedUsers[currentUser.id]
-                      ? 'speaking-ring border-discord-green'
+                      ? 'speaking-ring border-amber-400'
                       : 'border-transparent'
                   }`}
                 />
                 {serverDeafenedUsers[currentUser.id] ? (
                   <div
-                    className="absolute bottom-0 right-0 bg-discord-red p-1.5 rounded-full shadow"
+                    className="absolute bottom-0 right-0 bg-red-600 p-1.5 rounded-full shadow"
                     title="Serverweit taub geschaltet"
                   >
                     <Headphones className="w-4 h-4 text-white" />
                   </div>
                 ) : (serverMutedUsers[currentUser.id] || isMuted) ? (
                   <div
-                    className="absolute bottom-0 right-0 bg-discord-red p-1.5 rounded-full shadow"
+                    className="absolute bottom-0 right-0 bg-red-600 p-1.5 rounded-full shadow"
                     title="Stummgeschaltet"
                   >
                     <MicOff className="w-4 h-4 text-white" />
                   </div>
                 ) : null}
               </div>
-              <div className="font-semibold text-white text-sm truncate max-w-[150px] text-center">
+              <div className="font-bold text-white text-sm truncate max-w-[150px] text-center">
                 {currentUser.displayName}
               </div>
             </div>
@@ -312,7 +312,7 @@ export default function VoiceRoomView({
                 <div
                   key={member.id}
                   onContextMenu={(e) => onOpenContextMenu && onOpenContextMenu(e, member)}
-                  className="bg-discord-channels rounded-2xl p-6 flex flex-col items-center justify-center relative shadow-lg border border-discord-divider/20 cursor-pointer hover:border-discord-divider/50 transition group select-none"
+                  className="bg-[#0e0e13] rounded-2xl p-6 flex flex-col items-center justify-center relative shadow-2xl border border-amber-500/25 cursor-pointer hover:border-amber-400/60 hover:shadow-amber-500/10 transition group select-none"
                   title="Rechtsklick: Moderationsmenü"
                 >
                   <div className="relative mb-3">
@@ -321,27 +321,27 @@ export default function VoiceRoomView({
                       alt={member.displayName}
                       className={`w-24 h-24 rounded-full object-cover border-4 transition-all duration-200 ${
                         isMemSpeaking
-                          ? 'speaking-ring border-discord-green'
+                          ? 'speaking-ring border-amber-400'
                           : 'border-transparent'
                       }`}
                     />
                     {isMemServerDeafened ? (
                       <div
-                        className="absolute bottom-0 right-0 bg-discord-red p-1.5 rounded-full shadow animate-pulse"
+                        className="absolute bottom-0 right-0 bg-red-600 p-1.5 rounded-full shadow animate-pulse"
                         title="Serverweit taub geschaltet"
                       >
                         <Headphones className="w-4 h-4 text-white" />
                       </div>
                     ) : isMemServerMuted ? (
                       <div
-                        className="absolute bottom-0 right-0 bg-discord-red p-1.5 rounded-full shadow"
+                        className="absolute bottom-0 right-0 bg-red-600 p-1.5 rounded-full shadow"
                         title="Serverweit stummgeschaltet"
                       >
                         <MicOff className="w-4 h-4 text-white" />
                       </div>
                     ) : null}
                   </div>
-                  <div className="font-semibold text-white text-sm truncate max-w-[150px] text-center">
+                  <div className="font-bold text-white text-sm truncate max-w-[150px] text-center">
                     {member.displayName}
                   </div>
                 </div>
@@ -352,14 +352,14 @@ export default function VoiceRoomView({
       </div>
 
       {/* Floating Bottom Voice Controls Bar */}
-      <div className="h-20 bg-discord-darkest flex items-center justify-center gap-3 px-6 z-20 border-t border-discord-divider/30 relative">
+      <div className="h-20 bg-[#060608] flex items-center justify-center gap-3 px-6 z-20 border-t border-amber-500/15 shadow-2xl relative">
         {/* Screen Share Button */}
         <button
           onClick={startScreenShare}
-          className={`flex items-center gap-2 px-5 py-3 rounded-full font-semibold text-xs transition shadow-lg ${
+          className={`flex items-center gap-2 px-5 py-3 rounded-full font-bold text-xs transition shadow-lg cursor-pointer ${
             isScreenSharing
-              ? 'bg-discord-green text-white hover:bg-discord-green/90 animate-pulse'
-              : 'bg-discord-channels hover:bg-discord-hoverChannel text-white'
+              ? 'bg-amber-400 text-neutral-950 hover:bg-amber-300 animate-pulse'
+              : 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 hover:brightness-110 shadow-amber-500/20'
           }`}
           title="Bildschirm übertragen"
         >
@@ -370,10 +370,10 @@ export default function VoiceRoomView({
         {/* Camera Toggle */}
         <button
           onClick={startCamera}
-          className={`p-3.5 rounded-full transition shadow-lg ${
+          className={`p-3.5 rounded-full transition shadow-lg cursor-pointer border ${
             isCameraActive
-              ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 shadow-amber-500/20'
-              : 'bg-discord-channels hover:bg-discord-hoverChannel text-white'
+              ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 border-amber-400 shadow-amber-500/25'
+              : 'bg-[#121217] hover:bg-[#181822] text-amber-400 hover:text-amber-300 border-amber-500/30 hover:border-amber-400'
           }`}
           title={isCameraActive ? 'Kamera ausschalten' : 'Kamera einschalten'}
         >
@@ -383,10 +383,10 @@ export default function VoiceRoomView({
         {/* Krisp Noise Suppression */}
         <button
           onClick={() => setIsKrispActive(!isKrispActive)}
-          className={`p-3.5 rounded-full transition shadow-lg ${
+          className={`p-3.5 rounded-full transition shadow-lg cursor-pointer border ${
             isKrispActive
-              ? 'bg-discord-green/20 text-discord-green border border-discord-green/50'
-              : 'bg-discord-channels hover:bg-discord-hoverChannel text-discord-textMuted'
+              ? 'bg-amber-400/20 text-amber-300 border-amber-400/60 shadow-amber-500/15'
+              : 'bg-[#121217] hover:bg-[#181822] text-neutral-400 border-amber-500/20'
           }`}
           title={`Krisp-Rauschunterdrückung: ${isKrispActive ? 'Aktiviert' : 'Deaktiviert'}`}
         >
@@ -400,10 +400,10 @@ export default function VoiceRoomView({
               setShowSoundboard(!showSoundboard);
               setShowActivities(false);
             }}
-            className={`p-3.5 rounded-full transition shadow-lg ${
+            className={`p-3.5 rounded-full transition shadow-lg cursor-pointer border ${
               showSoundboard
-                ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 shadow-amber-500/20'
-                : 'bg-discord-channels hover:bg-discord-hoverChannel text-white'
+                ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 border-amber-400 shadow-amber-500/25'
+                : 'bg-[#121217] hover:bg-[#181822] text-amber-400 hover:text-amber-300 border-amber-500/30 hover:border-amber-400'
             }`}
             title="Soundboard"
           >
@@ -411,8 +411,8 @@ export default function VoiceRoomView({
           </button>
 
           {showSoundboard && (
-            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 bg-discord-darkest border border-discord-divider/50 rounded-xl p-3 shadow-2xl z-50 w-52 animate-in zoom-in-95">
-              <div className="text-[10px] font-bold text-discord-textMuted uppercase mb-2">
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 bg-[#0c0c10] border border-amber-500/30 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.95),0_0_30px_rgba(212,175,55,0.15)] z-50 w-56 animate-in zoom-in-95">
+              <div className="text-[10px] font-bold text-amber-300/80 uppercase mb-2">
                 SOUNDBOARD
               </div>
               <div className="grid grid-cols-2 gap-2">
@@ -422,7 +422,7 @@ export default function VoiceRoomView({
                     onClick={() => {
                       snd.play();
                     }}
-                    className="p-2 rounded-lg bg-discord-channels/70 hover:bg-discord-hoverChannel flex flex-col items-center justify-center text-center transition hover:scale-105"
+                    className="p-2 rounded-xl bg-[#131318] hover:bg-[#1a1a22] border border-amber-500/15 hover:border-amber-400/40 flex flex-col items-center justify-center text-center transition hover:scale-105"
                   >
                     <span className="text-xl mb-1">{snd.emoji}</span>
                     <span className="text-[10px] font-bold text-white leading-tight">{snd.name}</span>
@@ -436,10 +436,10 @@ export default function VoiceRoomView({
         {/* Mic Toggle */}
         <button
           onClick={toggleMute}
-          className={`p-3.5 rounded-full transition shadow-lg ${
+          className={`p-3.5 rounded-full transition shadow-lg cursor-pointer border ${
             isMuted
-              ? 'bg-discord-red text-white'
-              : 'bg-discord-channels hover:bg-discord-hoverChannel text-white'
+              ? 'bg-red-600/20 text-red-400 border-red-500/60'
+              : 'bg-[#121217] hover:bg-[#181822] text-amber-400 hover:text-amber-300 border-amber-500/30 hover:border-amber-400'
           }`}
           title={isMuted ? 'Stummschaltung aufheben' : 'Stummschalten'}
         >
@@ -449,10 +449,10 @@ export default function VoiceRoomView({
         {/* Deafen Toggle */}
         <button
           onClick={toggleDeafen}
-          className={`p-3.5 rounded-full transition shadow-lg ${
+          className={`p-3.5 rounded-full transition shadow-lg cursor-pointer border ${
             isDeafened
-              ? 'bg-discord-red text-white'
-              : 'bg-discord-channels hover:bg-discord-hoverChannel text-white'
+              ? 'bg-red-600/20 text-red-400 border-red-500/60'
+              : 'bg-[#121217] hover:bg-[#181822] text-amber-400 hover:text-amber-300 border-amber-500/30 hover:border-amber-400'
           }`}
           title={isDeafened ? 'Taubschaltung aufheben' : 'Taub schalten'}
         >
@@ -468,7 +468,7 @@ export default function VoiceRoomView({
             }
             onDisconnect();
           }}
-          className="bg-discord-red hover:bg-discord-red/90 text-white p-3.5 rounded-full transition shadow-lg"
+          className="bg-red-600 hover:bg-red-500 text-white p-3.5 rounded-full transition shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
           title="Verbindung trennen"
         >
           <PhoneOff className="w-5 h-5" />
