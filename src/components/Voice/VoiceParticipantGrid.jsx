@@ -6,6 +6,7 @@ export default function VoiceParticipantGrid({
   isScreenSharing,
   isCameraActive,
   currentUser,
+  voiceParticipants = [],
   members = [],
   isMuted,
   serverMutedUsers = {},
@@ -89,29 +90,29 @@ export default function VoiceParticipantGrid({
         </div>
       </div>
 
-      {/* Other Server Members in Voice Room */}
-      {members
-        .filter((m) => m.id !== currentUser.id)
-        .slice(0, 5)
-        .map((member) => {
-          const isMemServerMuted = !!serverMutedUsers[member.id];
-          const isMemServerDeafened = !!serverDeafenedUsers[member.id];
-          const isMemSpeaking =
-            member.id === activeSpeakerId && !isMemServerMuted && !isMemServerDeafened;
+      {/* Live Voice Participants (Realtime Supabase Presence) */}
+      {(() => {
+        const otherLive = (voiceParticipants || []).filter((p) => p.id !== currentUser?.id);
+        const listToRender = otherLive.length > 0 ? otherLive : members.filter((m) => m.id !== currentUser?.id).slice(0, 1);
+
+        return listToRender.map((member) => {
+          const isMemServerMuted = !!serverMutedUsers[member.id] || !!member.isMuted;
+          const isMemServerDeafened = !!serverDeafenedUsers[member.id] || !!member.isDeafened;
+          const isMemSpeaking = member.speaking || member.id === activeSpeakerId;
 
           return (
             <div
               key={member.id}
               onContextMenu={(e) => onOpenContextMenu && onOpenContextMenu(e, member)}
               className="bg-[#0e0e13] rounded-2xl p-6 flex flex-col items-center justify-center relative shadow-2xl border border-amber-500/25 cursor-pointer hover:border-amber-400/60 hover:shadow-amber-500/10 transition group select-none"
-              title="Rechtsklick: Moderationsmenü"
+              title={otherLive.length > 0 ? `${member.displayName} (Canlı Ses Odasında)` : 'Kullanıcı bekleniyor...'}
             >
               <div className="relative mb-3">
                 <img
-                  src={member.avatar}
+                  src={member.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150'}
                   alt={member.displayName}
                   className={`w-24 h-24 rounded-full object-cover border-4 transition-all duration-200 ${
-                    isMemSpeaking
+                    isMemSpeaking && !isMemServerMuted && !isMemServerDeafened
                       ? 'speaking-ring border-amber-400'
                       : 'border-transparent'
                   }`}
@@ -119,25 +120,29 @@ export default function VoiceParticipantGrid({
                 {isMemServerDeafened ? (
                   <div
                     className="absolute bottom-0 right-0 bg-red-600 p-1.5 rounded-full shadow animate-pulse"
-                    title="Serverweit taub geschaltet"
+                    title="Taubgeschaltet"
                   >
                     <Headphones className="w-4 h-4 text-white" />
                   </div>
                 ) : isMemServerMuted ? (
                   <div
                     className="absolute bottom-0 right-0 bg-red-600 p-1.5 rounded-full shadow"
-                    title="Serverweit stummgeschaltet"
+                    title="Stummgeschaltet"
                   >
                     <MicOff className="w-4 h-4 text-white" />
                   </div>
                 ) : null}
               </div>
-              <div className="font-bold text-amber-200 text-sm truncate max-w-[150px] text-center">
-                {member.displayName}
+              <div className="font-bold text-amber-200 text-sm truncate max-w-[150px] text-center flex items-center gap-1.5 justify-center">
+                <span>{member.displayName}</span>
+                {otherLive.length > 0 && (
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Canlı Bağlı" />
+                )}
               </div>
             </div>
           );
-        })}
+        });
+      })()}
     </div>
   );
 }

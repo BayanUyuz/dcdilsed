@@ -4,10 +4,48 @@ export const currentUser = {
   displayName: 'Benutzer',
   discriminator: '2026',
   avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80',
-  status: 'online', // 'online' | 'idle' | 'dnd' | 'offline'
+  status: 'online',
   statusText: '⚡ DilSed Web',
   badges: ['developer', 'early']
 };
+
+export function getOrCreateCurrentUser() {
+  try {
+    const saved = localStorage.getItem('dilsed_web_user') || localStorage.getItem('discord_web_user');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed && parsed.id && parsed.id !== 'current_user_me') {
+        return parsed;
+      }
+    }
+  } catch (e) {}
+
+  const randNum = Math.floor(1000 + Math.random() * 9000);
+  const randId = 'usr_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
+  const avatars = [
+    'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80'
+  ];
+  const chosenAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+
+  const newUser = {
+    id: randId,
+    username: `dilsed_${randNum}`,
+    displayName: `DilSed Üye #${randNum}`,
+    discriminator: `${randNum}`,
+    avatar: chosenAvatar,
+    status: 'online',
+    statusText: '⚡ DilSed Web',
+    badges: ['early']
+  };
+
+  try {
+    localStorage.setItem('dilsed_web_user', JSON.stringify(newUser));
+  } catch (e) {}
+  return newUser;
+}
 
 // Standardmäßiger DilSed-Community-Server im edlen Schwarz & Gold
 export const initialServers = [

@@ -23,6 +23,7 @@ export default function ServerWorkspace({
   setIsMuted,
   isDeafened,
   setIsDeafened,
+  voiceParticipants = [],
   messages,
   handleSendMessage,
   handleAddReaction,
@@ -121,6 +122,7 @@ export default function ServerWorkspace({
                 setIsMuted={setIsMuted}
                 isDeafened={isDeafened}
                 setIsDeafened={setIsDeafened}
+                voiceParticipants={voiceParticipants}
                 members={members}
                 serverMutedUsers={serverMutedUsers}
                 serverDeafenedUsers={serverDeafenedUsers}

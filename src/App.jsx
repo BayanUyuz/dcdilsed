@@ -10,7 +10,7 @@ import { useModeration } from './hooks/useModeration';
 import { useVoiceState } from './hooks/useVoiceState';
 import { useChatMessages } from './hooks/useChatMessages';
 import { useModalState } from './hooks/useModalState';
-import { currentUser as initialCurrentUser, initialFriends } from './data/initialData';
+import { getOrCreateCurrentUser, initialFriends } from './data/initialData';
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => localStorage.getItem('dilsed_authenticated') === 'true');
@@ -24,10 +24,7 @@ export default function App() {
     return saved ? JSON.parse(saved) : { theme: 'dark', messageDisplay: 'cozy', fontSize: 16 };
   });
 
-  const [currentUser, setCurrentUser] = useState(() => {
-    const saved = localStorage.getItem('dilsed_web_user') || localStorage.getItem('discord_web_user');
-    return saved ? JSON.parse(saved) : initialCurrentUser;
-  });
+  const [currentUser, setCurrentUser] = useState(() => getOrCreateCurrentUser());
 
   const [isHomeActive, setIsHomeActive] = useState(false);
   const [showMemberList, setShowMemberList] = useState(true);
@@ -43,9 +40,9 @@ export default function App() {
 
   const {
     connectedVoiceChannel, setConnectedVoiceChannel, isVoiceRoomViewActive, setIsVoiceRoomViewActive,
-    isMuted, setIsMuted, isDeafened, setIsDeafened, handleDisconnectVoice: disconnectVoiceAction,
+    isMuted, setIsMuted, isDeafened, setIsDeafened, voiceParticipants, handleDisconnectVoice: disconnectVoiceAction,
     handleMoveVoiceChannel: moveVoiceChannelAction
-  } = useVoiceState();
+  } = useVoiceState(currentUser);
 
   const moderation = useModeration();
   const { messages, setMessages, handleSendMessage, handleAddReaction, deleteMessagesByAuthor } =
@@ -173,8 +170,8 @@ export default function App() {
             activeChannelObj={activeChannelObj} connectedVoiceChannel={connectedVoiceChannel}
             setConnectedVoiceChannel={setConnectedVoiceChannel} isVoiceRoomViewActive={isVoiceRoomViewActive}
             setIsVoiceRoomViewActive={setIsVoiceRoomViewActive} currentUser={currentUser} isMuted={isMuted}
-            setIsMuted={setIsMuted} isDeafened={isDeafened} setIsDeafened={setIsDeafened} messages={messages}
-            handleSendMessage={handleSendMessage} handleAddReaction={handleAddReaction} showMemberList={showMemberList}
+            setIsMuted={setIsMuted} isDeafened={isDeafened} setIsDeafened={setIsDeafened} voiceParticipants={voiceParticipants}
+            messages={messages} handleSendMessage={handleSendMessage} handleAddReaction={handleAddReaction} showMemberList={showMemberList}
             setShowMemberList={setShowMemberList} members={moderation.members} userTimeouts={moderation.userTimeouts}
             userMutes={moderation.userMutes} verifiedUsers={moderation.verifiedUsers}
             serverMutedUsers={moderation.serverMutedUsers} serverDeafenedUsers={moderation.serverDeafenedUsers}

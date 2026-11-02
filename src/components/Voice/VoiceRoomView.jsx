@@ -12,6 +12,7 @@ export default function VoiceRoomView({
   setIsMuted,
   isDeafened,
   setIsDeafened,
+  voiceParticipants = [],
   members = [],
   serverMutedUsers = {},
   serverDeafenedUsers = {},
@@ -179,6 +180,7 @@ export default function VoiceRoomView({
           isScreenSharing={isScreenSharing}
           isCameraActive={isCameraActive}
           currentUser={currentUser}
+          voiceParticipants={voiceParticipants}
           members={members}
           isMuted={isMuted}
           serverMutedUsers={serverMutedUsers}
