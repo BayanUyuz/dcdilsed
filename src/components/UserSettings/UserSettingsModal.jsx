@@ -84,7 +84,7 @@ export default function UserSettingsModal({
             />
           )}
 
-          {s.activeTab === 'voice_video' && (
+          {(s.activeTab === 'voice' || s.activeTab === 'voice_video') && (
             <VoiceVideoTab
               voiceSubTab={s.voiceSubTab} setVoiceSubTab={s.setVoiceSubTab} inputDevice={s.inputDevice}
               setInputDevice={s.setInputDevice} outputDevice={s.outputDevice} setOutputDevice={s.setOutputDevice}
@@ -166,6 +166,10 @@ export default function UserSettingsModal({
               setMinimizeToTray={s.setMinimizeToTray} gpuAcceleration={s.gpuAcceleration}
               setGpuAcceleration={s.setGpuAcceleration} autoUpdate={s.autoUpdate}
               setAutoUpdate={s.setAutoUpdate} devMode={s.devMode} setDevMode={s.setDevMode}
+              keybinds={s.keybinds} setKeybinds={s.setKeybinds} recordingKeybindId={s.recordingKeybindId}
+              setRecordingKeybindId={s.setRecordingKeybindId} onResetKeybinds={s.handleResetKeybinds}
+              onAddKeybind={s.handleAddKeybind} onDeleteKeybind={s.handleDeleteKeybind}
+              onUpdateKeybindAction={s.handleUpdateKeybindAction}
             />
           )}
 

@@ -63,25 +63,30 @@ export default function UserDock({
       <div className="flex items-center text-amber-400 gap-0.5">
         <button
           onClick={toggleMute}
-          className={`p-1.5 rounded-lg hover:bg-white/5 transition hover:scale-105 ${
-            isMuted ? 'text-red-400' : 'text-amber-400 hover:text-amber-300'
+          className={`p-1.5 rounded-lg transition hover:scale-105 cursor-pointer ${
+            isMuted ? 'text-red-500 bg-red-500/15 hover:bg-red-500/25' : 'text-amber-400 hover:text-amber-300 hover:bg-white/5'
           }`}
           title={isMuted ? 'Stummschaltung aufheben' : 'Stummschalten'}
         >
-          {isMuted ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4 text-amber-400" />}
+          {isMuted ? <MicOff className="w-4 h-4 text-red-500" /> : <Mic className="w-4 h-4 text-amber-400" />}
         </button>
         <button
           onClick={toggleDeafen}
-          className={`p-1.5 rounded-lg hover:bg-white/5 transition hover:scale-105 ${
-            isDeafened ? 'text-red-400' : 'text-amber-400 hover:text-amber-300'
+          className={`p-1.5 rounded-lg transition hover:scale-105 relative cursor-pointer ${
+            isDeafened ? 'text-red-500 bg-red-500/15 hover:bg-red-500/25' : 'text-amber-400 hover:text-amber-300 hover:bg-white/5'
           }`}
           title={isDeafened ? 'Taubschaltung aufheben' : 'Taub schalten'}
         >
-          <Headphones className="w-4 h-4 text-amber-400" />
+          <Headphones className={`w-4 h-4 ${isDeafened ? 'text-red-500' : 'text-amber-400'}`} />
+          {isDeafened && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-5 h-0.5 bg-red-500 rotate-45 rounded-full" />
+            </div>
+          )}
         </button>
         <button
           onClick={onOpenSettings}
-          className="p-1.5 rounded-lg hover:bg-white/5 text-amber-400 hover:text-amber-300 transition hover:scale-105 group"
+          className="p-1.5 rounded-lg hover:bg-white/5 text-amber-400 hover:text-amber-300 transition hover:scale-105 group cursor-pointer"
           title="Benutzereinstellungen"
         >
           <Settings className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform duration-300" />

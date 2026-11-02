@@ -3,14 +3,14 @@ import { Keyboard, Plus, Trash2, RotateCcw } from 'lucide-react';
 import { KEYBIND_ACTIONS } from './constants';
 
 export default function KeybindsSection({
-  keybinds,
-  setKeybinds,
-  recordingKeybindId,
-  setRecordingKeybindId,
-  onResetKeybinds,
-  onAddKeybind,
-  onDeleteKeybind,
-  onUpdateKeybindAction,
+  keybinds = [],
+  setKeybinds = () => {},
+  recordingKeybindId = null,
+  setRecordingKeybindId = () => {},
+  onResetKeybinds = () => {},
+  onAddKeybind = () => {},
+  onDeleteKeybind = () => {},
+  onUpdateKeybindAction = () => {},
   isEmbedded = false
 }) {
   return (

@@ -43,6 +43,7 @@ export default function ServerSettingsModal({
           server={server}
           activeTab={state.activeTab}
           setActiveTab={state.setActiveTab}
+          onClose={onClose}
         />
 
         <div className="flex-1 overflow-y-auto p-8 custom-scrollbar bg-[#08080a]">

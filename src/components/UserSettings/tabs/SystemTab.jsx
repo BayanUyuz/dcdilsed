@@ -15,14 +15,14 @@ export default function SystemTab({
   setAutoUpdate,
   devMode,
   setDevMode,
-  keybinds,
-  setKeybinds,
-  recordingKeybindId,
-  setRecordingKeybindId,
-  onResetKeybinds,
-  onAddKeybind,
-  onDeleteKeybind,
-  onUpdateKeybindAction
+  keybinds = [],
+  setKeybinds = () => {},
+  recordingKeybindId = null,
+  setRecordingKeybindId = () => {},
+  onResetKeybinds = () => {},
+  onAddKeybind = () => {},
+  onDeleteKeybind = () => {},
+  onUpdateKeybindAction = () => {}
 }) {
   return (
     <div className="space-y-6">

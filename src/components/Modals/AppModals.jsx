@@ -34,16 +34,20 @@ export default function AppModals(props) {
           if (modalState?.setIsSettingsOpen) modalState.setIsSettingsOpen(false);
         }}
         currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
         onSaveUser={setCurrentUser}
         isMuted={isMuted}
-        onToggleMute={() => setIsMuted(!isMuted)}
+        setIsMuted={setIsMuted}
+        onToggleMute={() => setIsMuted && setIsMuted(!isMuted)}
         isDeafened={isDeafened}
-        onToggleDeafen={() => setIsDeafened(!isDeafened)}
+        setIsDeafened={setIsDeafened}
+        onToggleDeafen={() => setIsDeafened && setIsDeafened(!isDeafened)}
         onLogout={() => {
           setIsAuthenticated(false);
           setViewMode('landing');
         }}
         themeConfig={themeConfig}
+        setThemeConfig={setThemeConfig}
         onUpdateTheme={setThemeConfig}
         servers={servers}
         onUpdateServer={(updated) =>
