@@ -8,11 +8,44 @@ export function useChatMessages(activeChannelId, currentUser) {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (parsed['c_general'] || parsed['c_dev'] || parsed['c_rules']) {
-          localStorage.removeItem('discord_web_messages');
-          return {};
+        if (parsed && typeof parsed === 'object') {
+          if (parsed['c_general'] || parsed['c_dev'] || parsed['c_rules']) {
+            localStorage.removeItem('discord_web_messages');
+            return initialMessages;
+          }
+          // Normalize messages in all channels
+          const normalized = {};
+          for (const [chId, msgList] of Object.entries(parsed)) {
+            if (Array.isArray(msgList)) {
+              normalized[chId] = msgList.map((m) => {
+                const author = (typeof m.author === 'object' && m.author !== null)
+                  ? m.author
+                  : {
+                      id: m.senderId || m.authorId || 'author_' + (m.id || 'unknown'),
+                      displayName: typeof m.author === 'string' ? m.author : (m.senderName || 'Benutzer'),
+                      username: typeof m.author === 'string' ? m.author : (m.senderName || 'user'),
+                      avatar: m.avatar || '/dilsed-logo.png',
+                      isBot: Boolean(m.isBot),
+                      roleColor: m.roleColor || '#fde68a'
+                    };
+                const content = m.content || m.text || '';
+                const reactions = Array.isArray(m.reactions)
+                  ? m.reactions
+                  : (m.reactions && typeof m.reactions === 'object')
+                    ? Object.entries(m.reactions).map(([emoji, count]) => ({
+                        emoji,
+                        count: typeof count === 'number' ? count : 1,
+                        users: []
+                      }))
+                    : [];
+                return { ...m, author, content, reactions };
+              });
+            } else {
+              normalized[chId] = [];
+            }
+          }
+          return normalized;
         }
-        return parsed;
       } catch {
         return initialMessages;
       }
@@ -25,19 +58,23 @@ export function useChatMessages(activeChannelId, currentUser) {
     localStorage.setItem('discord_web_messages', JSON.stringify(messages));
   }, [messages]);
 
-  // Supabase Realtime Listener
+  // Supabase Realtime Listener with safe cleanup
   useEffect(() => {
     if (!activeChannelId) return;
-    return subscribeToChannelRealtime(activeChannelId, (incomingMsg) => {
+    const unsub = subscribeToChannelRealtime(activeChannelId, (incomingMsg) => {
       setMessages((prev) => {
         const currentList = prev[activeChannelId] || [];
         if (currentList.some((m) => m.id === incomingMsg.id)) return prev;
         return { ...prev, [activeChannelId]: [...currentList, incomingMsg] };
       });
     });
+    return () => {
+      if (typeof unsub === 'function') unsub();
+    };
   }, [activeChannelId]);
 
   const handleSendMessage = (text) => {
+    if (!activeChannelId || !text?.trim()) return;
     const newMsg = {
       id: 'msg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
       author: {
@@ -48,7 +85,7 @@ export function useChatMessages(activeChannelId, currentUser) {
         role: 'Mitglied',
         roleColor: '#ffffff',
       },
-      content: text,
+      content: text.trim(),
       timestamp: `Heute ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`,
       reactions: [],
     };
@@ -60,19 +97,24 @@ export function useChatMessages(activeChannelId, currentUser) {
   };
 
   const handleAddReaction = (messageId, emoji) => {
+    if (!activeChannelId) return;
     setMessages((prev) => {
       const channelMsgs = prev[activeChannelId] || [];
       const updated = channelMsgs.map((m) => {
         if (m.id !== messageId) return m;
-        const reactions = m.reactions ? [...m.reactions] : [];
+        const reactions = Array.isArray(m.reactions)
+          ? [...m.reactions]
+          : (m.reactions && typeof m.reactions === 'object')
+            ? Object.entries(m.reactions).map(([e, c]) => ({ emoji: e, count: typeof c === 'number' ? c : 1, users: [] }))
+            : [];
         const existingIndex = reactions.findIndex((r) => r.emoji === emoji);
         if (existingIndex > -1) {
           const r = reactions[existingIndex];
           const hasUser = r.users?.includes(currentUser.id);
           if (hasUser) {
-            const newUsers = r.users.filter((u) => u !== currentUser.id);
+            const newUsers = (r.users || []).filter((u) => u !== currentUser.id);
             if (newUsers.length === 0) reactions.splice(existingIndex, 1);
-            else reactions[existingIndex] = { ...r, count: r.count - 1, users: newUsers };
+            else reactions[existingIndex] = { ...r, count: Math.max(0, r.count - 1), users: newUsers };
           } else {
             reactions[existingIndex] = {
               ...r,

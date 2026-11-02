@@ -25,16 +25,43 @@ export default function ChatMessageItem({
   activeMessageReactionPicker,
   setActiveMessageReactionPicker,
 }) {
+  const author = (typeof msg?.author === 'object' && msg?.author !== null)
+    ? msg.author
+    : {
+        id: msg?.senderId || msg?.authorId || 'author_' + (msg?.id || 'unknown'),
+        displayName: typeof msg?.author === 'string' ? msg.author : (msg?.senderName || 'Benutzer'),
+        username: typeof msg?.author === 'string' ? msg.author : (msg?.senderName || 'user'),
+        avatar: msg?.avatar || '/dilsed-logo.png',
+        isBot: Boolean(msg?.isBot),
+        roleColor: msg?.roleColor || '#fde68a'
+      };
+
+  const authorAvatar = author.avatar || msg?.avatar || '/dilsed-logo.png';
+  const authorName = author.displayName || author.username || 'Benutzer';
+  const isBot = Boolean(author.isBot || msg?.isBot);
+  const content = msg?.content || msg?.text || '';
+  const timestamp = msg?.timestamp || 'Heute';
+
+  const reactionsList = Array.isArray(msg?.reactions)
+    ? msg.reactions
+    : (msg?.reactions && typeof msg.reactions === 'object')
+      ? Object.entries(msg.reactions).map(([emoji, count]) => ({
+          emoji,
+          count: typeof count === 'number' ? count : 1,
+          users: []
+        }))
+      : [];
+
   return (
     <div className="group relative flex gap-4 -mx-4 px-4 py-1.5 hover:bg-amber-400/5 rounded transition">
       {/* Avatar */}
       <img
-        src={msg.author.avatar}
-        alt={msg.author.displayName}
-        onClick={() => onSelectMember && onSelectMember(msg.author)}
+        src={authorAvatar}
+        alt={authorName}
+        onClick={() => onSelectMember && onSelectMember(author)}
         onContextMenu={(e) => {
           e.preventDefault();
-          onOpenContextMenu && onOpenContextMenu(e, msg.author);
+          onOpenContextMenu && onOpenContextMenu(e, author);
         }}
         className="w-10 h-10 rounded-full object-cover flex-shrink-0 mt-0.5 cursor-pointer hover:opacity-85 transition border border-amber-500/20"
         title="Linksklick: Profil | Rechtsklick: Moderationsmenü"
@@ -44,41 +71,42 @@ export default function ChatMessageItem({
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
           <span
-            onClick={() => onSelectMember && onSelectMember(msg.author)}
+            onClick={() => onSelectMember && onSelectMember(author)}
             onContextMenu={(e) => {
               e.preventDefault();
-              onOpenContextMenu && onOpenContextMenu(e, msg.author);
+              onOpenContextMenu && onOpenContextMenu(e, author);
             }}
             className="font-bold text-sm hover:underline cursor-pointer"
-            style={{ color: msg.author.roleColor || '#fde68a' }}
+            style={{ color: author.roleColor || '#fde68a' }}
             title="Linksklick: Profil | Rechtsklick: Moderationsmenü"
           >
-            {msg.author.displayName || msg.author.username}
+            {authorName}
           </span>
 
-          {msg.author.isBot && (
+          {isBot && (
             <span className="bg-gradient-to-r from-amber-400 to-amber-500 text-[10px] text-neutral-950 font-black px-1.5 py-0.2 rounded uppercase shadow-xs">
               BOT
             </span>
           )}
 
-          <span className="text-[11px] text-amber-200/50">{msg.timestamp}</span>
+          <span className="text-[11px] text-amber-200/50">{timestamp}</span>
         </div>
 
         {/* Content text */}
         <div className="text-sm text-amber-100/90 whitespace-pre-wrap break-words leading-relaxed mt-1 font-normal">
-          {msg.content}
+          {content}
         </div>
 
         {/* Reactions list */}
-        {msg.reactions && msg.reactions.length > 0 && (
+        {reactionsList.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mt-2">
-            {msg.reactions.map((react, i) => {
-              const hasReacted = react.users?.includes(currentUser.id);
+            {reactionsList.map((react, i) => {
+              const hasReacted = react.users?.includes(currentUser?.id);
               return (
                 <button
                   key={i}
-                  onClick={() => onAddReaction(msg.id, react.emoji)}
+                  type="button"
+                  onClick={() => onAddReaction && onAddReaction(msg.id, react.emoji)}
                   className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-xs transition border cursor-pointer ${
                     hasReacted
                       ? 'bg-amber-400/25 border-amber-400 text-amber-200 font-bold shadow-sm'
@@ -99,7 +127,8 @@ export default function ChatMessageItem({
         {POPULAR_EMOJIS.slice(0, 3).map((emoji) => (
           <button
             key={emoji}
-            onClick={() => onAddReaction(msg.id, emoji)}
+            type="button"
+            onClick={() => onAddReaction && onAddReaction(msg.id, emoji)}
             className="p-1 hover:bg-amber-400/15 rounded text-sm transition cursor-pointer"
             title={`Reagieren mit ${emoji}`}
           >
@@ -107,6 +136,7 @@ export default function ChatMessageItem({
           </button>
         ))}
         <button
+          type="button"
           onClick={() =>
             setActiveMessageReactionPicker(
               activeMessageReactionPicker === msg.id ? null : msg.id
@@ -125,8 +155,9 @@ export default function ChatMessageItem({
           {POPULAR_EMOJIS.map((emoji) => (
             <button
               key={emoji}
+              type="button"
               onClick={() => {
-                onAddReaction(msg.id, emoji);
+                onAddReaction && onAddReaction(msg.id, emoji);
                 setActiveMessageReactionPicker(null);
               }}
               className="text-lg p-1.5 hover:bg-amber-400/15 rounded transition hover:scale-110 cursor-pointer"

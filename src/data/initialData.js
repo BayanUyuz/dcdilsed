@@ -47,13 +47,22 @@ export const initialMessages = {
   c_willkommen: [
     {
       id: 'm_welcome_1',
-      senderId: 'bot_dilsed',
-      senderName: 'DilSed Bot',
-      avatar: '/dilsed-logo.png',
-      isBot: true,
-      text: 'Willkommen auf dem offiziellen DilSed-Server! 👑 Hier kannst du in Echtzeit chatten, Sprachräume betreten und deine eigene Community aufbauen.',
+      author: {
+        id: 'bot_dilsed',
+        username: 'DilSed Bot',
+        displayName: 'DilSed Bot',
+        avatar: '/dilsed-logo.png',
+        isBot: true,
+        role: 'Bot',
+        roleColor: '#f59e0b',
+      },
+      content: 'Willkommen auf dem offiziellen DilSed-Server! 👑 Hier kannst du in Echtzeit chatten, Sprachräume betreten und deine eigene Community aufbauen.',
       timestamp: 'Heute um 12:00',
-      reactions: { '👑': 3, '✨': 5, '🔥': 2 }
+      reactions: [
+        { emoji: '👑', count: 3, users: [] },
+        { emoji: '✨', count: 5, users: [] },
+        { emoji: '🔥', count: 2, users: [] }
+      ]
     }
   ]
 };
@@ -110,3 +119,31 @@ export const exploreServersData = [
     verified: false
   }
 ];
+
+export function createExploreServerInstance(exploreServer) {
+  return {
+    id: exploreServer.id,
+    name: exploreServer.name,
+    acronym: exploreServer.name.slice(0, 2).toUpperCase(),
+    icon: exploreServer.icon,
+    banner: exploreServer.banner,
+    unread: 0,
+    categories: [
+      {
+        id: 'cat_exp_1',
+        name: 'ALLGEMEINE KANÄLE',
+        channels: [
+          { id: 'c_exp_welcome', name: 'willkommen', type: 'text', description: 'Willkommen in der Community!' },
+          { id: 'c_exp_chat', name: 'allgemein', type: 'text', description: 'Allgemeiner Chat.' }
+        ]
+      },
+      {
+        id: 'cat_exp_2',
+        name: 'SPRACHKANÄLE',
+        channels: [
+          { id: 'v_exp_lounge', name: 'Community-Lounge', type: 'voice', userLimit: 20 }
+        ]
+      }
+    ]
+  };
+}

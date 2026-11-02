@@ -64,8 +64,9 @@ export default function ServerWorkspace({
           setIsVoiceRoomViewActive(false);
           const targetServer = servers.find((s) => s.id === serverId);
           if (targetServer) {
-            const firstChannel = targetServer.categories?.[0]?.channels?.[0]?.id || null;
-            setActiveChannelId(firstChannel);
+            const allChs = (targetServer.categories || []).flatMap((c) => c.channels || []);
+            const firstText = allChs.find((c) => c.type === 'text') || allChs[0];
+            setActiveChannelId(firstText?.id || null);
           }
         }}
         onOpenAddServer={() => setIsAddServerOpen(true)}
@@ -135,7 +136,7 @@ export default function ServerWorkspace({
           ) : activeChannelObj ? (
             <ChatArea
               channel={activeChannelObj}
-              messages={messages[activeChannelId] || []}
+              messages={messages[activeChannelObj.id] || messages[activeChannelId] || []}
               onSendMessage={handleSendMessage}
               onAddReaction={handleAddReaction}
               currentUser={currentUser}

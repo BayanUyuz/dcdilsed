@@ -20,28 +20,31 @@ const activeChannels = new Map();
 export function subscribeToChannelRealtime(channelId, onMessageReceived) {
   const channelName = `dilsed-room-${channelId}`;
 
-  if (activeChannels.has(channelName)) {
-    return activeChannels.get(channelName);
-  }
-
-  const channel = supabase.channel(channelName, {
-    config: {
-      broadcast: { self: false },
-    },
-  });
-
-  channel
-    .on('broadcast', { event: 'new_message' }, (payload) => {
-      if (payload && payload.payload) {
-        onMessageReceived(payload.payload);
-      }
-    })
-    .subscribe((status) => {
-      console.log(`[Supabase Realtime] Channel ${channelName} status:`, status);
+  let channel = activeChannels.get(channelName);
+  if (!channel) {
+    channel = supabase.channel(channelName, {
+      config: {
+        broadcast: { self: false },
+      },
     });
 
-  activeChannels.set(channelName, channel);
-  return channel;
+    channel
+      .on('broadcast', { event: 'new_message' }, (payload) => {
+        if (payload && payload.payload) {
+          onMessageReceived(payload.payload);
+        }
+      })
+      .subscribe((status) => {
+        console.log(`[Supabase Realtime] Channel ${channelName} status:`, status);
+      });
+
+    activeChannels.set(channelName, channel);
+  }
+
+  // Return a safe cleanup function so React useEffect never throws
+  return () => {
+    // Keep active channel cached or cleanly handle if needed
+  };
 }
 
 export async function broadcastMessage(channelId, message) {

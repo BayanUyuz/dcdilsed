@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { initialServers } from '../data/initialData';
+import { initialServers, createExploreServerInstance } from '../data/initialData';
 
 export function useServers() {
   const [servers, setServers] = useState(() => {
@@ -18,7 +18,11 @@ export function useServers() {
   });
 
   const [activeServerId, setActiveServerId] = useState(() => servers[0]?.id || null);
-  const [activeChannelId, setActiveChannelId] = useState(null);
+  const [activeChannelId, setActiveChannelId] = useState(() => {
+    const first = servers[0]?.categories?.[0]?.channels?.find((c) => c.type === 'text') ||
+      servers[0]?.categories?.[0]?.channels?.[0];
+    return first?.id || 'c_willkommen';
+  });
 
   // Persistence to localStorage
   useEffect(() => {
@@ -28,21 +32,36 @@ export function useServers() {
   // Current server reference
   const currentServer = servers.find((s) => s.id === activeServerId) || servers[0];
 
+  // Auto-synchronize activeChannelId with currentServer channels
+  useEffect(() => {
+    if (!currentServer?.categories) return;
+    const allChannels = currentServer.categories.flatMap((cat) => cat.channels || []);
+    const exists = allChannels.some((c) => c.id === activeChannelId);
+    if (!exists && allChannels.length > 0) {
+      const firstText = allChannels.find((c) => c.type === 'text') || allChannels[0];
+      setActiveChannelId(firstText.id);
+    }
+  }, [currentServer, activeChannelId]);
+
   // Find active channel object
   let activeChannelObj = null;
-  if (currentServer) {
-    for (const cat of (currentServer.categories || [])) {
+  if (currentServer?.categories) {
+    for (const cat of currentServer.categories) {
       const found = (cat.channels || []).find((c) => c.id === activeChannelId);
       if (found) {
         activeChannelObj = found;
         break;
       }
     }
-    if (!activeChannelObj && currentServer.categories?.length > 0) {
+    if (!activeChannelObj && currentServer.categories.length > 0) {
       for (const cat of currentServer.categories) {
-        if (cat.channels?.length > 0) {
-          activeChannelObj = cat.channels[0];
+        const firstText = (cat.channels || []).find((c) => c.type === 'text');
+        if (firstText) {
+          activeChannelObj = firstText;
           break;
+        }
+        if ((cat.channels || []).length > 0 && !activeChannelObj) {
+          activeChannelObj = cat.channels[0];
         }
       }
     }
@@ -52,8 +71,9 @@ export function useServers() {
   const handleCreateServer = (newServer, onAfterCreate) => {
     setServers((prev) => [...prev, newServer]);
     setActiveServerId(newServer.id);
-    const firstTextChannel = newServer.categories[0]?.channels[0]?.id || 'c_general';
-    setActiveChannelId(firstTextChannel);
+    const allChs = (newServer.categories || []).flatMap((c) => c.channels || []);
+    const firstTextChannel = allChs.find((c) => c.type === 'text') || allChs[0];
+    setActiveChannelId(firstTextChannel?.id || null);
     if (onAfterCreate) onAfterCreate();
   };
 
@@ -70,8 +90,12 @@ export function useServers() {
     setServers(remaining);
     if (remaining.length > 0) {
       setActiveServerId(remaining[0].id);
-      setActiveChannelId(remaining[0].categories[0]?.channels[0]?.id || 'c_general');
+      const allChs = (remaining[0].categories || []).flatMap((c) => c.channels || []);
+      const firstText = allChs.find((c) => c.type === 'text') || allChs[0];
+      setActiveChannelId(firstText?.id || null);
     } else {
+      setActiveServerId(null);
+      setActiveChannelId(null);
       if (onEmpty) onEmpty();
     }
   };
@@ -80,36 +104,15 @@ export function useServers() {
   const handleJoinServer = (exploreServer, onAfterJoin) => {
     if (servers.some((s) => s.id === exploreServer.id)) {
       setActiveServerId(exploreServer.id);
+      const srv = servers.find((s) => s.id === exploreServer.id);
+      const allChs = (srv?.categories || []).flatMap((c) => c.channels || []);
+      const firstText = allChs.find((c) => c.type === 'text') || allChs[0];
+      setActiveChannelId(firstText?.id || null);
       if (onAfterJoin) onAfterJoin();
       return;
     }
 
-    const newServer = {
-      id: exploreServer.id,
-      name: exploreServer.name,
-      acronym: exploreServer.name.slice(0, 2).toUpperCase(),
-      icon: exploreServer.icon,
-      banner: exploreServer.banner,
-      unread: 0,
-      categories: [
-        {
-          id: 'cat_exp_1',
-          name: 'ALLGEMEINE KANÄLE',
-          channels: [
-            { id: 'c_exp_welcome', name: 'willkommen', type: 'text', description: 'Willkommen in der Community!' },
-            { id: 'c_exp_chat', name: 'allgemein', type: 'text', description: 'Allgemeiner Chat.' }
-          ]
-        },
-        {
-          id: 'cat_exp_2',
-          name: 'SPRACHKANÄLE',
-          channels: [
-            { id: 'v_exp_lounge', name: 'Community-Lounge', type: 'voice', userLimit: 20 }
-          ]
-        }
-      ]
-    };
-
+    const newServer = createExploreServerInstance(exploreServer);
     setServers((prev) => [...prev, newServer]);
     setActiveServerId(newServer.id);
     setActiveChannelId('c_exp_chat');
@@ -122,15 +125,32 @@ export function useServers() {
       prev.map((srv) => {
         if (srv.id !== activeServerId) return srv;
 
-        const updatedCategories = srv.categories.map((cat) => {
-          if (cat.id === channelData.categoryId || cat.channels.some((c) => c.type === channelData.type)) {
+        let added = false;
+        let updatedCategories = (srv.categories || []).map((cat) => {
+          if (cat.id === channelData.categoryId || (!channelData.categoryId && !added)) {
+            added = true;
             return {
               ...cat,
-              channels: [...cat.channels, channelData],
+              channels: [...(cat.channels || []), channelData],
             };
           }
           return cat;
         });
+
+        if (!added) {
+          if (updatedCategories.length === 0) {
+            updatedCategories = [{
+              id: 'cat_' + Date.now(),
+              name: channelData.type === 'voice' ? 'SPRACHKANÄLE' : 'TEXTKANÄLE',
+              channels: [channelData]
+            }];
+          } else {
+            updatedCategories[0] = {
+              ...updatedCategories[0],
+              channels: [...(updatedCategories[0].channels || []), channelData]
+            };
+          }
+        }
 
         return {
           ...srv,

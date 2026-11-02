@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { DEFAULT_ROLES, INITIAL_MEMBERS_LIST, INITIAL_AUTOMOD_RULES } from './constants';
 
 export function useServerSettingsState(server, onUpdateServer) {
   const [activeTab, setActiveTab] = useState('overview');
@@ -17,35 +18,7 @@ export function useServerSettingsState(server, onUpdateServer) {
   const [copiedVanity, setCopiedVanity] = useState(false);
 
   // Roles state
-  const [roles, setRoles] = useState([
-    {
-      id: 'r_admin',
-      name: 'Administrator',
-      color: '#5865F2',
-      isAdmin: true,
-      canManageChannels: true,
-      canKick: true,
-      membersCount: 1,
-    },
-    {
-      id: 'r_mod',
-      name: 'Moderator',
-      color: '#23a55a',
-      isAdmin: false,
-      canManageChannels: true,
-      canKick: true,
-      membersCount: 0,
-    },
-    {
-      id: 'r_everyone',
-      name: '@everyone',
-      color: '#949ba4',
-      isAdmin: false,
-      canManageChannels: false,
-      canKick: false,
-      membersCount: 1,
-    },
-  ]);
+  const [roles, setRoles] = useState(DEFAULT_ROLES);
   const [activeRoleId, setActiveRoleId] = useState('r_admin');
 
   // Emojis state
@@ -61,26 +34,12 @@ export function useServerSettingsState(server, onUpdateServer) {
 
   // Members state
   const [memberSearch, setMemberSearch] = useState('');
-  const [membersList, setMembersList] = useState([
-    {
-      id: 'current_user_me',
-      name: 'Benutzer (Du)',
-      username: 'DilsedUser',
-      role: 'Eigentümer',
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
-      joined: 'Heute',
-    },
-  ]);
+  const [membersList, setMembersList] = useState(INITIAL_MEMBERS_LIST);
 
   // Invites, Bans, AutoMod, Templates, Webhooks, Audit
   const [invitesList, setInvitesList] = useState([]);
   const [bansList, setBansList] = useState([]);
-  const [autoModRules, setAutoModRules] = useState({
-    blockProfanity: true,
-    blockSpam: true,
-    blockPhishingLinks: true,
-    blockMentionSpam: true,
-  });
+  const [autoModRules, setAutoModRules] = useState(INITIAL_AUTOMOD_RULES);
   const [welcomeEnabled, setWelcomeEnabled] = useState(true);
   const [welcomeMessage, setWelcomeMessage] = useState(
     'Willkommen in unserer Community! Schau dir unsere empfohlenen Kanäle an, um loszulegen.'

@@ -18,146 +18,59 @@ export function useModeration() {
   const [selectedMemberForProfile, setSelectedMemberForProfile] = useState(null);
   const [mentionTarget, setMentionTarget] = useState(null);
 
-  const [userNotes, setUserNotes] = useState(() => {
-    const saved = localStorage.getItem('discord_web_user_notes');
-    return saved ? JSON.parse(saved) : {};
-  });
+  const getSaved = (key, fallback) => {
+    try {
+      const saved = localStorage.getItem(key);
+      return saved ? JSON.parse(saved) : fallback;
+    } catch {
+      return fallback;
+    }
+  };
 
-  const [modNotes, setModNotes] = useState(() => {
-    const saved = localStorage.getItem('discord_web_mod_notes');
-    return saved ? JSON.parse(saved) : {};
-  });
-
-  const [userTimeouts, setUserTimeouts] = useState(() => {
-    const saved = localStorage.getItem('discord_web_user_timeouts');
-    return saved ? JSON.parse(saved) : {};
-  });
-
-  const [userMutes, setUserMutes] = useState(() => {
-    const saved = localStorage.getItem('discord_web_user_mutes');
-    return saved ? JSON.parse(saved) : {};
-  });
-
-  const [mentionMutes, setMentionMutes] = useState(() => {
-    const saved = localStorage.getItem('discord_web_mention_mutes');
-    return saved ? JSON.parse(saved) : {};
-  });
-
-  const [verifiedUsers, setVerifiedUsers] = useState(() => {
-    const saved = localStorage.getItem('discord_web_verified_users');
-    return saved ? JSON.parse(saved) : { 'm_owner': true };
-  });
-
-  const [blockedUsers, setBlockedUsers] = useState(() => {
-    const saved = localStorage.getItem('discord_web_blocked_users');
-    return saved ? JSON.parse(saved) : {};
-  });
-
-  const [serverMutedUsers, setServerMutedUsers] = useState(() => {
-    const saved = localStorage.getItem('discord_web_server_mutes');
-    return saved ? JSON.parse(saved) : {};
-  });
-
-  const [serverDeafenedUsers, setServerDeafenedUsers] = useState(() => {
-    const saved = localStorage.getItem('discord_web_server_deafens');
-    return saved ? JSON.parse(saved) : {};
-  });
+  const [userNotes, setUserNotes] = useState(() => getSaved('discord_web_user_notes', {}));
+  const [modNotes, setModNotes] = useState(() => getSaved('discord_web_mod_notes', {}));
+  const [userTimeouts, setUserTimeouts] = useState(() => getSaved('discord_web_user_timeouts', {}));
+  const [userMutes, setUserMutes] = useState(() => getSaved('discord_web_user_mutes', {}));
+  const [mentionMutes, setMentionMutes] = useState(() => getSaved('discord_web_mention_mutes', {}));
+  const [verifiedUsers, setVerifiedUsers] = useState(() => getSaved('discord_web_verified_users', { 'm_owner': true }));
+  const [blockedUsers, setBlockedUsers] = useState(() => getSaved('discord_web_blocked_users', {}));
+  const [serverMutedUsers, setServerMutedUsers] = useState(() => getSaved('discord_web_server_mutes', {}));
+  const [serverDeafenedUsers, setServerDeafenedUsers] = useState(() => getSaved('discord_web_server_deafens', {}));
 
   // Persistence to localStorage
   useEffect(() => {
     localStorage.setItem('discord_web_user_notes', JSON.stringify(userNotes));
-  }, [userNotes]);
-
-  useEffect(() => {
     localStorage.setItem('discord_web_mod_notes', JSON.stringify(modNotes));
-  }, [modNotes]);
-
-  useEffect(() => {
     localStorage.setItem('discord_web_user_timeouts', JSON.stringify(userTimeouts));
-  }, [userTimeouts]);
-
-  useEffect(() => {
     localStorage.setItem('discord_web_user_mutes', JSON.stringify(userMutes));
-  }, [userMutes]);
-
-  useEffect(() => {
     localStorage.setItem('discord_web_server_mutes', JSON.stringify(serverMutedUsers));
-  }, [serverMutedUsers]);
-
-  useEffect(() => {
     localStorage.setItem('discord_web_server_deafens', JSON.stringify(serverDeafenedUsers));
-  }, [serverDeafenedUsers]);
-
-  useEffect(() => {
     localStorage.setItem('discord_web_mention_mutes', JSON.stringify(mentionMutes));
-  }, [mentionMutes]);
-
-  useEffect(() => {
     localStorage.setItem('discord_web_verified_users', JSON.stringify(verifiedUsers));
-  }, [verifiedUsers]);
-
-  useEffect(() => {
     localStorage.setItem('discord_web_blocked_users', JSON.stringify(blockedUsers));
-  }, [blockedUsers]);
+  }, [userNotes, modNotes, userTimeouts, userMutes, serverMutedUsers, serverDeafenedUsers, mentionMutes, verifiedUsers, blockedUsers]);
 
   const handleOpenMemberContextMenu = (e, member) => {
     e.preventDefault();
-    setMemberContextMenu({
-      isOpen: true,
-      position: { x: e.clientX, y: e.clientY },
-      member
-    });
+    setMemberContextMenu({ isOpen: true, position: { x: e.clientX, y: e.clientY }, member });
   };
 
-  const handleViewProfile = (member) => {
-    setSelectedMemberForProfile(member);
-  };
-
-  const handleMentionUser = (member) => {
-    setMentionTarget(member);
-  };
-
-  const handleToggleMentionMute = (member) => {
-    setMentionMutes((prev) => ({
-      ...prev,
-      [member.id]: !prev[member.id]
-    }));
-  };
-
-  const handleChangeNickname = (member) => {
-    setNicknameModalMember(member);
-  };
-
+  const handleViewProfile = (member) => setSelectedMemberForProfile(member);
+  const handleMentionUser = (member) => setMentionTarget(member);
+  const handleToggleMentionMute = (member) => setMentionMutes((prev) => ({ ...prev, [member.id]: !prev[member.id] }));
+  const handleChangeNickname = (member) => setNicknameModalMember(member);
   const handleSaveNickname = (memberId, newNickname) => {
-    setMembers((prev) =>
-      prev.map((m) => (m.id === memberId ? { ...m, displayName: newNickname } : m))
-    );
+    setMembers((prev) => prev.map((m) => (m.id === memberId ? { ...m, displayName: newNickname } : m)));
   };
 
-  const handleAddNote = (member) => {
-    setNoteModalMember(member);
-  };
-
-  const handleSaveUserNote = (memberId, noteText) => {
-    setUserNotes((prev) => ({
-      ...prev,
-      [memberId]: noteText
-    }));
-  };
-
-  const handleToggleMuteUser = (member) => {
-    setUserMutes((prev) => ({
-      ...prev,
-      [member.id]: !prev[member.id]
-    }));
-  };
-
-  const handleBlockUser = (member) => {
-    setBlockedUsers((prev) => ({
-      ...prev,
-      [member.id]: !prev[member.id]
-    }));
-  };
+  const handleAddNote = (member) => setNoteModalMember(member);
+  const handleSaveUserNote = (memberId, noteText) => setUserNotes((prev) => ({ ...prev, [memberId]: noteText }));
+  const handleToggleMuteUser = (member) => setUserMutes((prev) => ({ ...prev, [member.id]: !prev[member.id] }));
+  const handleBlockUser = (member) => setBlockedUsers((prev) => ({ ...prev, [member.id]: !prev[member.id] }));
+  const handleOpenModView = (member) => setModViewMember(member);
+  const handleVerifyMember = (member) => setVerifiedUsers((prev) => ({ ...prev, [member.id]: !prev[member.id] }));
+  const handleKickUser = (member) => setKickModalMember(member);
+  const handleBanUser = (member) => setBanModalMember(member);
 
   const handleToggleRole = (member, role) => {
     setMembers((prev) =>
@@ -176,17 +89,6 @@ export function useModeration() {
     );
   };
 
-  const handleOpenModView = (member) => {
-    setModViewMember(member);
-  };
-
-  const handleVerifyMember = (member) => {
-    setVerifiedUsers((prev) => ({
-      ...prev,
-      [member.id]: !prev[member.id]
-    }));
-  };
-
   const handleTimeoutUser = (member, duration) => {
     setUserTimeouts((prev) => {
       if (!duration) {
@@ -198,19 +100,11 @@ export function useModeration() {
     });
   };
 
-  const handleKickUser = (member) => {
-    setKickModalMember(member);
-  };
-
   const handleConfirmKick = (member, reason, onLogMessage) => {
     setMembers((prev) => prev.filter((m) => m.id !== member.id));
     if (onLogMessage) {
       onLogMessage(`👞 **${member.displayName}** wurde vom Server gekickt. (Grund: ${reason})`);
     }
-  };
-
-  const handleBanUser = (member) => {
-    setBanModalMember(member);
   };
 
   const handleConfirmBan = (member, reason, deleteDays, onLogMessage, onPurgeUserMessages) => {

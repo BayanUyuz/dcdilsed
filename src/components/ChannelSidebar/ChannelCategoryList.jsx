@@ -95,6 +95,7 @@ export default function ChannelCategoryList({
                       return (
                         <button
                           key={ch.id}
+                          type="button"
                           onClick={() => onSelectChannel(ch.id)}
                           className={`w-full group px-2 py-1.5 rounded-md flex items-center gap-2 text-sm transition cursor-pointer ${
                             isActive
