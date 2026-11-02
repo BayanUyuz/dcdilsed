@@ -1,85 +1,85 @@
-# 👑 DilSed Web — Modern Gerçek Zamanlı İletişim Platformu
+# 👑 DilSed Web — Moderne Echtzeit-Kommunikationsplattform
 
-> **DilSed Web**, modern web teknolojileri (React 18, Vite, Tailwind CSS, Supabase Realtime ve WebRTC) kullanılarak geliştirilmiş, yüksek performanslı ve modüler mimariye sahip bir gerçek zamanlı sesli ve yazılı iletişim platformudur.
-
----
-
-## 🌟 Öne Çıkan Özellikler
-
-### 💬 1. Gerçek Zamanlı Mesajlaşma & Topluluk Kanalları
-- **Gerçek Zamanlı Sohbet (Supabase Realtime):** Kanal bazlı anlık mesajlaşma ve çoklu sekme / kullanıcı senkronizasyonu.
-- **Tepkiler (Reactions):** Emojilerle mesajlara dinamik tepki verme ve sayaç takibi.
-- **Dosya ve Medya Paylaşımı:** Canlı dosya ve GIF gönderme desteği.
-- **Kanal ve Kategori Yönetimi:** Metin ve ses kanallarını kategorilendirme, sürükleme ve sıralama.
-
-### 🎙️ 2. WebRTC Canlı Ses Odaları & Ekran Paylaşımı
-- **1080p 60FPS Ekran Paylaşımı:** Tarayıcı içi `getDisplayMedia` API'si ile sıfır eklenti gerektiren ekran yayını.
-- **Kamera Desteği:** Entegre web kamerası görüntü aktarımı.
-- **Dahili Soundboard (Web Audio API):** Korna, Ördek, Ba-Dum-Tss ve Alkış ses efektleri.
-- **Krisp Gürültü Engelleme:** Akıllı gürültü engelleme simülasyonu ve aktif konuşmacı tespiti (`activeSpeakerId`).
-
-### 🛡️ 3. Kapsamlı Moderasyon & Güvenlik
-- **Moderatör Görünümü (ModView):** Üye rolleri, denetim kaydı (Audit Log), moderasyon notları ve mesaj geçmişi.
-- **Rol & İzin Sistemi:** Yönetici, Moderatör, Geliştirici, VIP Destekçi ve @everyone rolleri.
-- **Ceza Mekanizmaları:** Süreli susturma (Timeout), sunucu geneli sustur/sağırlaştır (Server Mute/Deafen), Kick ve Ban.
-
-### 🎨 4. Lüks Siyah & Asil Altın Tasarım Sistemi
-- **Royal Obsidian & Gold:** Özel `#070709`, `#0c0c10` zeminler, `amber-400` / `amber-500` altın vurgular.
-- **Kişiselleştirilebilir Profil:** Banner renk gradyanları, avatar dekorasyonları ve özel durum emojileri.
-- **Çoklu Dil Desteği:** Türkçe, Almanca, İngilizce dahil çoklu dilde anlık arayüz desteği.
+> **DilSed Web** ist eine moderne, hochleistungsfähige und modulare Echtzeit-Kommunikationsplattform für Sprach- und Textchats, entwickelt mit modernen Webtechnologien (React 18, Vite, Tailwind CSS, Supabase Realtime und WebRTC).
 
 ---
 
-## 🏛️ Mimari ve Modüler Yapı
+## 🌟 Hauptfunktionen
 
-Proje, yazılım mühendisliği ilkelerine ve **Single Responsibility (Tek Sorumluluk Prensibi)** standardına uygun olarak modüler bileşenlere ve Custom Hook katmanlarına ayrılmıştır. Projedeki her kaynak kod dosyası maksimum okunabilirlik ve sürdürülebilirlik için **250 satırın altında** tutulmaktadır:
+### 💬 1. Echtzeit-Messaging & Community-Kanäle
+- **Echtzeit-Chat (Supabase Realtime):** Kanalbasiertes Instant Messaging und nahtlose Synchronisation über mehrere Tabs und Benutzer hinweg.
+- **Reaktionen (Reactions):** Dynamische Emoji-Reaktionen auf Nachrichten mit Zähler-Tracking in Echtzeit.
+- **Datei- und Medienfreigabe:** Unterstützung für das Versenden von Bildern, Anhängen und GIFs.
+- **Kanal- und Kategoriemanagement:** Text- und Sprachkanäle flexibel kategorisieren, sortieren und verwalten.
+
+### 🎙️ 2. WebRTC Live-Sprachräume & Bildschirmfreigabe
+- **1080p 60FPS Bildschirmfreigabe:** Browser-native Bildschirmübertragung via `getDisplayMedia`-API ohne zusätzliche Plugins.
+- **Kamera-Unterstützung:** Integrierte Webcam-Videoübertragung für direkte Konferenzen.
+- **Integriertes Soundboard (Web Audio API):** Lufthorn, Enten-Quak, Ba-Dum-Tss und Applaus-Soundeffekte.
+- **Krisp Rauschunterdrückung:** Intelligente Rauschunterdrückungs-Simulation und aktive Sprechererkennung (`activeSpeakerId`).
+
+### 🛡️ 3. Umfassende Moderation & Sicherheit
+- **Moderator-Ansicht (ModView):** Mitgliederrollen, detailliertes Audit-Log (Prüfprotokoll), Moderationsnotizen und Nachrichtenverlauf.
+- **Rollen- & Berechtigungssystem:** Vollständig konfigurierbare Administrator-, Moderator-, Entwickler-, VIP-Unterstützer- und @everyone-Rollen.
+- **Sanktionsmechanismen:** Zeitstrafen (Timeout), serverweites Stummschalten/Taubschalten (Server Mute/Deafen), Kick und Ban.
+
+### 🎨 4. Luxuriöses Schwarz & Edles Gold Design-System
+- **Royal Obsidian & Gold:** Maßgeschneiderte Edel-Hintergründe in `#070709`, `#0c0c10` mit eleganten `amber-400` / `amber-500` Gold-Akzenten.
+- **Individuelles Benutzerprofil:** Banner-Farbverläufe, Avatar-Dekorationen und benutzerdefinierte Status-Emojis.
+- **Mehrsprachige Unterstützung:** Vollständige Lokalisierungsunterstützung für Deutsch, Türkisch, Englisch und weitere Sprachen.
+
+---
+
+## 🏛️ Architektur und modularer Aufbau
+
+Das Projekt folgt den Best Practices des Software Engineerings und dem **Single-Responsibility-Prinzip (SRP)**, aufgeteilt in modulare UI-Komponenten und Custom-Hook-Schichten. Jede Quellcodedatei im Projekt wird für maximale Übersichtlichkeit und Wartbarkeit strikt **unter 250 Zeilen** gehalten:
 
 ```
 src/
-├── hooks/                      # Mantık ve durum yönetimi (Custom Hooks < 250 satır)
-│   ├── useServers.js           # Sunucu & kanal CRUD işlemleri
-│   ├── useVoiceState.js        # Ses odası ve WebRTC durumu
-│   ├── useModeration.js        # Moderasyon, roller, ban & kick
-│   ├── useUserSettings.js      # Kullanıcı profili, arayüz & temalar
-│   ├── useUserAudioSettings.js  # Ses aygıtları, mikrofon ve klavye kısayolları
-│   ├── useChatMessages.js      # Gerçek zamanlı mesajlaşma & Supabase eşitleme
-│   └── useModalState.js        # Modalların durum yönetimi
+├── hooks/                      # Logik & Zustandsverwaltung (Custom Hooks < 250 Zeilen)
+│   ├── useServers.js           # Server- & Kanal-CRUD-Operationen
+│   ├── useVoiceState.js        # Sprachraum- und WebRTC-Status
+│   ├── useModeration.js        # Moderation, Rollen, Ban & Kick
+│   ├── useUserSettings.js      # Benutzerprofil, Oberfläche & Themes
+│   ├── useUserAudioSettings.js  # Audiogeräte, Mikrofon & Tastaturkürzel
+│   ├── useChatMessages.js      # Echtzeit-Messaging & Supabase-Synchronisation
+│   └── useModalState.js        # Zustandsverwaltung der Modale
 │
-├── components/                 # Modüler sunum bileşenleri (Her dosya < 250 satır)
-│   ├── ChannelSidebar/         # Sunucu başlığı, kanal listesi & ses kontrol doku
-│   ├── Chat/                   # Sohbet başlığı, mesaj öğeleri & mesaj giriş çubuğu
-│   ├── Common/                 # Ortak alt kullanıcı paneli ve avatarlar
-│   ├── DirectMessages/         # Arkadaş listesi, DM kenar çubuğu & DM sohbeti
-│   ├── Landing/                # Karşılama sayfası ve QR destekli kimlik doğrulama
-│   ├── Modals/                 # Modüler sunucu, moderasyon ve üye pencereleri
-│   ├── ServerSettings/         # 14 bağımsız sunucu ayar sekmesi ve sabitleri
-│   ├── UserSettings/           # Profil, erişilebilirlik, ses ve sistem sekmeleri
-│   ├── Voice/                  # Canlı ses ızgarası, kontrol çubuğu & soundboard
-│   └── VoiceChannelSettings/   # Ses kanalı izin ve bit hızı ayarları
+├── components/                 # Modulare UI-Komponenten (Jede Datei < 250 Zeilen)
+│   ├── ChannelSidebar/         # Server-Header, Kanalliste & Sprach-Dock
+│   ├── Chat/                   # Chat-Header, Nachrichtenelemente & Eingabeleiste
+│   ├── Common/                 # Gemeinsames Benutzer-Dock & Avatare
+│   ├── DirectMessages/         # Freundesliste, DM-Seitenleiste & DM-Chat
+│   ├── Landing/                # Landing-Page mit QR-unterstützter Authentifizierung
+│   ├── Modals/                 # Modulare Server-, Moderations- & Mitglieder-Fenster
+│   ├── ServerSettings/         # 14 unabhängige Servereinstellungs-Reiter & Konstanten
+│   ├── UserSettings/           # Profil-, Barrierefreiheits-, Audio- & System-Reiter
+│   ├── Voice/                  # Live-Sprachgitter, Kontrollleiste & Soundboard
+│   └── VoiceChannelSettings/   # Sprachkanal-Berechtigungen & Bitraten-Einstellungen
 │
-├── data/                       # Başlangıç ve demo verileri
-├── soundEffects.js             # Web Audio API ses motoru
-└── supabaseClient.js           # Supabase istemcisi ve Broadcast yöneticisi
+├── data/                       # Initiale Demo- und Ausgangsdaten
+├── soundEffects.js             # Web Audio API Sound-Engine
+└── supabaseClient.js           # Supabase-Client & Broadcast-Manager
 ```
 
 ---
 
-## 🚀 Kurulum ve Çalıştırma
+## 🚀 Installation und Ausführung
 
-Projeyi yerel geliştirme ortamınızda çalıştırmak için:
+Um das Projekt in der lokalen Entwicklungsumgebung auszuführen:
 
 ```bash
-# Bağımlılıkları yükleyin
+# Abhängigkeiten installieren
 npm install
 
-# Geliştirme sunucusunu başlatın
+# Entwicklungsserver starten
 npm run dev
 
-# Üretim (Production) derlemesi alın
+# Produktions-Build erstellen
 npm run build
 ```
 
 ---
 
-## 📄 Lisans
-Bu proje lisanslıdır. © 2026 DilSed — Tüm hakları saklıdır.
+## 📄 Lizenz
+Dieses Projekt ist lizenziert. © 2026 DilSed — Alle Rechte vorbehalten.
