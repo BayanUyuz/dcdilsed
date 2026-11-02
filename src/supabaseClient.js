@@ -15,22 +15,19 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
   },
 });
 
-/**
- * Real-time Supabase Broadcast channel manager for multi-tab / multi-user sync
- */
 const activeChannels = new Map();
 
 export function subscribeToChannelRealtime(channelId, onMessageReceived) {
-  const channelName = `discord-room-${channelId}`;
-  
+  const channelName = `dilsed-room-${channelId}`;
+
   if (activeChannels.has(channelName)) {
     return activeChannels.get(channelName);
   }
 
   const channel = supabase.channel(channelName, {
     config: {
-      broadcast: { self: false } // don't re-trigger for the sender
-    }
+      broadcast: { self: false },
+    },
   });
 
   channel
@@ -48,16 +45,15 @@ export function subscribeToChannelRealtime(channelId, onMessageReceived) {
 }
 
 export async function broadcastMessage(channelId, message) {
-  const channelName = `discord-room-${channelId}`;
+  const channelName = `dilsed-room-${channelId}`;
   let channel = activeChannels.get(channelName);
-  
+
   if (!channel) {
     channel = supabase.channel(channelName);
     channel.subscribe();
     activeChannels.set(channelName, channel);
   }
 
-  // Broadcast in real-time
   try {
     await channel.send({
       type: 'broadcast',
@@ -68,17 +64,16 @@ export async function broadcastMessage(channelId, message) {
     console.warn('[Supabase Broadcast Warning]:', err);
   }
 
-  // Also attempt database insert in case user has 'messages' table created in Supabase
   try {
     await supabase.from('messages').insert([
       {
         channel_id: channelId,
         content: message.content,
         author: message.author,
-        created_at: message.timestamp || new Date().toISOString()
-      }
+        created_at: message.timestamp || new Date().toISOString(),
+      },
     ]);
-  } catch (dbErr) {
-    // Non-blocking: table may not exist yet in schema cache
+  } catch {
+    // Database schema fallback
   }
 }

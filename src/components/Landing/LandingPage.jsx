@@ -73,18 +73,15 @@ export default function LandingPage({ onOpenApp, currentUser, isAuthenticated })
           </div>
         </div>
 
-        {/* Badge with Gold Glow */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-950/40 border border-amber-500/40 text-amber-300 text-xs font-bold uppercase tracking-wider mb-5 shadow-[0_0_20px_rgba(212,175,55,0.15)]">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
           <span>Offizielle Kommunikationsplattform</span>
         </div>
 
-        {/* Headline as requested */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight tracking-tight mb-4 drop-shadow">
-          Herzlichen Willkommen bei unserem Kommunikation DilSed Kommunikationsapp
+          Herzlich willkommen bei DilSed
         </h1>
 
-        {/* Subtitle */}
         <p className="text-sm sm:text-base text-neutral-400 max-w-2xl leading-relaxed mb-10 font-normal">
           Deine moderne Plattform für kristallklare Sprachräume, Echtzeit-Textchats und sichere Communities – direkt im Browser ohne zusätzliche Installation.
         </p>
@@ -130,7 +127,7 @@ export default function LandingPage({ onOpenApp, currentUser, isAuthenticated })
           <span className="font-semibold text-neutral-400">DilSed Kommunikationsapp</span>
         </div>
         <div className="text-[11px] text-neutral-500">
-          © 2026 DilSed • Bereit für das Code-Review • Alle Rechte vorbehalten.
+          © 2026 DilSed • Alle Rechte vorbehalten.
         </div>
       </footer>
 

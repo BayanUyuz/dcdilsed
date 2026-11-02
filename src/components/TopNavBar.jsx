@@ -32,7 +32,6 @@ export default function TopNavBar({
         {/* Small vertical divider */}
         <div className="w-[1px] h-5 bg-amber-500/20" />
 
-        {/* --- 1. BUTTON: SERVER --- */}
         <button
           onClick={onSelectServers}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 relative ${
@@ -45,7 +44,6 @@ export default function TopNavBar({
           <Server className="w-4 h-4" />
           <span>Server</span>
 
-          {/* Total server unread badge if any */}
           {totalServerUnread > 0 && isHomeActive && (
             <span className="min-w-[18px] h-[18px] px-1 bg-discord-red text-white text-[10px] font-extrabold rounded-full flex items-center justify-center leading-none shadow">
               {totalServerUnread}
@@ -53,7 +51,6 @@ export default function TopNavBar({
           )}
         </button>
 
-        {/* --- 2. BUTTON: DMs --- */}
         <button
           onClick={onSelectHome}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 ${
@@ -67,7 +64,6 @@ export default function TopNavBar({
           <span>DMs</span>
         </button>
 
-        {/* --- 3. BUTTON: EINSTELLUNGEN (Nur Zahnrad) --- */}
         <button
           onClick={onOpenSettings}
           className="p-1.5 rounded-lg text-amber-300/80 hover:bg-white/5 hover:text-amber-300 transition-all duration-200 group flex items-center justify-center"
@@ -77,7 +73,6 @@ export default function TopNavBar({
         </button>
       </div>
 
-      {/* RIGHT SECTION: Quick Status & User Mini Pill */}
       <div className="flex items-center gap-3">
         {/* Audio Mute / Deafen indicators if active */}
         {(isMuted || isDeafened) && (
