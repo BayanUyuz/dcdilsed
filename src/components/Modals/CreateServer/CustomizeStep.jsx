@@ -102,7 +102,7 @@ export default function CustomizeStep({
         <p className="text-[11px] text-neutral-400 leading-relaxed">
           Mit der Erstellung eines Servers akzeptierst du die{' '}
           <a
-            href="https://discord.com/guidelines"
+            href="https://dilsed.com/guidelines"
             target="_blank"
             rel="noreferrer"
             className="text-amber-400 hover:text-amber-300 hover:underline font-semibold"

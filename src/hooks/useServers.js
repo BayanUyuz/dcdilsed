@@ -3,7 +3,7 @@ import { initialServers, createExploreServerInstance } from '../data/initialData
 
 export function useServers() {
   const [servers, setServers] = useState(() => {
-    const saved = localStorage.getItem('discord_web_servers');
+    const saved = localStorage.getItem('dilsed_web_servers') || localStorage.getItem('discord_web_servers');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -26,7 +26,7 @@ export function useServers() {
 
   // Persistence to localStorage
   useEffect(() => {
-    localStorage.setItem('discord_web_servers', JSON.stringify(servers));
+    localStorage.setItem('dilsed_web_servers', JSON.stringify(servers));
   }, [servers]);
 
   // Current server reference

@@ -1,5 +1,5 @@
 /**
- * Synthesizes authentic Discord sound effects using the Web Audio API.
+ * Synthesizes authentic DilSed sound effects using the Web Audio API.
  * No external audio files needed; plays reliably in any browser.
  */
 

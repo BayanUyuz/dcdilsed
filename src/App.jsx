@@ -20,12 +20,12 @@ export default function App() {
   });
 
   const [themeConfig, setThemeConfig] = useState(() => {
-    const saved = localStorage.getItem('discord_web_theme');
+    const saved = localStorage.getItem('dilsed_web_theme') || localStorage.getItem('discord_web_theme');
     return saved ? JSON.parse(saved) : { theme: 'dark', messageDisplay: 'cozy', fontSize: 16 };
   });
 
   const [currentUser, setCurrentUser] = useState(() => {
-    const saved = localStorage.getItem('discord_web_user');
+    const saved = localStorage.getItem('dilsed_web_user') || localStorage.getItem('discord_web_user');
     return saved ? JSON.parse(saved) : initialCurrentUser;
   });
 
@@ -53,11 +53,12 @@ export default function App() {
   const modalState = useModalState();
 
   const [friends, setFriends] = useState(() => {
-    const saved = localStorage.getItem('discord_web_friends');
+    const saved = localStorage.getItem('dilsed_web_friends') || localStorage.getItem('discord_web_friends');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.some((f) => ['f_alex', 'f_elena', 'f_mert', 'f_seda'].includes(f.id))) {
+          localStorage.removeItem('dilsed_web_friends');
           localStorage.removeItem('discord_web_friends');
           return [];
         }
@@ -75,9 +76,9 @@ export default function App() {
     if (!isAuthenticated) setViewMode('landing');
   }, [isAuthenticated]);
   useEffect(() => { localStorage.setItem('dilsed_view_mode', viewMode); }, [viewMode]);
-  useEffect(() => { localStorage.setItem('discord_web_theme', JSON.stringify(themeConfig)); }, [themeConfig]);
-  useEffect(() => { localStorage.setItem('discord_web_user', JSON.stringify(currentUser)); }, [currentUser]);
-  useEffect(() => { localStorage.setItem('discord_web_friends', JSON.stringify(friends)); }, [friends]);
+  useEffect(() => { localStorage.setItem('dilsed_web_theme', JSON.stringify(themeConfig)); }, [themeConfig]);
+  useEffect(() => { localStorage.setItem('dilsed_web_user', JSON.stringify(currentUser)); }, [currentUser]);
+  useEffect(() => { localStorage.setItem('dilsed_web_friends', JSON.stringify(friends)); }, [friends]);
 
   // Actions
   const handleCreateServer = (newServer) => {
@@ -135,7 +136,7 @@ export default function App() {
         onOpenApp={(authedUser) => {
           if (authedUser?.id) {
             setCurrentUser(authedUser);
-            localStorage.setItem('discord_web_user', JSON.stringify(authedUser));
+            localStorage.setItem('dilsed_web_user', JSON.stringify(authedUser));
           }
           setIsAuthenticated(true);
           localStorage.setItem('dilsed_authenticated', 'true');
@@ -145,7 +146,7 @@ export default function App() {
     );
   }
 
-  const themeClass = themeConfig.theme === 'midnight' ? 'bg-black text-white' : themeConfig.theme === 'light' ? 'bg-neutral-100 text-neutral-900' : 'bg-discord-chat text-discord-textNormal';
+  const themeClass = themeConfig.theme === 'midnight' ? 'bg-black text-white' : themeConfig.theme === 'light' ? 'bg-neutral-100 text-neutral-900' : 'bg-[#07070a] text-neutral-200';
   const totalServerUnread = servers.reduce((acc, s) => acc + (s.unread || 0), 0);
 
   return (

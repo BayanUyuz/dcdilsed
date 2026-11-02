@@ -4,12 +4,13 @@ import { subscribeToChannelRealtime, broadcastMessage } from '../supabaseClient'
 
 export function useChatMessages(activeChannelId, currentUser) {
   const [messages, setMessages] = useState(() => {
-    const saved = localStorage.getItem('discord_web_messages');
+    const saved = localStorage.getItem('dilsed_web_messages') || localStorage.getItem('discord_web_messages');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         if (parsed && typeof parsed === 'object') {
           if (parsed['c_general'] || parsed['c_dev'] || parsed['c_rules']) {
+            localStorage.removeItem('dilsed_web_messages');
             localStorage.removeItem('discord_web_messages');
             return initialMessages;
           }
@@ -55,7 +56,7 @@ export function useChatMessages(activeChannelId, currentUser) {
 
   // LocalStorage sync
   useEffect(() => {
-    localStorage.setItem('discord_web_messages', JSON.stringify(messages));
+    localStorage.setItem('dilsed_web_messages', JSON.stringify(messages));
   }, [messages]);
 
   // Supabase Realtime Listener with safe cleanup

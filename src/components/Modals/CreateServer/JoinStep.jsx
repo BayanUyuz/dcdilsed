@@ -32,7 +32,7 @@ export default function JoinStep({
             required
             value={inviteInput}
             onChange={(e) => setInviteInput(e.target.value)}
-            placeholder="https://discord.gg/hTKz9a oder hTKz9a"
+            placeholder="https://dilsed.gg/hTKz9a oder hTKz9a"
             className="w-full bg-[#121216] rounded-xl px-3.5 py-2.5 text-sm text-white border border-amber-500/25 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400/50"
           />
         </div>
@@ -43,8 +43,8 @@ export default function JoinStep({
             EINLADUNGEN SEHEN ETWA SO AUS:
           </div>
           <div className="text-neutral-300 font-mono text-[11px]">hTKz9a</div>
-          <div className="text-neutral-300 font-mono text-[11px]">https://discord.gg/hTKz9a</div>
-          <div className="text-neutral-300 font-mono text-[11px]">https://discord.gg/entwickler-community</div>
+          <div className="text-neutral-300 font-mono text-[11px]">https://dilsed.gg/hTKz9a</div>
+          <div className="text-neutral-300 font-mono text-[11px]">https://dilsed.gg/entwickler-community</div>
         </div>
       </div>
 

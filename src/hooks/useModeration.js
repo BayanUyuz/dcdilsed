@@ -20,34 +20,34 @@ export function useModeration() {
 
   const getSaved = (key, fallback) => {
     try {
-      const saved = localStorage.getItem(key);
+      const saved = localStorage.getItem(key) || localStorage.getItem(key.replace('dilsed_web_', 'discord_web_'));
       return saved ? JSON.parse(saved) : fallback;
     } catch {
       return fallback;
     }
   };
 
-  const [userNotes, setUserNotes] = useState(() => getSaved('discord_web_user_notes', {}));
-  const [modNotes, setModNotes] = useState(() => getSaved('discord_web_mod_notes', {}));
-  const [userTimeouts, setUserTimeouts] = useState(() => getSaved('discord_web_user_timeouts', {}));
-  const [userMutes, setUserMutes] = useState(() => getSaved('discord_web_user_mutes', {}));
-  const [mentionMutes, setMentionMutes] = useState(() => getSaved('discord_web_mention_mutes', {}));
-  const [verifiedUsers, setVerifiedUsers] = useState(() => getSaved('discord_web_verified_users', { 'm_owner': true }));
-  const [blockedUsers, setBlockedUsers] = useState(() => getSaved('discord_web_blocked_users', {}));
-  const [serverMutedUsers, setServerMutedUsers] = useState(() => getSaved('discord_web_server_mutes', {}));
-  const [serverDeafenedUsers, setServerDeafenedUsers] = useState(() => getSaved('discord_web_server_deafens', {}));
+  const [userNotes, setUserNotes] = useState(() => getSaved('dilsed_web_user_notes', {}));
+  const [modNotes, setModNotes] = useState(() => getSaved('dilsed_web_mod_notes', {}));
+  const [userTimeouts, setUserTimeouts] = useState(() => getSaved('dilsed_web_user_timeouts', {}));
+  const [userMutes, setUserMutes] = useState(() => getSaved('dilsed_web_user_mutes', {}));
+  const [mentionMutes, setMentionMutes] = useState(() => getSaved('dilsed_web_mention_mutes', {}));
+  const [verifiedUsers, setVerifiedUsers] = useState(() => getSaved('dilsed_web_verified_users', { 'm_owner': true }));
+  const [blockedUsers, setBlockedUsers] = useState(() => getSaved('dilsed_web_blocked_users', {}));
+  const [serverMutedUsers, setServerMutedUsers] = useState(() => getSaved('dilsed_web_server_mutes', {}));
+  const [serverDeafenedUsers, setServerDeafenedUsers] = useState(() => getSaved('dilsed_web_server_deafens', {}));
 
   // Persistence to localStorage
   useEffect(() => {
-    localStorage.setItem('discord_web_user_notes', JSON.stringify(userNotes));
-    localStorage.setItem('discord_web_mod_notes', JSON.stringify(modNotes));
-    localStorage.setItem('discord_web_user_timeouts', JSON.stringify(userTimeouts));
-    localStorage.setItem('discord_web_user_mutes', JSON.stringify(userMutes));
-    localStorage.setItem('discord_web_server_mutes', JSON.stringify(serverMutedUsers));
-    localStorage.setItem('discord_web_server_deafens', JSON.stringify(serverDeafenedUsers));
-    localStorage.setItem('discord_web_mention_mutes', JSON.stringify(mentionMutes));
-    localStorage.setItem('discord_web_verified_users', JSON.stringify(verifiedUsers));
-    localStorage.setItem('discord_web_blocked_users', JSON.stringify(blockedUsers));
+    localStorage.setItem('dilsed_web_user_notes', JSON.stringify(userNotes));
+    localStorage.setItem('dilsed_web_mod_notes', JSON.stringify(modNotes));
+    localStorage.setItem('dilsed_web_user_timeouts', JSON.stringify(userTimeouts));
+    localStorage.setItem('dilsed_web_user_mutes', JSON.stringify(userMutes));
+    localStorage.setItem('dilsed_web_server_mutes', JSON.stringify(serverMutedUsers));
+    localStorage.setItem('dilsed_web_server_deafens', JSON.stringify(serverDeafenedUsers));
+    localStorage.setItem('dilsed_web_mention_mutes', JSON.stringify(mentionMutes));
+    localStorage.setItem('dilsed_web_verified_users', JSON.stringify(verifiedUsers));
+    localStorage.setItem('dilsed_web_blocked_users', JSON.stringify(blockedUsers));
   }, [userNotes, modNotes, userTimeouts, userMutes, serverMutedUsers, serverDeafenedUsers, mentionMutes, verifiedUsers, blockedUsers]);
 
   const handleOpenMemberContextMenu = (e, member) => {
